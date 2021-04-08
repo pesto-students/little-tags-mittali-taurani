@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './style.scss'
 
 export default class MenuItem extends Component {
   constructor(props) {
@@ -7,26 +8,29 @@ export default class MenuItem extends Component {
     this.state = {
       showMenu: false,
     };
+    this.menu = React.createRef();
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
   }
 
   showMenu(event) {
-    console.log("hii")
     event.preventDefault();
 
     this.setState({ showMenu: true }, () => {
-      document.addEventListener('click', this.closeMenu);
+      if(this.menu && this.menu.current){
+        this.menu.current.addEventListener('mouseleave', this.closeMenu);
+      }
     });
   }
 
   closeMenu(event) {
-console.log('event.target',event.target.id, this.dropdownMenu);
-    if (!(event.target.id === 'menuBtn')) {
+    if (!(event.target.class === 'menuBtn')) {
 
-      console.log("close the menu");
+
       this.setState({ showMenu: false }, () => {
-        document.removeEventListener('click', this.closeMenu);
+        if(this.menu && this.menu.current){
+          this.menu.current.removeEventListener('mouseleave', this.closeMenu);
+        }
       });
 
     }
@@ -35,7 +39,7 @@ console.log('event.target',event.target.id, this.dropdownMenu);
   render() {
     return (
       <div>
-        <div id={'menuBtn'} onClick={this.showMenu}>
+        <div className={'menuBtn'} onMouseEnter={this.showMenu}>
           {this.props.title}
         </div>
 
@@ -44,6 +48,7 @@ console.log('event.target',event.target.id, this.dropdownMenu);
             ? (
               <div
                 className="menu"
+                ref={this.menu}
               >
                 {this.props.children}
               </div>
