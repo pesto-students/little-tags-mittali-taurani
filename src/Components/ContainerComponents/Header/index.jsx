@@ -1,30 +1,42 @@
-import myntra from '../../../static/myntra.png'
-import './style.scss';
+// import myntra from "../../../static/myntra.png";
+import React, { useState } from "react";
+import myntra from "../../../logo.svg";
+import "./style.scss";
 import Button from "../../DesignComponents/Button";
 import MenuItem from "../../DesignComponents/MenuItem";
-import React from "react";
 import Search from "../Search";
+import LoginForm from "../Login";
+import Modal from "../../DesignComponents/Modal";
 
 function Header() {
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLogin(!showLogin);
+  };
+
   return (
     <div className="header">
-
-      <div style={{display: "flex", }}>
+      <div style={{ display: "flex" }}>
         {/*<Button buttonText={"Customer Service "}/>*/}
         {/*<Button buttonText={"Newsletter"}/>*/}
-        <div style={{flexGrow: 2}}/>
-        <Button type={'user'} buttonText={"Sign in"}/>
-        <Button type={'favourite'} buttonText={"Favourites"}/>
-        <Button type={'bag'} buttonText={"Shopping bags (2)"}/>
+        <div style={{ flexGrow: 2 }} />
+        <Button type={"user"} buttonText={"Login/Sign in"}  onClickHandler={handleLoginClick}/>
+        <Button type={"favourite"} buttonText={"Favourites"} />
+        <Button type={"bag"} buttonText={"Shopping bags (2)"}/>
       </div>
 
-      <div className={'navContainer'}>
-        <div className={'navWrapper'}>
+      {showLogin && (
+        <Modal>
+          <LoginForm handleCloseModal={handleLoginClick} />
+        </Modal>
+      )}
 
-          <img style={{width: '200px'}} src={myntra}/>
-          <Search/>
+      <div className={"navContainer"}>
+        <div className={"navWrapper"}>
+          <img style={{ width: "200px" }} src={myntra} alt="Myntra Logo" />
+          <Search />
         </div>
-
 
         <div className={"navBar"}>
           <MenuItem title={"Women"}>
@@ -49,7 +61,6 @@ function Header() {
           </MenuItem>
         </div>
       </div>
-
     </div>
   );
 }
