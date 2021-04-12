@@ -1,0 +1,36 @@
+.footer-main{
+
+    font-size: 1rem;
+    background-color: var(--whisper);
+    padding: 2em 3em;
+
+    .footer-site-content {
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: 5em;
+
+        * {
+            flex: 1 100%;
+            align-items: flex-start;
+        }
+    }
+
+    hr {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .footer-copyright{
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    // @mixin define-emoji($name) {
+    //     .#{$name}-heading {
+    //         margin-bottom: 2em;
+    //     }
+    //   }
+      
+    //   @include define-emoji("contact-info");
+}

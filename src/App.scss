@@ -34,9 +34,12 @@ Variables
   --ff-tertiary: "GothamMedium";
   --white: #ffffff;
   --black: #000000;
-  --light-red: #ff5155;
+  --light-red: #f5373a;
   --cool-grey: #97a4a7;
   --cool-grey-two: #97a5a7;
+  --whisper: #e4e4e4;
+  --grey: #cfcfcf;
+  --gainsboro: #d8d8d8;
 }
 
 * {
@@ -46,7 +49,7 @@ Variables
 }
 
 body {
-  font-family: var(--ff-tertiary), "Harmattan", sans-serif;
+  font-family: var(--ff-secondary), "Harmattan", sans-serif;
   padding: 30px;
   font-size: 10px;
 }

@@ -1,0 +1,11 @@
+.newsletter-subscription-main {
+    margin-left: auto;
+  * {
+    margin-bottom: 1em;
+  }
+
+  // @include mixstyle.define-emoji("newsletter-subscription");
+  .newsletter-subscription-heading {
+    margin-bottom: 2em;
+  }
+}

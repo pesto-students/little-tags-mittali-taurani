@@ -1,0 +1,25 @@
+.drop-down__main {
+    width: 100%;
+
+    .drop-down__select{
+        width: 100%;
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0.5em;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        // background: url("../../../assets/icons/ionic-md-arrow-dropdown.svg")
+        //   transparent no-repeat calc(100% - 10px);  
+        
+        // .drop-down__option {
+        //     padding: 0.3em;
+        // }
+    }
+    .drop-down__nosize{
+        width: 100%;
+        border: 1px solid var(--black);
+        padding: 0.5em;
+    }
+}
