@@ -50,7 +50,7 @@ const Carousel = ({ carouselData }) => {
 
         <CarouselRightArrow onClickHanlder={(event) => goToNextSlide(event)} />
 
-        <ul className="carousel__indicators">
+        <ul className="carousel__indicators flex-row">
           {carouselData.map((_, index) => (
             <CarouselIndicator
               key={index}
