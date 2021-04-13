@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router";
 import Header from "./Components/ContainerComponents/Header";
 import {BrowserRouter} from "react-router-dom";
 import SearchPage from "./Components/ContainerComponents/SearchPage";
+import HomePage from "./Components/ContainerComponents/HomePage";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
       <BrowserRouter>
         <Header/>
         <Switch>
+          <Route exact path={'/'}>
+            <HomePage/>
+          </Route>
           <Route exact path={'/Women'}>
             <SearchPage/>
           </Route>
