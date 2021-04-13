@@ -10,22 +10,15 @@ function Header() {
     <div className="header">
 
       <div style={{display: "flex", }}>
-        {/*<Button buttonText={"Customer Service "}/>*/}
-        {/*<Button buttonText={"Newsletter"}/>*/}
+        <img style={{width: '200px'}} src={myntra}/>
         <div style={{flexGrow: 2}}/>
+        <Search/>
         <Button type={'user'} buttonText={"Sign in"}/>
         <Button type={'favourite'} buttonText={"Favourites"}/>
         <Button type={'bag'} buttonText={"Shopping bags (2)"}/>
       </div>
 
       <div className={'navContainer'}>
-        <div className={'navWrapper'}>
-
-          <img style={{width: '200px'}} src={myntra}/>
-          <Search/>
-        </div>
-
-
         <div className={"navBar"}>
           <MenuItem title={"Women"}>
             <button> Menu item 1 </button>

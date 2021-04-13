@@ -1,17 +1,37 @@
-import logo from './logo.svg';
-import myntra from './static/myntra.png'
 import './App.scss';
-import Button from "./Components/DesignComponents/Button";
-import MenuItem from "./Components/DesignComponents/MenuItem";
 import React from "react";
-import Search from "./Components/ContainerComponents/Search";
+import { Route, Switch } from "react-router";
+
 import Header from "./Components/ContainerComponents/Header";
+import {BrowserRouter} from "react-router-dom";
+import SearchPage from "./Components/ContainerComponents/SearchPage";
 
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
+        <Header/>
+        <Switch>
+          <Route exact path={'/Women'}>
+            <SearchPage/>
+          </Route>
+          <Route exact path={'/Men'}>
+            MENS
+            <SearchPage/>
+          </Route>
+          <Route exact path={'/Kids'}>
+            KIDS
+            <SearchPage/>
+          </Route>
+          <Route exact path={'/Sale'}>
+            SALE
+            <SearchPage/>
+          </Route>
+        </Switch>
 
-      <Header/>
+      </BrowserRouter>
+
+
 
     </div>
   );
