@@ -13,8 +13,12 @@ const ProductDetails = () => {
 
   const testSize = "XL";
 
+  const createArray = (inputString) => {
+    return inputString ? inputString.split("|") : [inputString];
+  }
+
   const color1 = "Brown | Olive | Green | Mustard"; //colo1 values : (colors or null)
-  const colors = color1 ? color1.split("|") : [color1];
+  const colors = createArray(color1); //color1 ? color1.split("|") : [color1];
 
   const getSizeArray = (size) => {
     let sizeArray = null;
