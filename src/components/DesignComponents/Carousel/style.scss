@@ -1,5 +1,6 @@
 .carousel-container {
   width: 50%;
+  margin-bottom: 5em;
 
   .carousel {
     position: relative;
@@ -13,75 +14,75 @@
     .carousel__slide {
       margin-right: auto;
       margin-left: auto;
-      //   display: none;
+      display: none;
       list-style-type: none;
       text-align: center;
-    }
 
-    &--active {
-      display: block;
-    }
-  }
-
-  // Carousel arrows
-  .carousel__arrow {
-    position: absolute;
-    top: 50%;
-    display: block;
-    color: #111;
-    cursor: pointer;
-    opacity: 0.75;
-    transform: translateY(-50%);
-    transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1);
-
-    &:focus {
-      outline: 0;
-    }
-
-    &:hover {
-      opacity: 0.5;
-    }
-
-    &--left {
-      left: 32px;
-    }
-
-    &--right {
-      right: 32px;
-    }
-  }
-
-  // Carousel indicators
-  .carousel__indicators {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 20px;
-
-    li {
-      &:nth-of-type(n + 2) {
-        margin-left: 9px;
+      &--active {
+        display: block;
       }
     }
-  }
 
-  .carousel__indicator {
-    display: block;
-    width: 24px;
-    height: 3px;
-    background-color: #111;
-    cursor: pointer;
-    opacity: 0.15;
-    transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1);
+    // Carousel arrows
+    .carousel__arrow {
+      position: absolute;
+      top: 50%;
+      display: block;
+      color: #111;
+      cursor: pointer;
+      opacity: 0.75;
+      transform: translateY(-50%);
+      transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1);
 
-    &:hover {
-      opacity: 0.5;
+      &:focus {
+        outline: 0;
+      }
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      &--left {
+        left: 32px;
+      }
+
+      &--right {
+        right: 32px;
+      }
     }
 
-    &--active {
-      &,
+    // Carousel indicators
+    .carousel__indicators {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 20px;
+
+      li {
+        &:nth-of-type(n + 2) {
+          margin-left: 9px;
+        }
+      }
+    }
+
+    .carousel__indicator {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background-color: #111;
+      cursor: pointer;
+      opacity: 0.15;
+      transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1);
+
       &:hover {
-        opacity: 0.75;
+        opacity: 0.5;
+      }
+
+      &--active {
+        &,
+        &:hover {
+          opacity: 0.75;
+        }
       }
     }
   }

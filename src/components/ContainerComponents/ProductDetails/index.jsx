@@ -60,7 +60,7 @@ const ProductDetails = () => {
   return (
     <div className="product-details-main flex-column">
       <div className="product-details-heading flex-row">
-        <div className="product-title">Loose Straight High Jeans</div>
+        <h3 className="product-title">Loose Straight High Jeans</h3>
         <Favorite />
       </div>
       <div className="product-price">Rs. 2,299</div>

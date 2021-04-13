@@ -1,5 +1,6 @@
 import "./style.scss";
 import React from "react";
+import { FaChevronLeft } from "react-icons/fa";
 
 const CarouselLeftArrow = ({ onClickHanlder }) => {
   return (
@@ -8,7 +9,7 @@ const CarouselLeftArrow = ({ onClickHanlder }) => {
       className="carousel__arrow carousel__arrow--left"
       onClick={onClickHanlder}
     >
-    <span className="fa fa-2x fa-angle-left" />
+      <FaChevronLeft />
     </a>
   );
 };

@@ -9,32 +9,33 @@ const Carousel = ({ carouselData }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselDataLength = carouselData.length;
 
-  const goToSlide = (index) => {
+  const goToSlide = (event, index) => {
+      event.preventDefault();
     setActiveIndex(index);
-  };
-
-  const goToNextSlide = (event) => {
-    event.preventDefault();
-    let index = activeIndex;
-    if (index < 1) {
-      index = carouselDataLength;
-    }
-    setActiveIndex(index - 1);
   };
 
   const goToPrevSlide = (event) => {
     event.preventDefault();
     let index = activeIndex;
-    if (index === carouselDataLength-1) {
+    if (index === 0) {
+      index = carouselDataLength;
+    }
+    setActiveIndex(index - 1);
+  };
+
+  const goToNextSlide = (event) => {
+    event.preventDefault();
+    let index = activeIndex;
+    if (index === carouselDataLength - 1) {
       index = -1;
     }
-    setActiveIndex(index+1);
+    setActiveIndex(index + 1);
   };
 
   return (
     <div className="carousel-container flex-column">
       <div className="carousel">
-        <CarouselLeftArrow onClickHanlder={(e) => goToPrevSlide(e)} />
+        <CarouselLeftArrow onClickHanlder={(event) => goToPrevSlide(event)} />
 
         <ul className="carousel__slides">
           {carouselData.map((path, index) => (
@@ -47,16 +48,15 @@ const Carousel = ({ carouselData }) => {
           ))}
         </ul>
 
-        <CarouselRightArrow onClickHanlder={(e) => goToNextSlide(e)} />
+        <CarouselRightArrow onClickHanlder={(event) => goToNextSlide(event)} />
 
         <ul className="carousel__indicators">
-          {carouselData.map((slide, index) => (
+          {carouselData.map((_, index) => (
             <CarouselIndicator
               key={index}
               index={index}
               activeIndex={activeIndex}
-              isActive={activeIndex === index}
-              onClickHanlder={(e) => goToSlide(index)}
+              onClickHanlder={(event) => goToSlide(event, index)}
             />
           ))}
         </ul>

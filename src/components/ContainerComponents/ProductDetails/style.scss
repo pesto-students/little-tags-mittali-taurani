@@ -4,12 +4,16 @@
   align-items: flex-start;
 
   *{
-      margin-bottom: .5em;
+      margin-bottom: 1em;
   }
 
   .product-details-heading {
     width: 100%;
     justify-content: space-between;
+    
+    *{
+      margin: 0;
+    }
   }
 
   .product-details-color-title {
