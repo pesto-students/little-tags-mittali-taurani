@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {BiRupee} from 'react-icons/bi';
 import {BsHeart, BsFillHeartFill} from 'react-icons/bs';
-import {RiCheckboxBlankCircleFill} from 'react-icons/ri';
+// import {RiCheckboxBlankCircleFill} from 'react-icons/ri';
 import './style.scss';
 
 
@@ -10,10 +10,9 @@ function Card(props) {
     window.localStorage.setItem('wishlist','[]')
   }
 
-  const checkWishList = ()=>{
-    const wishList = JSON.parse(window.localStorage.getItem('wishlist'));
-
-  };
+  // const checkWishList = ()=>{
+  //   const wishList = JSON.parse(window.localStorage.getItem('wishlist'));
+  // };
 
   const [inWishList, setInWishList] = useState(false);
 
@@ -36,9 +35,8 @@ function Card(props) {
     setInWishList(!inWishList);
   };
 
-  const colors = (props.data.color1 || "").split("|").map((color)=>{
-
-  })
+  // const colors = (props.data.color1 || "").split("|").map((color)=>{
+  // })
 
 
   return <div className={'card'}>
