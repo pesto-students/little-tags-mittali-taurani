@@ -10,7 +10,7 @@ function Header() {
     <div className="header">
 
       <div style={{display: "flex", }}>
-        <img style={{width: '200px'}} src={myntra}/>
+        <img style={{width: '200px'}} alt={'logo'} src={myntra}/>
         <div style={{flexGrow: 2}}/>
         <Search/>
         <Button type={'user'} buttonText={"Sign in"}/>
