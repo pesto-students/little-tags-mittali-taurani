@@ -30,6 +30,11 @@ function SearchPage(props) {
         dataClone.sort((a, b) => parseFloat(b['Unnamed: 17']) - parseFloat(a['Unnamed: 17']));
         setData(dataClone);
         break;
+      default:
+        getAllProducts().then(res=>{
+          setData(res.data);
+        });
+
     }
 
 
