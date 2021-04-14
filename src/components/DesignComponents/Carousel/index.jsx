@@ -1,12 +1,11 @@
 import "./style.scss";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CarouselRightArrow from "./CarouselRightArrow";
 import CarouselLeftArrow from "./CarouselLeftArrow";
 import CarouselIndicator from "./CarouselIndicator";
 import CarouselContent from "./CarouselContent";
 
 const Carousel = ({ carouselData }) => {
-  
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselDataLength = carouselData.length;
 
