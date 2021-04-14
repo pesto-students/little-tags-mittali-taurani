@@ -3,7 +3,7 @@
 
   &--opened {
     #{ $self }__icon {
-      transform: rotate(180deg);
+      transform: rotate(-180deg);
     }
 
     #{ $self }__inner {
@@ -40,11 +40,13 @@
     width: 2rem;
     height: 2rem;
     transition: transform 0.3s ease-in-out;
-    background-size: contain;
-    background-repeat: no-repeat;
+    // background-size: contain;
+    // background-repeat: no-repeat;
     background: url("../../../assets/icons/ionic-md-arrow-dropdown.svg")
-      transparent no-repeat center;
-    opacity: 0.6;
+          transparent no-repeat right/1.5em;
+    // background: url("../../../assets/icons/ionic-md-arrow-dropdown.svg")
+    //   transparent no-repeat center;
+    // opacity: 0.6;
   }
 
   &__inner {

@@ -6,7 +6,8 @@ const AccordionItem = ({ description, title }) => {
   return (
     <div
       {...{
-        className: `accordion-item, ${opened && "accordion-item--opened"}`,
+        // className: `accordion-item, ${opened && "accordion-item--opened"}`,
+        className: `accordion-item, ${!opened && "accordion-item--opened"}`,
         onClick: () => {
           setOpened(!opened);
         },
