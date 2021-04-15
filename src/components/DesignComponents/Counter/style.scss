@@ -1,0 +1,22 @@
+.counter-main {
+  width: 50%;
+  border: 1px solid var(--black);
+
+  * {
+    margin: 0;
+  }
+
+  .counter-value {
+    flex: 1 15em;
+    text-align: center;
+    font-weight: bold;
+  }
+  .counter_button {
+    font-size: 1.2em;
+    border: none;
+
+    &:focus {
+        outline: none;
+    }
+  }
+}

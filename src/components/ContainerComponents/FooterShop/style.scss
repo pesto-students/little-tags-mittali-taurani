@@ -1,0 +1,20 @@
+// @import url(../Footer/style.scss);
+// @use "../Footer/style" as mixstyle;
+.footer-shop-main {
+    
+  * {
+    margin-bottom: 1em;
+  }
+
+  // @include mixstyle.define-emoji("shop");
+  .shop-heading {
+    margin-bottom: 2em;
+  }
+
+  .payment-methods-desc {
+    margin-top: 1em;
+  }
+  .cards-icon img {
+    margin-right: 0.2em;
+  }
+}

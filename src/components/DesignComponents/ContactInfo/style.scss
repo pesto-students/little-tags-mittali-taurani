@@ -1,0 +1,33 @@
+.contact-info-main {
+  * {
+    margin-bottom: 1em;
+  }
+
+  // @include mixstyle.define-emoji("contact-info");
+  .contact-info-heading {
+    margin-bottom: 2em;
+  }
+
+  .social-media-desc {
+    margin-top: 2.8em;
+  }
+
+  .apps-icon svg {
+    margin-right: 1em;
+    width: 2em;
+    height: 2em;
+    opacity: 0.7;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+
+  // .payment-methods-desc {
+
+  //   margin-top: 3em;
+  // }
+  //   .cards-icon img {
+  //     margin-right: 0.2em;
+  //   }
+}
