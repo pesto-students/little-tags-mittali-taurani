@@ -1,7 +1,7 @@
 import "./style.scss";
 import React from "react";
 
-const DropDown = ({ options }) => {
+const DropDown = ({ options, reference, selectedValue }) => {
   const content = options
     ? options
         .map((element, key) => (
@@ -14,13 +14,11 @@ const DropDown = ({ options }) => {
   return (
     <div className="drop-down__main">
       {content ? (
-        <select className="drop-down__select">
+        <select className="drop-down__select" ref={reference} defaultValue={selectedValue}>
           <option
             className="drop-down__option"
             value=""
             disabled
-            selected
-            // hidden
           >
             Select size
           </option>

@@ -23,6 +23,7 @@ const ColorOptions = ({ options }) => {
       ? event.target.classList.remove("selected")
       : event.target.classList.add("selected");
   };
+
   const content = [...new Set([...options])].map((colorName, index) =>
     colorName ? (
       <BsFillCircleFill

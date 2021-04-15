@@ -1,14 +1,16 @@
-// import myntra from "../../../static/myntra.png";
-import React, { useState } from "react";
-import myntra from "../../../logo.svg";
 import "./style.scss";
+import React, { useState, useContext} from "react";
+import myntra from "../../../logo.svg";
 import Button from "../../DesignComponents/Button";
 import MenuItem from "../../DesignComponents/MenuItem";
 import Search from "../Search";
 import LoginForm from "../Login";
 import Modal from "../../DesignComponents/Modal";
+import { CartContext } from "../../../services/cart/CartContext";
 
 function Header() {
+  const { itemCount } = useContext(CartContext);
+
   const [showLogin, setShowLogin] = useState(false);
 
   const handleLoginClick = () => {
@@ -21,9 +23,13 @@ function Header() {
         {/*<Button buttonText={"Customer Service "}/>*/}
         {/*<Button buttonText={"Newsletter"}/>*/}
         <div style={{ flexGrow: 2 }} />
-        <Button type={"user"} buttonText={"Login/Sign in"}  onClickHandler={handleLoginClick}/>
+        <Button
+          type={"user"}
+          buttonText={"Login/Sign in"}
+          onClickHandler={handleLoginClick}
+        />
         <Button type={"favourite"} buttonText={"Favourites"} />
-        <Button type={"bag"} buttonText={"Shopping bags (2)"}/>
+        <Button type={"bag"} buttonText={`Shopping bags (${itemCount})`} />
       </div>
 
       {showLogin && (
