@@ -1,12 +1,12 @@
 import "./style.scss";
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import CarouselRightArrow from "./CarouselRightArrow";
 import CarouselLeftArrow from "./CarouselLeftArrow";
 import CarouselIndicator from "./CarouselIndicator";
 import CarouselContent from "./CarouselContent";
 
 const Carousel = ({ carouselData }) => {
-  
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselDataLength = carouselData.length;
 
@@ -64,6 +64,14 @@ const Carousel = ({ carouselData }) => {
       </div>
     </div>
   );
+};
+
+Carousel.propTypes = {
+  carouselData: PropTypes.array.isRequired,
+};
+
+Carousel.defaultProps = {
+  carouselData: [],
 };
 
 export default Carousel;

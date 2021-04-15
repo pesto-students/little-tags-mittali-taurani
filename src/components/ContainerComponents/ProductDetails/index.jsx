@@ -1,5 +1,6 @@
 import "./style.scss";
 import React, { useContext, useState } from "react";
+import PropTypes from "prop-types";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import Favorite from "../Favorite";
 import ProductDescription from "../../DesignComponents/ProductDescription";
@@ -91,7 +92,11 @@ const ProductDetails = ({ product }) => {
       <SizeDropDown
         options={getSizeArray(product.size)}
         reference={sizeRef}
-        selectedValue={!!isProductInCart(product) ? isProductInCart(product).selectedSize : ""}
+        selectedValue={
+          !!isProductInCart(product)
+            ? isProductInCart(product).selectedSize
+            : ""
+        }
       />
       {hasError && <div className="error_div">Please select a size</div>}
       {!!isProductInCart(product) && isProductInCart(product).quantity > 0 ? (
@@ -123,6 +128,14 @@ const ProductDetails = ({ product }) => {
       )}
     </div>
   );
+};
+
+ProductDetails.propTypes = {
+  product: PropTypes.object.isRequired,
+};
+
+ProductDetails.defaultProps = {
+  product: {},
 };
 
 export default ProductDetails;

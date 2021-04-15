@@ -1,5 +1,6 @@
 import "./style.scss";
 import React from "react";
+import PropTypes from "prop-types";
 import AccordionItem from "../AccordionItem";
 
 const ProductDescription = ({ description }) => {
@@ -22,6 +23,14 @@ const ProductDescription = ({ description }) => {
       <ul className="accordion-list">{content}</ul>
     </div>
   );
+};
+
+ProductDescription.propTypes = {
+  description: PropTypes.string.isRequired,
+};
+
+ProductDescription.defaultProps = {
+  description: "",
 };
 
 export default ProductDescription;

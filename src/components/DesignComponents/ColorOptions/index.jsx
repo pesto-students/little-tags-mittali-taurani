@@ -1,5 +1,6 @@
 import "./style.scss";
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { BsFillCircleFill } from "react-icons/bs";
 
 const ColorOptions = ({ options }) => {
@@ -46,6 +47,14 @@ const ColorOptions = ({ options }) => {
       )}
     </div>
   );
+};
+
+ColorOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+};
+
+ColorOptions.defaultProps = {
+  options: [],
 };
 
 export default ColorOptions;

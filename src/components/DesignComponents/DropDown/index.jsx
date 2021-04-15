@@ -1,5 +1,6 @@
 import "./style.scss";
 import React from "react";
+import PropTypes from "prop-types";
 
 const DropDown = ({ options, reference, selectedValue }) => {
   const content = options
@@ -29,6 +30,18 @@ const DropDown = ({ options, reference, selectedValue }) => {
       )}
     </div>
   );
+};
+
+DropDown.propTypes = {
+  options: PropTypes.array.isRequired,
+  reference: PropTypes.object,
+  selectedValue: PropTypes.string,
+};
+
+DropDown.defaultProps = {
+  options: [],
+  reference: {},
+  selectedValue: ""
 };
 
 export default DropDown;

@@ -1,2 +1,6 @@
 import "./style.scss";
-import React, { useEffect } from "react";
+import React from "react";
+
+const Cart = () => (<div>Cart Page</div>)
+
+export default Cart;
