@@ -1,0 +1,27 @@
+.cart-main {
+  font-size: 1rem;
+  margin-bottom: 1em;
+
+  .margin-bottom {
+    margin-bottom: 1em;
+  }
+
+  .cart-main__heading {
+    font-size: 3rem;
+  }
+
+  .cart-main__content {
+    justify-content: space-around;
+
+    .cart-main__sidebar {
+      min-height: 30%;
+      padding: 3em;
+      border: 1px solid var(--gainsboro);
+
+      p{
+          margin-bottom: 0.5em;
+          color: var(--cool-grey);
+      }
+    }
+  }
+}

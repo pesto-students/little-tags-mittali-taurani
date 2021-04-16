@@ -29,7 +29,7 @@ function Header() {
           onClickHandler={handleLoginClick}
         />
         <Button type={"favourite"} buttonText={"Favourites"} />
-        <Button type={"bag"} buttonText={`Shopping bags (${itemCount})`} />
+        <Button type={"bag"} buttonText={`Shopping bag (${itemCount})`} />
       </div>
 
       {showLogin && (

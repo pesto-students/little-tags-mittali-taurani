@@ -17,16 +17,16 @@ const setItemInStorage = (cartItems) => {
 export const sumItems = (cartItems) => {
   setItemInStorage(cartItems);
   const itemCount = cartItems.reduce(
-    (total, product) => total + product.quantity,
+    (totalPrice, product) => totalPrice + product.quantity,
     0
   );
-  const total = cartItems
+  const totalPrice = cartItems
     .reduce(
-      (total, product) => total + product["Unnamed: 17"] * product.quantity,
+      (totalPrice, product) => totalPrice + product["Unnamed: 17"] * product.quantity,
       0
     )
     .toFixed(2);
-  return { itemCount, total };
+  return { itemCount, totalPrice };
 };
 
 export const cartReducer = (state, action) => {
