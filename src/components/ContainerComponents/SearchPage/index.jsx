@@ -7,13 +7,6 @@ import './style.scss';
 function SearchPage(props) {
   const [data, setData] = useState([]);
   
-
-  useEffect(() => {
-    getDefaultData();
-    
-  }, [props.match.params.id, getDefaultData]);
-
-
   const getDefaultData = ()=>{
     switch (props.match.params.id) {
       case 'mens':
@@ -43,6 +36,13 @@ function SearchPage(props) {
     }
   }
 
+  useEffect(() => {
+    getDefaultData();
+    
+  }, [props.match.params.id, getDefaultData]);
+
+
+  
 
   const sortData = (event) => {
 
