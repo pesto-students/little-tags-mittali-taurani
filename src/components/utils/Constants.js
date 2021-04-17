@@ -5,5 +5,6 @@ export const ROUTE = {
     WOMENS:"/products/womens",
     KIDS: "/products/kids",
     SALE: "/products/sale",
-    ITEM_PAGE: "/product/:id", 
+    ITEM_PAGE: "/product/:id",
+    CART: "/cart", 
 }

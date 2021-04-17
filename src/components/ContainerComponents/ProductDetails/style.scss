@@ -7,7 +7,11 @@
       margin-bottom: 1em;
   }
 
-  .product-details-heading {
+  .margin-bottom {
+    margin-bottom: 0.2em;
+  }
+
+  .product-details-title {
     width: 100%;
     justify-content: space-between;
     
@@ -16,7 +20,7 @@
     }
   }
 
-  .product-details-color-title {
+  .product-details-heading {
     font-weight: bold;
   }
 

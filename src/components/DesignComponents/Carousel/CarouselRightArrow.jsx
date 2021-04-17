@@ -1,5 +1,6 @@
 import "./style.scss";
 import React from "react";
+import PropTypes from "prop-types";
 import { FaChevronRight } from "react-icons/fa";
 
 const CarouselRightArrow = ({ onClickHanlder }) => {
@@ -12,6 +13,14 @@ const CarouselRightArrow = ({ onClickHanlder }) => {
       <FaChevronRight />
     </a>
   );
+};
+
+CarouselRightArrow.propTypes = {
+  onClickHanlder: PropTypes.func.isRequired,
+};
+
+CarouselRightArrow.defaultProps = {
+  onClickHanlder: () => {},
 };
 
 export default CarouselRightArrow;

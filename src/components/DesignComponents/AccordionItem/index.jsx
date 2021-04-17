@@ -2,7 +2,9 @@ import "./style.scss";
 import React, { useState } from "react";
 
 const AccordionItem = ({ description, title }) => {
+  
   const [opened, setOpened] = useState(false);
+
   return (
     <div
       {...{

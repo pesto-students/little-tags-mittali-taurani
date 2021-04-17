@@ -1,5 +1,6 @@
 import "./style.scss";
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { BsFillCircleFill } from "react-icons/bs";
 
 const ColorOptions = ({ options }) => {
@@ -23,6 +24,7 @@ const ColorOptions = ({ options }) => {
       ? event.target.classList.remove("selected")
       : event.target.classList.add("selected");
   };
+
   const content = [...new Set([...options])].map((colorName, index) =>
     colorName ? (
       <BsFillCircleFill
@@ -45,6 +47,14 @@ const ColorOptions = ({ options }) => {
       )}
     </div>
   );
+};
+
+ColorOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+};
+
+ColorOptions.defaultProps = {
+  options: [],
 };
 
 export default ColorOptions;

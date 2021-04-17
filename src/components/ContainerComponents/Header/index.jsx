@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
+import {Link} from 'react-router-dom';
 import Button from "../../DesignComponents/Button";
 import MenuItem from "../../DesignComponents/MenuItem";
 import Search from "../Search";
 import LoginForm from "../Login";
 import Modal from "../../DesignComponents/Modal";
-import {Link} from 'react-router-dom';
 import { ROUTE } from "../../utils/Constants";
-
 import myntra from "../../../static/myntra.png";
 import "./style.scss";
+import { CartContext } from "../../../services/cart/CartContext";
 
 function Header() {
+  const { itemCount } = useContext(CartContext);
+
   const [showLogin, setShowLogin] = useState(false);
 
   const handleLoginClick = () => {
@@ -23,9 +25,13 @@ function Header() {
         <img style={{ width: '200px' }} alt={'logo'} src={myntra} />
         <div style={{ flexGrow: 2 }} />
         <Search />
-        <Button type={"user"} buttonText={"Login/Sign in"} onClickHandler={handleLoginClick} />
-        <Button type={'favourite'} buttonText={"Favourites"} />
-        <Button type={'bag'} buttonText={"Shopping bags (2)"} />
+        <Button
+          type={"user"}
+          buttonText={"Login/Sign in"}
+          onClickHandler={handleLoginClick}
+        />
+        <Button type={"favourite"} buttonText={"Favourites"} />
+        <Button type={"bag"} buttonText={`Shopping bag (${itemCount})`} />
       </div>
 
       {showLogin && (
