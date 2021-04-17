@@ -1,15 +1,15 @@
 import "./style.scss";
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-const Counter = () => {
-  const [counter, setCounter] = useState(1);
+const Counter = ({ counter, handleIncremant, handleDecrement }) => {
   return (
     <div className="counter-main flex-row">
       <button
         className="counter_button blackBg-whiteFg-btn"
         type="button"
         onClick={() => {
-          setCounter(counter - 1 > 0 ? counter - 1 : 1);
+          handleDecrement();
         }}
       >
         -
@@ -19,13 +19,25 @@ const Counter = () => {
         className="counter_button blackBg-whiteFg-btn"
         type="button"
         onClick={() => {
-          setCounter(counter + 1);
+          handleIncremant();
         }}
       >
         +
       </button>
     </div>
   );
+};
+
+Counter.propTypes = {
+  counter: PropTypes.number.isRequired,
+  handleIncremant: PropTypes.func.isRequired,
+  handleDecrement: PropTypes.func.isRequired,
+};
+
+Counter.defaultProps = {
+  counter: 1,
+  handleIncremant: () => {},
+  handleDecrement: () => {},
 };
 
 export default Counter;

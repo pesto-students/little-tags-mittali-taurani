@@ -1,24 +1,46 @@
 import "./style.scss";
-import React from "react";
+import React, { useContext, useState } from "react";
+import PropTypes from "prop-types";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 import Favorite from "../Favorite";
 import ProductDescription from "../../DesignComponents/ProductDescription";
 import SizeDropDown from "../../DesignComponents/DropDown";
 import Quantity from "../../DesignComponents/Counter";
 import ColorOptions from "../../DesignComponents/ColorOptions";
-import { HiOutlineShoppingBag } from "react-icons/hi";
+import { CartContext } from "../../../services/cart/CartContext";
 
-const ProductDetails = () => {
-  const testDescription =
-    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+const ProductDetails = ({ product }) => {
+  const {
+    cartItems,
+    addProduct,
+    removeProduct,
+    increaseProductQuantity,
+    decreaseProductQuantity,
+  } = useContext(CartContext);
 
-  const testSize = "XL";
+  const isProductInCart = (product) => {
+    return cartItems.find((item) => item.id === product.id);
+  };
+
+  const sizeRef = React.createRef();
+
+  const [hasError, setHasError] = useState(false);
+
+  const handleAddToCart = () => {
+    if (sizeRef.current.value !== "") {
+      sizeRef.current.parentElement.classList.remove("margin-bottom");
+      setHasError(false);
+      product.selectedSize = sizeRef.current.value;
+      addProduct(product);
+    } else {
+      sizeRef.current.parentElement.classList.add("margin-bottom");
+      setHasError(true);
+    }
+  };
 
   const createArray = (inputString) => {
     return inputString ? inputString.split("|") : [inputString];
-  }
-
-  const color1 = "Brown | Olive | Green | Mustard"; //colo1 values : (colors or null)
-  const colors = createArray(color1); //color1 ? color1.split("|") : [color1];
+  };
 
   const getSizeArray = (size) => {
     let sizeArray = null;
@@ -59,22 +81,61 @@ const ProductDetails = () => {
 
   return (
     <div className="product-details-main flex-column">
-      <div className="product-details-heading flex-row">
-        <h3 className="product-title">Loose Straight High Jeans</h3>
+      <div className="product-details-title flex-row">
+        <h4 className="product-name">{product.brand}</h4>
         <Favorite />
       </div>
-      <div className="product-price">Rs. 2,299</div>
-      <div className="product-details-color-title">Color</div>
-      <ColorOptions options={colors} />
-      <ProductDescription description={testDescription} />
-      <SizeDropDown options={getSizeArray(testSize)} />
-      <Quantity />
-      <button type="button" className="addCartBtn flex-row blackBg-whiteFg-btn">
-        <HiOutlineShoppingBag />
-        <h4>Add</h4>
-      </button>
+      <div className="product-price">{`Rs. ${product["Unnamed: 17"]}`}</div>
+      <div className="product-details-heading">Color</div>
+      <ColorOptions options={createArray(product.color1)} />
+      <ProductDescription description={product.decription} />
+      <SizeDropDown
+        options={getSizeArray(product.size)}
+        reference={sizeRef}
+        selectedValue={
+          !!isProductInCart(product)
+            ? isProductInCart(product).selectedSize
+            : ""
+        }
+      />
+      {hasError && <div className="error_div">Please select a size</div>}
+      {!!isProductInCart(product) && isProductInCart(product).quantity > 0 ? (
+        <div className="full-width">
+          <div className="product-details-heading">Qty in Bag:</div>
+          <Quantity
+            counter={
+              isProductInCart(product).quantity
+                ? isProductInCart(product).quantity
+                : 1
+            }
+            handleIncremant={() => increaseProductQuantity(product)}
+            handleDecrement={() =>
+              isProductInCart(product).quantity > 1
+                ? decreaseProductQuantity(product)
+                : removeProduct(product)
+            }
+          />
+        </div>
+      ) : (
+        <button
+          type="button"
+          className="addCartBtn flex-row blackBg-whiteFg-btn"
+          onClick={() => handleAddToCart()}
+        >
+          <HiOutlineShoppingBag />
+          <h4>Add</h4>
+        </button>
+      )}
     </div>
   );
+};
+
+ProductDetails.propTypes = {
+  product: PropTypes.object.isRequired,
+};
+
+ProductDetails.defaultProps = {
+  product: {},
 };
 
 export default ProductDetails;
