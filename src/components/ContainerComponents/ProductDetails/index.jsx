@@ -8,6 +8,7 @@ import SizeDropDown from "../../DesignComponents/DropDown";
 import Quantity from "../../DesignComponents/Counter";
 import ColorOptions from "../../DesignComponents/ColorOptions";
 import { CartContext } from "../../../services/cart/CartContext";
+import { formatNumberInCurrency, getSubString } from "../../../helper/util";
 
 const ProductDetails = ({ product }) => {
   const {
@@ -27,15 +28,17 @@ const ProductDetails = ({ product }) => {
   const [hasError, setHasError] = useState(false);
 
   const handleAddToCart = () => {
-    if (sizeRef.current.value !== "") {
-      sizeRef.current.parentElement.classList.remove("margin-bottom");
-      setHasError(false);
-      product.selectedSize = sizeRef.current.value;
-      addProduct(product);
-    } else {
-      sizeRef.current.parentElement.classList.add("margin-bottom");
-      setHasError(true);
-    }
+    if (sizeRef.current) {
+      if (sizeRef.current.value !== "") {
+        sizeRef.current.parentElement.classList.remove("margin-bottom");
+        setHasError(false);
+        product.selectedSize = sizeRef.current.value;
+        addProduct(product);
+      } else {
+        sizeRef.current.parentElement.classList.add("margin-bottom");
+        setHasError(true);
+      }
+    } else addProduct(product);
   };
 
   const createArray = (inputString) => {
@@ -81,11 +84,18 @@ const ProductDetails = ({ product }) => {
 
   return (
     <div className="product-details-main flex-column">
+      <h3 className="product-details-brand margin-bottom">
+        {product.brand_name}
+      </h3>
       <div className="product-details-title flex-row">
-        <h4 className="product-name">{product.brand}</h4>
+        <h5 className="product-details-name">
+          {getSubString(product.brand, product.brand_name)}
+        </h5>
         <Favorite />
       </div>
-      <div className="product-price">{`Rs. ${product["Unnamed: 17"]}`}</div>
+      <h5 className="product-details-price">
+        {formatNumberInCurrency(product["Unnamed: 17"])}
+      </h5>
       <div className="product-details-heading">Color</div>
       <ColorOptions options={createArray(product.color1)} />
       <ProductDescription description={product.decription} />
@@ -100,7 +110,7 @@ const ProductDetails = ({ product }) => {
       />
       {hasError && <div className="error_div">Please select a size</div>}
       {!!isProductInCart(product) && isProductInCart(product).quantity > 0 ? (
-        <div className="full-width">
+        <div className="product-details-quantity">
           <div className="product-details-heading">Qty in Bag:</div>
           <Quantity
             counter={
