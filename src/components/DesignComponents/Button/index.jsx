@@ -26,7 +26,7 @@ function Button(props) {
   }
 
 
-  return <div className={'button'}>
+  return <div className={'button'} onClick={props.onClickHandler}>
     <div style={{paddingRight: '5px'}}>{getButtonIcon()}</div>
     {props.buttonText}
   </div>;

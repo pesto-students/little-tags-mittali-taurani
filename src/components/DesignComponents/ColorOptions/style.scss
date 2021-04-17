@@ -1,0 +1,24 @@
+.color-options__main {
+  width: 100%;
+  .color-options__icon {
+    color: currentColor;
+    cursor: pointer;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 1em 0 0;
+    stroke: var(--cool-grey-two);
+    stroke-width: 1;
+
+    circle {
+      r: 7.5;
+    }
+  }
+  .selected {
+    stroke: var(--black);
+  }
+
+  .color-options__nooption {
+    border: 1px solid var(--black);
+    padding: 0.5em;
+  }
+}

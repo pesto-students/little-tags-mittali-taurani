@@ -1,0 +1,17 @@
+.icon-favorite {
+  cursor: pointer;
+  color: var(--black);
+  
+  svg {
+    width: 1.3em;
+    height: 1.3em;
+  }
+
+  //   &:hover,
+  //   &.active {
+  //     color: var(--light-red);
+  //   }
+  &.active {
+    color: var(--light-red);
+  }
+}

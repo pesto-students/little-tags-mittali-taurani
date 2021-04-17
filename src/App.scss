@@ -1,7 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Harmattan&family=Nunito:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Harmattan&family=Nunito:wght@200&display=swap");
 
-body {
-  font-family: 'Harmattan', sans-serif;
-  padding: 30px;
+/*
+=============== 
+Fonts
+===============
+*/
+@font-face {
+  font-family: "BreamCatcher";
+  src: url("assets/fonts/BreamCatcher/breamcatcher.ttf");
+}
+@font-face {
+  font-family: "GothamBook";
+  src: url("assets/fonts/Gotham/GothamBook.ttf");
+}
+@font-face {
+  font-family: "GothamMedium";
+  src: url("assets/fonts/Gotham/GothamMedium.ttf");
 }
 
+@font-face {
+  font-family: "Electrolize";
+  src: url("assets/fonts/Electrolize/Electrolize-Regular.ttf");
+}
+
+/*
+=============== 
+Variables
+===============
+*/
+:root {
+  --ff-primary: "Electrolize";
+  --ff-secondary: "GothamBook";
+  --ff-tertiary: "GothamMedium";
+  --white: #ffffff;
+  --black: #000000;
+  --light-red: #f5373a;
+  --cool-grey: #97a4a7;
+  --cool-grey-two: #97a5a7;
+  --whisper: #e4e4e4;
+  --grey: #cfcfcf;
+  --gainsboro: #d8d8d8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--ff-secondary), "Harmattan", sans-serif;
+  padding: 30px;
+  font-size: 10px;
+}
