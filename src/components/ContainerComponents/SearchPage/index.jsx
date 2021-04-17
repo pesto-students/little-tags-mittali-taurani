@@ -6,8 +6,8 @@ import './style.scss';
 
 function SearchPage(props) {
   const [data, setData] = useState([]);
-  
-  const getDefaultData = ()=>{
+
+  const getDefaultData = () => {
     switch (props.match.params.id) {
       case 'mens':
         getMensProducts().then(res => {
@@ -36,13 +36,10 @@ function SearchPage(props) {
     }
   }
 
-  useEffect(() => {
-    getDefaultData();
-    
-  }, [props.match.params.id, getDefaultData]);
+  useEffect(getDefaultData, [props.match.params.id, getDefaultData]);
 
 
-  
+
 
   const sortData = (event) => {
 
