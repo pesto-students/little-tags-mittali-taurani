@@ -5,3 +5,7 @@ export const formatNumberInCurrency = (number) => {
     minimumFractionDigits: 2,
   }).format(number);
 };
+
+export const getSubString = (inputString, pattern) => {
+  return inputString.replace(pattern,"").trim();
+}
