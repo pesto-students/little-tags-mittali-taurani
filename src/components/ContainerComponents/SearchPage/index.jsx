@@ -11,7 +11,7 @@ function SearchPage(props) {
   useEffect(() => {
     getDefaultData();
     
-  }, [props.match.params.id]);
+  }, [props.match.params.id, getDefaultData]);
 
 
   const getDefaultData = ()=>{
@@ -29,6 +29,7 @@ function SearchPage(props) {
         break;
 
       case 'kids':
+        getBoysProducts();
         getGirlsProducts().then(res => {
           setData(res.data);
         });
