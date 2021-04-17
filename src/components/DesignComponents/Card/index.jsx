@@ -42,7 +42,7 @@ function Card(props) {
   return <div className={'card'}>
     <img className={'card-image'} src={images[0] || ''} alt={'product img'}/>
     <div className={'product-container'}>
-      <div className={'product-name'}>{props.data.keyword || 'No Brand name'}</div>
+      <div className={'product-name'}>{props.data.brand || 'No Brand name'}</div>
       <div></div>
       <div onClick={toggleWishlist} className={'heart'}>
         {inWishList ? <BsFillHeartFill color={'red'} size={20}/> : <BsHeart size={20}/>}

@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import Header from "./Components/ContainerComponents/Header";
 import { BrowserRouter } from "react-router-dom";
-import SearchPage from "./Components/ContainerComponents/SearchPage";
-import HomePage from "./Components/ContainerComponents/HomePage";
-import Footer from "./Components/ContainerComponents/Footer";
-
-import Product from './Components/ContainerComponents/Product';
+import Header from "./components/ContainerComponents/Header";
+import SearchPage from "./components/ContainerComponents/SearchPage";
+import HomePage from "./components/ContainerComponents/HomePage";
+import Footer from "./components/ContainerComponents/Footer";
+import Product from './components/ContainerComponents/Product';
+import { ROUTE } from "./components/utils/Constants";
 
 import './App.scss';
 import "./common/CommonStyle.scss"
@@ -17,34 +17,14 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path={'/'}>
+          <Route exact path={ROUTE.HOME}>
             <HomePage />
           </Route>
-          <Route exact path={'/Women'}>
-            <SearchPage />
-          </Route>
-          <Route exact path={'/Men'}>
-            MENS
-            <SearchPage />
-          </Route>
-          <Route exact path={'/Kids'}>
-            KIDS
-            <SearchPage />
-          </Route>
-          <Route exact path={'/products/sale'}>
-            SALE
-            <SearchPage />
-          </Route>
-          <Route path='/product/:id'>
-            hiii
-            <Product />
-          </Route>
+          <Route path={ROUTE.CATEGORY} component={SearchPage} />
+          <Route path={ROUTE.ITEM_PAGE} component={Product} />
         </Switch>
         <Footer />
       </BrowserRouter>
-
-
-
     </div>
   );
 }

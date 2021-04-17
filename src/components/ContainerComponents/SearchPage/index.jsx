@@ -1,26 +1,53 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import './style.scss';
-import {getAllProducts} from "../../utils/backendAPI";
+import { getAllProducts, getBoysProducts, getMensProducts, getWomensProducts, getGirlsProducts } from "../../utils/backendAPI";
 import Card from "../../DesignComponents/Card";
 
 function SearchPage(props) {
   const [data, setData] = useState([]);
-  useEffect(()=>{
-    getAllProducts().then(res=>{
-      setData(res.data);
-    });
-  },[]);
+  
+
+  useEffect(() => {
+    getDefaultData();
+    
+  }, [props.match.params.id]);
 
 
+  const getDefaultData = ()=>{
+    switch (props.match.params.id) {
+      case 'mens':
+        getMensProducts().then(res => {
+          setData(res.data);
+        });
+        break;
 
-  const sortData = (event)=>{
+      case 'womens':
+        getWomensProducts().then(res => {
+          setData(res.data);
+        });
+        break;
+
+      case 'kids':
+        getGirlsProducts().then(res => {
+          setData(res.data);
+        });
+        break;
+
+      default:
+        getAllProducts().then(res => {
+          setData(res.data);
+        });
+        break;
+    }
+  }
+
+
+  const sortData = (event) => {
 
     const dataClone = JSON.parse(JSON.stringify(data));
     switch (event.target.value) {
       case 'recommended':
-        getAllProducts().then(res=>{
-          setData(res.data);
-        });
+        getDefaultData();
         break;
       case 'lowestPrice':
         dataClone.sort((a, b) => parseFloat(a['Unnamed: 17']) - parseFloat(b['Unnamed: 17']));
@@ -31,25 +58,20 @@ function SearchPage(props) {
         setData(dataClone);
         break;
       default:
-        getAllProducts().then(res=>{
+        getAllProducts().then(res => {
           setData(res.data);
         });
 
     }
-
-
   }
 
-
-
-  const productCards = data.map((data)=>{
-    return <Card key={data.id} data={data}/>;
+  const productCards = data.map((data) => {
+    return <Card key={data.id} data={data} />;
   });
 
-
   return (
-    <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-      <div style={{width: "150vw", height: '100vh'}}>
+    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <div style={{ width: "150vw", height: '100vh' }}>
         Filters
       </div>
       <div className="searchBody">
@@ -74,7 +96,7 @@ function SearchPage(props) {
               <option value="XL">XL</option>
             </select>
           </div>
-          <div style={{flexGrow:2}} />
+          <div style={{ flexGrow: 2 }} />
           <div className={'constFilterPadding lBtn'}>
             {data.length} items
           </div>
