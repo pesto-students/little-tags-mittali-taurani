@@ -1,0 +1,48 @@
+.searchBody{
+  //background-color: aquamarine;
+}
+
+.searchLable{
+  color: rgb(34, 34, 34);
+  cursor: pointer;
+  display: none;
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 24px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+}
+
+
+.filterBar{
+  display: flex;
+  align-items: flex-end;
+}
+.constFilterPadding{
+  padding-right: 10px;
+}
+.btn{
+  cursor: pointer;
+}
+
+.xlBtn{
+  font-size: x-large;
+}
+.lBtn{
+  font-size: larger;
+}
+
+.customSelect {
+
+}
+
+.result-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+

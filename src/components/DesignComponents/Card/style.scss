@@ -1,0 +1,32 @@
+.card{
+ padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image{
+  width: 400px;
+  height: 500px;
+}
+
+.product-name{
+font-size: 20px;
+}
+
+.product-price{
+  font-size: 17px;
+  display: flex;
+  align-items: baseline;
+}
+
+.product-container{
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.heart{
+  cursor: pointer;
+}

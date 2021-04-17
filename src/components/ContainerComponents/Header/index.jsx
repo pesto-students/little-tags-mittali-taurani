@@ -1,12 +1,15 @@
-import "./style.scss";
 import React, { useState, useContext} from "react";
-import myntra from "../../../logo.svg";
+import {Link} from 'react-router-dom';
 import Button from "../../DesignComponents/Button";
 import MenuItem from "../../DesignComponents/MenuItem";
 import Search from "../Search";
 import LoginForm from "../Login";
 import Modal from "../../DesignComponents/Modal";
+import { ROUTE } from "../../../helper/Constants";
+import myntra from "../../../static/myntra.png";
 import { CartContext } from "../../../services/cart/CartContext";
+
+import "./style.scss";
 
 function Header() {
   const { itemCount } = useContext(CartContext);
@@ -19,10 +22,10 @@ function Header() {
 
   return (
     <div className="header">
-      <div style={{ display: "flex" }}>
-        {/*<Button buttonText={"Customer Service "}/>*/}
-        {/*<Button buttonText={"Newsletter"}/>*/}
+      <div className='headerRightContent'>
+        <img style={{ width: '200px' }} alt={'logo'} src={myntra} />
         <div style={{ flexGrow: 2 }} />
+        <Search />
         <Button
           type={"user"}
           buttonText={"Login/Sign in"}
@@ -38,32 +41,20 @@ function Header() {
         </Modal>
       )}
 
-      <div className={"navContainer"}>
-        <div className={"navWrapper"}>
-          <img style={{ width: "200px" }} src={myntra} alt="Myntra Logo" />
-          <Search />
-        </div>
-
+      <div className={'navContainer'}>
         <div className={"navBar"}>
           <MenuItem title={"Women"}>
-            <button> Menu item 1 </button>
-            <button> Menu item 2 </button>
-            <button> Menu item 3 </button>
+            <Link to={ROUTE.WOMENS}>{'Women'}</Link>
           </MenuItem>
           <MenuItem title={"Men"}>
-            <button> Menu item 1 </button>
-            <button> Menu item 2 </button>
-            <button> Menu item 3 </button>
+            <Link to={ROUTE.MENS}>{'Men'}</Link>
           </MenuItem>
+          
           <MenuItem title={"Kids"}>
-            <button> Menu item 1 </button>
-            <button> Menu item 2 </button>
-            <button> Menu item 3 </button>
+            <Link to={ROUTE.KIDS}>{'Kids'}</Link>
           </MenuItem>
           <MenuItem title={"SALE"}>
-            <button> Menu item 1 </button>
-            <button> Menu item 2 </button>
-            <button> Menu item 3 </button>
+            <Link to={ROUTE.SALE}>{'Sale'}</Link>
           </MenuItem>
         </div>
       </div>

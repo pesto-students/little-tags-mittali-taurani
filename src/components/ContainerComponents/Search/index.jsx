@@ -6,9 +6,14 @@ import './style.scss';
 
 
 function Search(props) {
+
+  const handleChange = (event) => {
+    console.log("eventttt", event.target.value);
+  };
+
   return <div className={'search'}>
     <FiSearch/>
-    <input className={'searchInput'}/>
+    <input className={'searchInput'} placeholder={'search for products, brands ans more'} onChange={handleChange}/>
   </div>;
 }
 

@@ -4,7 +4,8 @@ import React from "react";
 import ImageCarousel from "../../DesignComponents/Carousel";
 import ProductDetails from "../ProductDetails";
 
-const Product = () => {
+const Product = (props) => {
+  console.log("prorpsps", props.match.params.id);
   const product = {
     id: "b53702392e2b6a2811774edcb41d11e4",
     date: "2019-08-06 07:14:43 +0000",
