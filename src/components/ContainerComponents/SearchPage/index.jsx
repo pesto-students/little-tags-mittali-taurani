@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import './style.scss';
-import { getAllProducts, getBoysProducts, getMensProducts, getWomensProducts, getGirlsProducts } from "../../utils/backendAPI";
+import { getAllProducts, getBoysProducts, getMensProducts, getWomensProducts, getGirlsProducts } from "../../../helper/backendAPI";
 import Card from "../../DesignComponents/Card";
+
+import './style.scss';
 
 function SearchPage(props) {
   const [data, setData] = useState([]);

@@ -5,10 +5,11 @@ import MenuItem from "../../DesignComponents/MenuItem";
 import Search from "../Search";
 import LoginForm from "../Login";
 import Modal from "../../DesignComponents/Modal";
-import { ROUTE } from "../../utils/Constants";
+import { ROUTE } from "../../../helper/Constants";
 import myntra from "../../../static/myntra.png";
-import "./style.scss";
 import { CartContext } from "../../../services/cart/CartContext";
+
+import "./style.scss";
 
 function Header() {
   const { itemCount } = useContext(CartContext);

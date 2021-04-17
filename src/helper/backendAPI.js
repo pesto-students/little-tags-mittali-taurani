@@ -5,20 +5,20 @@ export function getAllProducts(filters){
 };
 
 export function getMensProducts(searchTearm, filters){
-  return axios.get('http://127.0.0.1:5000/products/mens');
+  return axios.get('https://myntrapo.herokuapp.com/products/mens');
 };
 
 export function getWomensProducts(searchTearm, filters){
-  return axios.get('http://127.0.0.1:5000/products/women');
+  return axios.get('https://myntrapo.herokuapp.com/products/women');
 };
 
 export function getBoysProducts(searchTearm, filters){
-  return axios.get('http://127.0.0.1:5000/products/boy');
+  return axios.get('https://myntrapo.herokuapp.com/products/boys');
 };
 
 
 export function getGirlsProducts(searchTearm, filters){
-  return axios.get('http://127.0.0.1:5000/products/girl');
+  return axios.get('https://myntrapo.herokuapp.com/products/girls');
 };
 
 // export function getSaleProducts(searchTearm, filters){

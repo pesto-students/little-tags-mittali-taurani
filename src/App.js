@@ -8,7 +8,7 @@ import Footer from "./components/ContainerComponents/Footer";
 import Product from './components/ContainerComponents/Product';
 import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
-import { ROUTE } from "./components/utils/Constants";
+import { ROUTE } from "./helper/Constants";
 
 import './App.scss';
 import "./common/CommonStyle.scss"
