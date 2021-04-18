@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {BiRupee} from 'react-icons/bi';
 import {BsHeart, BsFillHeartFill} from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 // import {RiCheckboxBlankCircleFill} from 'react-icons/ri';
 import './style.scss';
 
 
-function Card(props) {
+function Card({data}) {
   if(!window.localStorage.getItem('wishlist')){
     window.localStorage.setItem('wishlist','[]')
   }
@@ -18,16 +19,16 @@ function Card(props) {
 
   // console.log("props.data", props.data);
 
-  const images = props.data.images.split("|");
+  const images = data.images.split("|");
 
   const toggleWishlist = () => {
     const wishlist = JSON.parse(window.localStorage.getItem('wishlist'));
     if(!inWishList){
-      window.localStorage.setItem("wishlist",JSON.stringify([props.data,...wishlist]));
+      window.localStorage.setItem("wishlist",JSON.stringify([data,...wishlist]));
       console.log("wishlist",wishlist);
     }else {
       const newWishList = wishlist.filter(function(item) {
-        return item !== JSON.stringify(props)
+        return item !== JSON.stringify(data)
       });
       window.localStorage.setItem("wishlist",JSON.stringify(newWishList));
       console.log(JSON.parse(window.localStorage.getItem('wishlist')));
@@ -42,7 +43,7 @@ function Card(props) {
   return <div className={'card'}>
     <img className={'card-image'} src={images[0] || ''} alt={'product img'}/>
     <div className={'product-container'}>
-      <div className={'product-name'}>{props.data.brand || 'No Brand name'}</div>
+      <div  className={'product-name'}><Link style={{textDecoration: "none", textDecorationColor: 'black'}} to={`/product/${data.id}`}>{data.brand || 'No Brand name'}</Link></div>
       <div></div>
       <div onClick={toggleWishlist} className={'heart'}>
         {inWishList ? <BsFillHeartFill color={'red'} size={20}/> : <BsHeart size={20}/>}
@@ -52,7 +53,7 @@ function Card(props) {
     <div className={'product-price'}>
       <BiRupee/>
       <div>
-        {props.data['Unnamed: 17']}
+        {data['Unnamed: 17']}
       </div>
     </div>
   </div>;

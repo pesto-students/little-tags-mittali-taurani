@@ -1,46 +1,9 @@
-import { FiSearch } from 'react-icons/fi';
-// import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import './style.scss';
 
-// export class Search extends Component {
-//   static propTypes = {
-//     options: PropTypes.instanceOf(Array).isRequired
-//   };
-//   state = {
-//     activeOption: 0,
-//     filteredOptions: [],
-//     showOptions: false,
-//     userInput: ''
-//   };
-//   render() {
-//     const {
-//       onChange,
-//       // onChange,
-//       onKeyDown,
-//       // userInput,
-//       state: { activeOption, filteredOptions, showOptions, userInput }
-//     } = this;
-//     let optionList;
-
-//     return (
-//       <div className={'search'}>
-//         <FiSearch />
-//         <input className={'searchInput'} onChange={onChange}
-//           onKeyDown={onKeyDown}
-//           value={userInput} placeholder={'search for products, brands ans more'} />
-//         <input type="submit" value="" className="search-btn" />
-//         {optionList}
-//       </div>
-
-//     );
-//   }
-// }
-// export default Search;
-
-
+import { FiSearch } from 'react-icons/fi';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export class Search extends Component {
   static propTypes = {
@@ -60,8 +23,8 @@ export class Search extends Component {
     const userInput = e.currentTarget.value;
 
     const filteredOptions = options.filter(
-      (optionName) =>
-        optionName.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+      (option) =>
+        option.brand.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
 
     this.setState({
@@ -117,14 +80,14 @@ export class Search extends Component {
       if (filteredOptions.length) {
         optionList = (
           <ul className="options">
-            {filteredOptions.map((optionName, index) => {
+            {filteredOptions.map((option, index) => {
               let className;
               if (index === activeOption) {
                 className = 'option-active';
               }
               return (
-                <li className={className} key={optionName} onClick={onClick}>
-                  {optionName}
+                <li className={className} key={option.id} onClick={onClick}>
+                  <Link to={`/product/${option.id}`}>{option.brand}</Link>
                 </li>
               );
             })}
