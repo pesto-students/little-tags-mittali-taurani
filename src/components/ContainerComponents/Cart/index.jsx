@@ -23,8 +23,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart-main flex-column">
-      {/* <h1 className="cart-main__heading">Shopping Bag</h1> */}
+    <div className="cart-main">
       {cartItems.length > 0 ? (
         <div className="cart-main__content flex-row full-width">
           <div className="cart-main__items">

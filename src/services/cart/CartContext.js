@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { cartReducer, sumItems } from "./CartReducer";
+import { cartReducer, sumItems, addItemsToOrderHistory } from "./CartReducer";
 import {
   ADD_PRODUCT,
   REMOVE_PRODUCT,
@@ -11,14 +11,16 @@ import {
 
 export const CartContext = createContext();
 
-const getItemFromStorage = localStorage.getItem("cart")
-  ? JSON.parse(localStorage.getItem("cart"))
+const getItemFromStorage = (key) => localStorage.getItem(key)
+  ? JSON.parse(localStorage.getItem(key))
   : [];
 
 const initialState = {
-  cartItems: getItemFromStorage,
-  ...sumItems(getItemFromStorage),
+  cartItems: getItemFromStorage("cart"),
+  ...sumItems(getItemFromStorage("cart")),
   checkout: false,
+  pastOrders: getItemFromStorage("pastOrders"),
+  ...addItemsToOrderHistory(getItemFromStorage("pastOrders")) 
 };
 
 const CartContextProvider = ({ children }) => {

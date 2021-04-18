@@ -14,6 +14,13 @@ const setItemInStorage = (cartItems) => {
   );
 };
 
+export const addItemsToOrderHistory = (pastOrders) => {
+  localStorage.setItem(
+    "pastOrders",
+    JSON.stringify(pastOrders.length > 0 ? pastOrders : [])
+  );
+}
+
 export const sumItems = (cartItems) => {
   setItemInStorage(cartItems);
   const itemCount = cartItems.reduce(
@@ -80,13 +87,16 @@ export const cartReducer = (state, action) => {
 
     case CHECKOUT:
       return {
-        cartItems: [],
+        pastOrders : state.pastOrders.push(...state.cartItems),
+        ...addItemsToOrderHistory(state.pastOrders),
+        cartItems: state.cartItems.splice(0),
         checkout: true,
-        ...sumItems([]),
+        ...setItemInStorage(state.cartItems),
+        // ...sumItems(state.cartItems),
       };
     case CLEAR_CART:
       return {
-        cartItems: [],
+        cartItems: state.cartItems.splice(0),//[],
         ...sumItems([]),
       };
     default:
