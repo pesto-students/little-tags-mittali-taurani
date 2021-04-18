@@ -1,8 +1,6 @@
 .drop-down__main {
-    width: 100%;
 
     .drop-down__select{
-        width: 100%;
         font-size: 1.2rem;
         margin: 0;
         padding: 0.5em;
@@ -14,7 +12,6 @@
           transparent no-repeat calc(100% - 10px)/2em;  
     }
     .drop-down__nosize{
-        width: 100%;
         border: 1px solid var(--black);
         padding: 0.5em;
     }
