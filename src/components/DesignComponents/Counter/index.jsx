@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const Counter = ({ counter, handleIncremant, handleDecrement }) => {
+const Counter = ({ counter, handleIncremant, handleDecrement, disableBtn }) => {
   return (
     <div className="counter-main flex-row">
       <button
@@ -12,6 +12,7 @@ const Counter = ({ counter, handleIncremant, handleDecrement }) => {
         onClick={() => {
           handleDecrement();
         }}
+        disabled={disableBtn}
       >
         -
       </button>

@@ -14,9 +14,17 @@ const Cart = () => {
     totalPrice,
   } = useContext(CartContext);
 
+  const calculateGST = (amount) => {
+    return (parseFloat(amount) * parseFloat(5)) / 100;
+  };
+
+  const calulateTotalPayable = (amount) => {
+    return calculateGST(amount) + parseFloat(amount);
+  };
+
   return (
     <div className="cart-main flex-column">
-      <h1 className="cart-main__heading">Shopping Bag</h1>
+      {/* <h1 className="cart-main__heading">Shopping Bag</h1> */}
       {cartItems.length > 0 ? (
         <div className="cart-main__content flex-row full-width">
           <div className="cart-main__items">
@@ -25,32 +33,41 @@ const Cart = () => {
             ))}
           </div>
           <div className="cart-main__sidebar flex-column">
+            <h3 className="margin-bottom">BILLING DETAILS</h3>
             <div className="cart-sidebar__total">
               <div className="margin-bottom">
                 <p>Total Items</p>
                 <h3>{itemCount}</h3>
               </div>
               <div className="margin-bottom">
-                <p>Total Payment</p>
+                <p>Order Value</p>
                 <h3>{formatNumberInCurrency(totalPrice)}</h3>
               </div>
-              <hr className="full-width margin-bottom" />
-              <div>
-                <button
-                  type="button"
-                  className="blackBg-whiteFg-btn"
-                  onClick={handleCheckout}
-                >
-                  CHECKOUT
-                </button>
-                <button
-                  type="button"
-                  className="blackBg-whiteFg-btn"
-                  onClick={handleClearCart}
-                >
-                  CLEAR
-                </button>
+              <div className="margin-bottom">
+                <p>GST (5%)</p>
+                <h3>{formatNumberInCurrency(calculateGST(totalPrice))}</h3>
               </div>
+              <div className="margin-bottom">
+                <p>Total Payable</p>
+                <h2>
+                  {formatNumberInCurrency(calulateTotalPayable(totalPrice))}
+                </h2>
+              </div>
+              <hr className="full-width margin-bottom" />
+              <button
+                type="button"
+                className="blackBg-whiteFg-btn"
+                onClick={handleCheckout}
+              >
+                CHECKOUT
+              </button>
+              <button
+                type="button"
+                className="cart-sidebar__clrBtn"
+                onClick={handleClearCart}
+              >
+                CLEAR
+              </button>
             </div>
           </div>
         </div>

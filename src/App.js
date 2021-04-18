@@ -1,3 +1,5 @@
+import './App.scss';
+import "./common/CommonStyle.scss"
 import React from "react";
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
@@ -9,9 +11,6 @@ import Product from './components/ContainerComponents/Product';
 import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
 import { ROUTE } from "./helper/Constants";
-
-import './App.scss';
-import "./common/CommonStyle.scss"
 
 function App() {
   return (

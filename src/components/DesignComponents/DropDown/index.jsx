@@ -13,9 +13,9 @@ const DropDown = ({ options, reference, selectedValue }) => {
     : "";
 
   return (
-    <div className="drop-down__main">
+    <div className="drop-down__main full-width">
       {content ? (
-        <select className="drop-down__select" ref={reference} defaultValue={selectedValue}>
+        <select className="drop-down__select full-width" ref={reference} defaultValue={selectedValue}>
           <option
             className="drop-down__option"
             value=""
@@ -26,7 +26,7 @@ const DropDown = ({ options, reference, selectedValue }) => {
           {content}
         </select>
       ) : (
-        <div className="drop-down__nosize">One Size</div>
+        <div className="drop-down__nosize  full-width">One Size</div>
       )}
     </div>
   );
