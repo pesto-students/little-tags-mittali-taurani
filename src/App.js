@@ -1,5 +1,5 @@
-import './App.scss';
-import "./common/CommonStyle.scss"
+import "./App.scss";
+import "./common/CommonStyle.scss";
 import React from "react";
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
@@ -7,11 +7,12 @@ import Header from "./components/ContainerComponents/Header";
 import SearchPage from "./components/ContainerComponents/SearchPage";
 import HomePage from "./components/ContainerComponents/HomePage";
 import Footer from "./components/ContainerComponents/Footer";
-import Product from './components/ContainerComponents/Product';
+import Product from "./components/ContainerComponents/Product";
 import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
-import { ROUTE } from "./helper/Constants";
-import WishlistContextProvider from './services/wishList/Context';
+// import Address from "./components/ContainerComponents/Address";
+import { ROUTE } from "./helper/constants";
+import WishlistContextProvider from "./services/wishList/Context";
 
 function App() {
   return (
@@ -29,14 +30,14 @@ function App() {
               <Route path={ROUTE.CART}>
                 <Cart />
               </Route>
+              {/* <Route path={ROUTE.CHECKOUT} component={Address} /> */}
             </Switch>
             <Footer />
           </BrowserRouter>
         </WishlistContextProvider>
       </CartContextProvider>
-
-    </div>);
+    </div>
+  );
 }
-
 
 export default App;

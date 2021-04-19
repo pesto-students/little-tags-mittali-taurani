@@ -7,10 +7,19 @@ import {
   CLEAR_CART,
 } from "./ActionTypes";
 
+import { USER_CART_STORAGE_KEY, USER_ORDERS_STORAGE_KEY } from "../../helper/constants";
+
 const setItemInStorage = (cartItems) => {
   localStorage.setItem(
-    "cart",
+    USER_CART_STORAGE_KEY,
     JSON.stringify(cartItems.length > 0 ? cartItems : [])
+  );
+};
+
+export const addItemsToOrderHistory = (pastOrders) => {
+  localStorage.setItem(
+    USER_ORDERS_STORAGE_KEY,
+    JSON.stringify(pastOrders.length > 0 ? pastOrders : [])
   );
 };
 
@@ -22,7 +31,8 @@ export const sumItems = (cartItems) => {
   );
   const totalPrice = cartItems
     .reduce(
-      (totalPrice, product) => totalPrice + product["Unnamed: 17"] * product.quantity,
+      (totalPrice, product) =>
+        totalPrice + product["Unnamed: 17"] * product.quantity,
       0
     )
     .toFixed(2);
@@ -79,14 +89,21 @@ export const cartReducer = (state, action) => {
       };
 
     case CHECKOUT:
+      state.cartItems.map(
+        (item) => item.dateOfOrder = new Date().toDateString()
+      );
       return {
-        cartItems: [],
+        ...state,
+        pastOrders: state.pastOrders.push(...state.cartItems),
+        ...addItemsToOrderHistory(state.pastOrders),
+        cartItems: state.cartItems.splice(0),
         checkout: true,
-        ...sumItems([]),
+        ...sumItems(state.cartItems),
+        // ...setItemInStorage(state.cartItems),
       };
     case CLEAR_CART:
       return {
-        cartItems: [],
+        cartItems: state.cartItems.splice(0), //[],
         ...sumItems([]),
       };
     default:
