@@ -91,7 +91,7 @@ const ProductDetails = ({ product }) => {
         <h5 className="product-details-name">
           {getSubString(product.brand, product.brand_name)}
         </h5>
-        <Favorite />
+        <Favorite data={product} />
       </div>
       <h5 className="product-details-price">
         {formatNumberInCurrency(product["Unnamed: 17"])}
