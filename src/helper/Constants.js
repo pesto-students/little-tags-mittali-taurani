@@ -7,4 +7,10 @@ export const ROUTE = {
     SALE: "/products/sale",
     ITEM_PAGE: "/product/:id",
     CART: "/cart", 
+    CHECKOUT: "/checkout",
 }
+
+export const USER_CART_STORAGE_KEY = "userCart";
+export const USER_ORDERS_STORAGE_KEY = "userPastOrder";
+export const USER_ADDRESSES_STORAGE_KEY = "userAddresses";
+export const USER_WISH_LIST_STORAGE_KEY = "userWishList";

@@ -10,7 +10,8 @@ import Footer from "./components/ContainerComponents/Footer";
 import Product from './components/ContainerComponents/Product';
 import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
-import { ROUTE } from "./helper/Constants";
+import Address from "./components/ContainerComponents/Address";
+import { ROUTE } from "./helper/constants";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path={ROUTE.CART}>
               <Cart/>
             </Route>
+            <Route path={ROUTE.CHECKOUT} component={Address} />
           </Switch>
           <Footer />
         </BrowserRouter>

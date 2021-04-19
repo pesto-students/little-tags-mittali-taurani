@@ -1,5 +1,7 @@
 import "./style.scss";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ROUTE } from "../../../helper/constants";
 import { CartContext } from "../../../services/cart/CartContext";
 import { formatNumberInCurrency } from "../../../helper/util";
 import CartItem from "../CartItem";
@@ -53,13 +55,15 @@ const Cart = () => {
                 </h2>
               </div>
               <hr className="full-width margin-bottom" />
-              <button
-                type="button"
-                className="blackBg-whiteFg-btn"
-                onClick={handleCheckout}
-              >
-                CHECKOUT
-              </button>
+              <Link to={ROUTE.CHECKOUT}>
+                <button
+                  type="button"
+                  className="blackBg-whiteFg-btn"
+                  onClick={handleCheckout}
+                >
+                  CHECKOUT
+                </button>
+              </Link>
               <button
                 type="button"
                 className="cart-sidebar__clrBtn"
