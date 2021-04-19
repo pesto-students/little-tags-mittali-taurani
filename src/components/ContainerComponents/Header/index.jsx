@@ -1,4 +1,5 @@
-import React, { useState, useContext} from "react";
+import "./style.scss";
+import React, { useState, useContext, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import Button from "../../DesignComponents/Button";
 import MenuItem from "../../DesignComponents/MenuItem";
@@ -8,11 +9,16 @@ import Modal from "../../DesignComponents/Modal";
 import { ROUTE } from "../../../helper/Constants";
 import myntra from "../../../static/myntra.png";
 import { CartContext } from "../../../services/cart/CartContext";
-
-import "./style.scss";
+import { getAllProducts } from "../../../helper/backendAPI";
 
 function Header() {
   const { itemCount } = useContext(CartContext);
+  const [products, setProducts] = useState([]);
+  useEffect(()=>{
+    getAllProducts().then(res=>{
+      setProducts(res.data)
+    })
+  },[]);
 
   const [showLogin, setShowLogin] = useState(false);
 
@@ -25,7 +31,9 @@ function Header() {
       <div className='headerRightContent'>
         <img style={{ width: '200px' }} alt={'logo'} src={myntra} />
         <div style={{ flexGrow: 2 }} />
-        <Search />
+        <Search
+        options={products}
+      />
         <Button
           type={"user"}
           buttonText={"Login/Sign in"}
