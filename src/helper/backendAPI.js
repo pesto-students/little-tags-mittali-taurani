@@ -1,7 +1,10 @@
 import axios from 'axios';
+import allProducts from '../data/products.json';
 
 export function getAllProducts(filters){
-  return axios.get('https://myntrapo.herokuapp.com/products');
+  return new Promise((resolve, reject)=>{
+    resolve({data: allProducts});
+  });
 };
 
 export function getMensProducts(searchTearm, filters){
