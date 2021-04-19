@@ -36,7 +36,7 @@ function SearchPage(props) {
     }
   }
 
-  useEffect(getDefaultData, [props.match.params.id, getDefaultData]);
+  useEffect(getDefaultData, [props.match.params.id]);
 
 
 
