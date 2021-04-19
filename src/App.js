@@ -10,8 +10,8 @@ import Footer from "./components/ContainerComponents/Footer";
 import Product from "./components/ContainerComponents/Product";
 import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
-// import Address from "./components/ContainerComponents/Address";
-import { ROUTE } from "./helper/constants";
+import Address from "./components/ContainerComponents/Address";
+import { ROUTE } from "./helper/Constants";
 import WishlistContextProvider from "./services/wishList/Context";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
               <Route path={ROUTE.CART}>
                 <Cart />
               </Route>
-              {/* <Route path={ROUTE.CHECKOUT} component={Address} /> */}
+              <Route path={ROUTE.CHECKOUT} component={Address} />
             </Switch>
             <Footer />
           </BrowserRouter>

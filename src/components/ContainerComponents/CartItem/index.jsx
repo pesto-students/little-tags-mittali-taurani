@@ -39,7 +39,7 @@ const CartItem = ({ product }) => {
         <div className="cart-item__quantity">
           <Quantity
             counter={product.quantity ? product.quantity : 1}
-            handleIncremant={() => increaseProductQuantity(product)}
+            handleIncrement={() => increaseProductQuantity(product)}
             handleDecrement={() => decreaseProductQuantity(product)}
             disableBtn={product.quantity > 1 ? false : true}
           />
@@ -52,7 +52,15 @@ const CartItem = ({ product }) => {
             product.quantity
           }`}</h4>
         </div>
-        <button type="button" className="cart-item__removeBtn" onClick={() => {removeProduct(product)}}><IoBagRemoveSharp /></button>
+        <button
+          type="button"
+          className="cart-item__removeBtn"
+          onClick={() => {
+            removeProduct(product);
+          }}
+        >
+          <IoBagRemoveSharp />
+        </button>
       </div>
     </div>
   );

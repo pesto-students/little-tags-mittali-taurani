@@ -1,13 +1,17 @@
 import {
   ADD_PRODUCT,
   REMOVE_PRODUCT,
+  UPDATE_PRODUCT,
   INCREASE_PRODUCT_QUANTITY,
   DECREASE_PRODUCT_QUANTITY,
   CHECKOUT,
   CLEAR_CART,
 } from "./ActionTypes";
 
-import { USER_CART_STORAGE_KEY, USER_ORDERS_STORAGE_KEY } from "../../helper/constants";
+import {
+  USER_CART_STORAGE_KEY,
+  USER_ORDERS_STORAGE_KEY,
+} from "../../helper/Constants";
 
 const setItemInStorage = (cartItems) => {
   localStorage.setItem(
@@ -45,15 +49,14 @@ export const cartReducer = (state, action) => {
       if (!state.cartItems.find((item) => item.id === action.payload.id)) {
         state.cartItems.push({
           ...action.payload,
-          quantity: 1,
         });
       }
-
       return {
         ...state,
         ...sumItems(state.cartItems),
         cartItems: [...state.cartItems],
       };
+
     case REMOVE_PRODUCT:
       return {
         ...state,
@@ -64,6 +67,19 @@ export const cartReducer = (state, action) => {
           ...state.cartItems.filter((item) => item.id !== action.payload.id),
         ],
       };
+
+    case UPDATE_PRODUCT:
+      const updatedCartItems = state.cartItems.map(item => {
+        if(item.id === action.payload.id)
+          return action.payload;
+        return item;
+      });
+      return {
+        ...state,
+        ...sumItems(updatedCartItems),
+        cartItems: [...updatedCartItems],
+      };
+
     case INCREASE_PRODUCT_QUANTITY:
       state.cartItems[
         state.cartItems.findIndex((item) => item.id === action.payload.id)
@@ -73,6 +89,7 @@ export const cartReducer = (state, action) => {
         ...sumItems(state.cartItems),
         cartItems: [...state.cartItems],
       };
+
     case DECREASE_PRODUCT_QUANTITY:
       const cartProduct = state.cartItems.find(
         (item) => item.id === action.payload.id
@@ -90,7 +107,7 @@ export const cartReducer = (state, action) => {
 
     case CHECKOUT:
       state.cartItems.map(
-        (item) => item.dateOfOrder = new Date().toDateString()
+        (item) => (item.dateOfOrder = new Date().toDateString())
       );
       return {
         ...state,
@@ -99,13 +116,14 @@ export const cartReducer = (state, action) => {
         cartItems: state.cartItems.splice(0),
         checkout: true,
         ...sumItems(state.cartItems),
-        // ...setItemInStorage(state.cartItems),
       };
+
     case CLEAR_CART:
       return {
         cartItems: state.cartItems.splice(0), //[],
         ...sumItems([]),
       };
+
     default:
       return state;
   }

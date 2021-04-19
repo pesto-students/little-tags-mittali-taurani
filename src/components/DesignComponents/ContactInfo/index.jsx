@@ -24,19 +24,19 @@ const ContactInfo = () => (
     <div className="social-media-desc">
       <h4>Connect with us:</h4>
       <div className="apps-icon">
-        <a href="#region" className="remove-underline">
+        <a href="/#" className="remove-underline">
           <FaFacebook />
         </a>
-        <a href="#region" className="remove-underline">
+        <a href="/#" className="remove-underline">
           <FaTwitter />
         </a>
-        <a href="#region" className="remove-underline">
+        <a href="/#" className="remove-underline">
           <FaInstagram />
         </a>
-        <a href="#region" className="remove-underline">
+        <a href="/#" className="remove-underline">
           <FaYoutube />
         </a>
-        <a href="#region" className="remove-underline">
+        <a href="/#" className="remove-underline">
           <FaPinterest />
         </a>
       </div>
