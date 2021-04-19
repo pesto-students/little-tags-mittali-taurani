@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 import {
   USER_CART_STORAGE_KEY,
   USER_ORDERS_STORAGE_KEY,
-} from "../../helper/Constants";
+} from "../../helper/constants";
 import { cartReducer, sumItems, addItemsToOrderHistory } from "./CartReducer";
 import {
   ADD_PRODUCT,

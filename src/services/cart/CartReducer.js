@@ -11,7 +11,7 @@ import {
 import {
   USER_CART_STORAGE_KEY,
   USER_ORDERS_STORAGE_KEY,
-} from "../../helper/Constants";
+} from "../../helper/constants";
 
 const setItemInStorage = (cartItems) => {
   localStorage.setItem(

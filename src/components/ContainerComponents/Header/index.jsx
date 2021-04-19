@@ -6,7 +6,7 @@ import MenuItem from "../../DesignComponents/MenuItem";
 import Search from "../Search";
 import LoginForm from "../Login";
 import Modal from "../../DesignComponents/Modal";
-import { ROUTE } from "../../../helper/Constants";
+import { ROUTE } from "../../../helper/constants";
 import myntra from "../../../static/myntra.png";
 import { CartContext } from "../../../services/cart/CartContext";
 import { getAllProducts } from "../../../helper/backendAPI";

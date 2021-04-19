@@ -6,7 +6,7 @@ import JCB from "../../../assets/icons/jcb_inverse.svg";
 import Mastercard from "../../../assets/icons/mastercard_inverse.svg";
 import Paypal from "../../../assets/icons/paypal_inverse.svg";
 import Visa from "../../../assets/icons/visa_inverse.svg";
-import { ROUTE } from "../../../helper/Constants";
+import { ROUTE } from "../../../helper/constants";
 
 const FooterShop = () => (
   <div className="footer-shop-main flex-column">

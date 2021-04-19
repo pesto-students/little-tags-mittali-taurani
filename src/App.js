@@ -11,7 +11,7 @@ import Product from "./components/ContainerComponents/Product";
 import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
 import Address from "./components/ContainerComponents/Address";
-import { ROUTE } from "./helper/Constants";
+import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
 
 function App() {
