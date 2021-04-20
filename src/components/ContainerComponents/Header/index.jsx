@@ -2,7 +2,6 @@ import "./style.scss";
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../DesignComponents/Button";
-import MenuItem from "../../DesignComponents/MenuItem";
 import Search from "../Search";
 import LoginForm from "../Login";
 import Modal from "../../DesignComponents/Modal";
@@ -50,19 +49,10 @@ function Header() {
 
       <div className={"navContainer"}>
         <div className={"navBar"}>
-          <MenuItem title={"Women"}>
-            <Link to={ROUTE.WOMENS}>{"Women"}</Link>
-          </MenuItem>
-          <MenuItem title={"Men"}>
-            <Link to={ROUTE.MENS}>{"Men"}</Link>
-          </MenuItem>
-
-          <MenuItem title={"Kids"}>
-            <Link to={ROUTE.KIDS}>{"Kids"}</Link>
-          </MenuItem>
-          <MenuItem title={"SALE"}>
-            <Link to={ROUTE.SALE}>{"Sale"}</Link>
-          </MenuItem>
+        <Link  className="link" to={ROUTE.WOMENS}>{"Women"}</Link>
+        <Link className="link" to={ROUTE.MENS}>{"Men"}</Link>
+        <Link className="link" to={ROUTE.KIDS}>{"Kids"}</Link>
+        <Link className="link" to={ROUTE.SALE}>{"Sale"}</Link>
         </div>
       </div>
     </div>

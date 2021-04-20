@@ -1,8 +1,12 @@
-.searchBody{
-  //background-color: aquamarine;
+.searchBody {
+  // background-color: aquamarine;
+  padding-left: 150px;
+  display: flex;
+  flex-direction: column;
+  // justify-content: flex-end;
 }
 
-.searchLable{
+.searchLable {
   color: rgb(34, 34, 34);
   cursor: pointer;
   display: none;
@@ -18,31 +22,45 @@
   border-image: initial;
 }
 
-
-.filterBar{
+.filterBar {
   display: flex;
-  align-items: flex-end;
+  // align-items: flex-end;
 }
-.constFilterPadding{
-  padding-right: 10px;
-}
-.btn{
+// .constFilterPadding{
+//   padding-right: 10px;
+// }
+
+.btn {
   cursor: pointer;
 }
 
-.xlBtn{
+.xlBtn {
   font-size: x-large;
 }
-.lBtn{
+.lBtn {
   font-size: larger;
 }
 
-.customSelect {
-
-}
-
-.result-list{
+.result-list {
   display: flex;
   flex-wrap: wrap;
 }
 
+.button-class {
+  color: #000;
+  font-size: 20px;
+  background-color: white;
+  width: 100px;
+  height: 50px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.pagination-text {
+  padding: 30px;
+  font-size: 20px;
+}

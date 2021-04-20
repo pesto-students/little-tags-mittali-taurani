@@ -12,8 +12,21 @@
 
 .navBar {
   display: flex;
+  color: inherit;
   justify-content: space-evenly;
   width: 70%;
+}
+
+.link {
+  text-decoration: none;
+  cursor:pointer; 
+  color: #0060B6;
+}
+
+.link:hover {
+  text-decoration: none;
+  cursor:pointer; 
+  color: #0060B6;
 }
 
 .navContainer {
