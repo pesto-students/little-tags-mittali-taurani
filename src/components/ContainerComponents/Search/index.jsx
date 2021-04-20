@@ -3,9 +3,10 @@ import './style.scss';
 import { FiSearch } from 'react-icons/fi';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 export class Search extends Component {
+
   static propTypes = {
     options: PropTypes.instanceOf(Array).isRequired
   };
@@ -15,6 +16,8 @@ export class Search extends Component {
     showOptions: false,
     userInput: ''
   };
+
+  
 
   onChange = (e) => {
     console.log('onChanges');
@@ -35,12 +38,16 @@ export class Search extends Component {
     });
   };
 
-  onClick = (e) => {
+  
+
+  onClick = (id) => (e) => {
     this.setState({
       activeOption: 0,
       filteredOptions: [],
       showOptions: false,
       userInput: e.currentTarget.innerText
+    },()=>{
+    this.props.history.push(`/product/${id}`);
     });
     
   };
@@ -51,8 +58,10 @@ export class Search extends Component {
       this.setState({
         activeOption: 0,
         showOptions: false,
-        userInput: filteredOptions[activeOption]
-      });
+        userInput: filteredOptions[activeOption].brand
+      },()=>{
+    this.props.history.push(`/product/${filteredOptions[activeOption].id}`);
+    });
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
         return;
@@ -67,6 +76,7 @@ export class Search extends Component {
     }
   };
 
+  
   render() {
     const {
       onChange,
@@ -86,8 +96,8 @@ export class Search extends Component {
                 className = 'option-active';
               }
               return (
-                <li className={className} key={option.id} onClick={onClick}>
-                  <Link to={`/product/${option.id}`}>{option.brand}</Link>
+                <li className={className} key={option.id} onClick={onClick(option.id)}>
+                  {option.brand}
                 </li>
               );
             })}
@@ -121,4 +131,4 @@ export class Search extends Component {
   }
 }
 
-export default Search;
+export default withRouter(Search);
