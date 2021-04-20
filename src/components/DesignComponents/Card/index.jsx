@@ -4,7 +4,6 @@ import { BsHeart, BsFillHeartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { WishlistContext } from '../../../services/wishList/Context';
 import { checkInWishList } from '../../../helper/util';
-// import {RiCheckboxBlankCircleFill} from 'react-icons/ri';
 import './style.scss';
 
 
@@ -16,6 +15,7 @@ function Card({ data }) {
   } = useContext(WishlistContext);
 
   const [inWishList, setInWishList] = useState(checkInWishList(data.id));
+  const [imgIndex, setImgIndex] = useState(0);
 
 
   const images = data.images.split("|");
@@ -29,10 +29,13 @@ function Card({ data }) {
     setInWishList(!inWishList);
   };
 
+  const changeImage = ()=>{setImgIndex(imgIndex+1)};
+  const changeImageBack = ()=>{setImgIndex(imgIndex-1)};
+
   return <div className={'card'}>
-    <img className={'card-image'} src={images[0] || ''} alt={'product img'} />
+    <img className={'card-image'} src={images[imgIndex%images.length] || ''} onMouseEnter={changeImage} onMouseLeave={changeImageBack} alt={'product img'} />
     <div className={'product-container'}>
-      <div className={'product-name'}><Link style={{ textDecoration: "none", textDecorationColor: 'black' }} to={`/product/${data.id}`}>{data.brand || 'No Brand name'}</Link></div>
+      <Link className='product-name link' to={`/product/${data.id}`}>{data.brand || 'No Brand name'}</Link>
       <div></div>
       <div onClick={toggleWishlist} className={'heart'}>
         {checkInWishList(data.id) ? <BsFillHeartFill color={'red'} size={20} /> : <BsHeart size={20} />}
