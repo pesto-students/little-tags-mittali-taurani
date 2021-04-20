@@ -2,7 +2,6 @@ import "./style.scss";
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../DesignComponents/Button";
-import MenuItem from "../../DesignComponents/MenuItem";
 import Search from "../Search";
 import LoginForm from "../Login";
 import Modal from "../../DesignComponents/Modal";
