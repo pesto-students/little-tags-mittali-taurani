@@ -111,7 +111,7 @@ function SearchPage(props) {
                 previous
               </button>
             )}
-            <div style={{padding: "30px", fontSize:20}}>
+            <div className="pagination-text">
             {pageNumber} of {totalPages}
             </div>
             
