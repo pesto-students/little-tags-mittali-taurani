@@ -99,7 +99,7 @@ function SearchPage(props) {
           </select>
         </div>
 
-        <div style={{ flexGrow: 2 }} />
+        <div/>
         <div>{data.length} items</div>
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
