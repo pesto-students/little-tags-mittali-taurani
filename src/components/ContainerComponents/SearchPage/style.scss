@@ -1,5 +1,5 @@
 .searchBody{
-  //background-color: aquamarine;
+  // background-color: aquamarine;
 }
 
 .searchLable{
@@ -21,11 +21,12 @@
 
 .filterBar{
   display: flex;
-  align-items: flex-end;
+  // align-items: flex-end;
 }
-.constFilterPadding{
-  padding-right: 10px;
-}
+// .constFilterPadding{
+//   padding-right: 10px;
+// }
+
 .btn{
   cursor: pointer;
 }
@@ -37,12 +38,21 @@
   font-size: larger;
 }
 
-.customSelect {
-
-}
-
 .result-list{
   display: flex;
   flex-wrap: wrap;
 }
 
+
+.button-class {
+  color: #000;
+  background-color: white;
+  width: 100px;
+  height: 50px;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}

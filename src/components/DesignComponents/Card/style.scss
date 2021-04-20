@@ -1,26 +1,33 @@
-.card{
- padding: 5px;
+.card {
+  padding: 5px;
   display: flex;
   flex-direction: column;
+  max-width: 450px;
+  max-height: 650px;
 }
 
-.card-image{
+.card-image {
   width: 400px;
   height: 500px;
 }
 
-.product-name{
-font-size: 20px;
-cursor: pointer;
+.product-name {
+  font-size: 20px;
+  padding: 15px 0 15px 0;
+  width: 400px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.product-price{
+.product-price {
   font-size: 17px;
   display: flex;
   align-items: baseline;
 }
 
-.product-container{
+.product-container {
   padding-right: 10px;
   padding-left: 10px;
   padding-top: 5px;
@@ -28,6 +35,6 @@ cursor: pointer;
   justify-content: space-between;
 }
 
-.heart{
+.heart {
   cursor: pointer;
 }
