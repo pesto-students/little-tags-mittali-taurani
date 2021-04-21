@@ -38,7 +38,7 @@ function Header() {
           onClickHandler={handleLoginClick}
         />
         <Button type={"favourite"} buttonText={"Favourites"} />
-        <Link to={ROUTE.CART} className={"remove-underline"}> <Button type={"bag"} buttonText={`Shopping bag (${itemCount})`} /></Link>
+        <Link to={ROUTE.CART} className={"remove-underline"}> <Button type={"bag"} buttonText={`Cart (${itemCount})`} /></Link>
        
       </div>
 

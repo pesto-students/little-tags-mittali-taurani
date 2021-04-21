@@ -1,10 +1,11 @@
 import "./style.scss";
 import React, { useContext } from "react";
-// import { Link } from "react-router-dom";
-// import { ROUTE } from "../../../helper/constants";
+import { Link } from "react-router-dom";
+import { ROUTE } from "../../../helper/constants";
 import { CartContext } from "../../../services/cart/CartContext";
 import { formatNumberInCurrency } from "../../../helper/util";
 import CartItem from "../CartItem";
+import EmptyCart from "../../../assets/images/cart_empty_2.png";
 
 const Cart = () => {
   const {
@@ -56,13 +57,13 @@ const Cart = () => {
               </div>
               <hr className="full-width margin-bottom" />
               {/* <Link to={ROUTE.CHECKOUT}> */}
-                <button
-                  type="button"
-                  className="blackBg-whiteFg-btn"
-                  onClick={handleCheckout}
-                >
-                  CHECKOUT
-                </button>
+              <button
+                type="button"
+                className="blackBg-whiteFg-btn"
+                onClick={handleCheckout}
+              >
+                CHECKOUT
+              </button>
               {/* </Link> */}
               <button
                 type="button"
@@ -77,7 +78,17 @@ const Cart = () => {
       ) : checkout && cartItems.length === 0 ? (
         <div>Checkout successfull</div>
       ) : (
-        <h3>Your shopping bag is empty</h3>
+        <div className="flex-column">
+          <img src={EmptyCart} alt="Cart empty" />
+          <Link to={ROUTE.HOME} className="cart-empty_shopNowBtn">
+            <button
+              type="button"
+              className="blackBg-whiteFg-btn"
+            >
+              SHOP NOW
+            </button>
+          </Link>
+        </div>
       )}
     </div>
   );

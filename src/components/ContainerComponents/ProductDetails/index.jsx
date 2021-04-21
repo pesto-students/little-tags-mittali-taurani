@@ -35,12 +35,12 @@ const ProductDetails = ({ product }) => {
 
   const handleAddOrUpdateCart = (event) => {
     const isActionAdd = event.currentTarget.textContent.includes("Add");
+    product.quantity = quantity;
     if (sizeRef.current) {
       if (sizeRef.current.value !== "") {
         sizeRef.current.parentElement.classList.remove("margin-bottom");
         setHasError(false);
         product.selectedSize = sizeRef.current.value;
-        product.quantity = quantity;
         isActionAdd ? addProduct(product) : updateProduct(product);
       } else {
         sizeRef.current.parentElement.classList.add("margin-bottom");
@@ -118,16 +118,12 @@ const ProductDetails = ({ product }) => {
       />
       {hasError && <div className="error_div">Please select a size</div>}
       <div className="product-details-quantity">
-        <div className="product-details-heading">Qty in Bag:</div>
+        <div className="product-details-heading">Quantity</div>
         <Quantity
           counter={quantity}
           handleIncrement={() => handleIncreaseQuantity()}
           handleDecrement={() => handleDecreaseQuantity()}
-          disableBtn={
-            !!isProductInCart(product) && isProductInCart(product).quantity > 1
-              ? false
-              : true
-          }
+          disableBtn={quantity > 1 ? false : true}
         />
       </div>
       <button

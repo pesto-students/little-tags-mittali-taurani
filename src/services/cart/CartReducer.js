@@ -58,20 +58,24 @@ export const cartReducer = (state, action) => {
       };
 
     case REMOVE_PRODUCT:
+      const newCartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      );
       return {
         ...state,
         ...sumItems(
-          state.cartItems.filter((item) => item.id !== action.payload.id)
+          newCartItems
+          // state.cartItems.filter((item) => item.id !== action.payload.id)
         ),
         cartItems: [
-          ...state.cartItems.filter((item) => item.id !== action.payload.id),
+          ...newCartItems,
+          // ...state.cartItems.filter((item) => item.id !== action.payload.id),
         ],
       };
 
     case UPDATE_PRODUCT:
-      const updatedCartItems = state.cartItems.map(item => {
-        if(item.id === action.payload.id)
-          return action.payload;
+      const updatedCartItems = state.cartItems.map((item) => {
+        if (item.id === action.payload.id) return action.payload;
         return item;
       });
       return {
@@ -81,46 +85,57 @@ export const cartReducer = (state, action) => {
       };
 
     case INCREASE_PRODUCT_QUANTITY:
-      state.cartItems[
-        state.cartItems.findIndex((item) => item.id === action.payload.id)
+      // const modifiedCartItems = JSON.parse(JSON.stringify(state.cartItems));
+      const modifiedCartItems = state.cartItems.map((item) => {
+        return { ...item };
+      });
+      modifiedCartItems[
+        modifiedCartItems.findIndex((item) => item.id === action.payload.id)
       ].quantity += 1;
       return {
         ...state,
-        ...sumItems(state.cartItems),
-        cartItems: [...state.cartItems],
+        ...sumItems(modifiedCartItems),
+        cartItems: [...modifiedCartItems],
       };
 
     case DECREASE_PRODUCT_QUANTITY:
-      const cartProduct = state.cartItems.find(
+      const reformedCartItems = state.cartItems.map((item) => {
+        return { ...item };
+      });
+      const cartProduct = reformedCartItems.find(
         (item) => item.id === action.payload.id
       );
       if (!!cartProduct && cartProduct.quantity > 1) {
-        state.cartItems[
-          state.cartItems.findIndex((item) => item.id === action.payload.id)
+        reformedCartItems[
+          reformedCartItems.findIndex((item) => item.id === action.payload.id)
         ].quantity -= 1;
       }
       return {
         ...state,
-        ...sumItems(state.cartItems),
-        cartItems: [...state.cartItems],
+        ...sumItems(reformedCartItems),
+        cartItems: [...reformedCartItems],
       };
 
     case CHECKOUT:
-      state.cartItems.map(
-        (item) => (item.dateOfOrder = new Date().toDateString())
-      );
+      const currentOrder = {
+        orderDate: new Date().toISOString(),  //.toDateString(),
+        orderOtem: [...state.cartItems],
+      };
+      const updatedOrderHistory = state.pastOrders.map((item) => {
+        return { ...item };
+      });
       return {
         ...state,
-        pastOrders: state.pastOrders.push(...state.cartItems),
-        ...addItemsToOrderHistory(state.pastOrders),
-        cartItems: state.cartItems.splice(0),
+        pastOrders: updatedOrderHistory.push(currentOrder),
+        ...addItemsToOrderHistory(updatedOrderHistory),
+        cartItems: [],
         checkout: true,
-        ...sumItems(state.cartItems),
+        ...sumItems([]),
       };
 
     case CLEAR_CART:
       return {
-        cartItems: state.cartItems.splice(0), //[],
+        cartItems: [],
         ...sumItems([]),
       };
 
