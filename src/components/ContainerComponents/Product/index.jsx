@@ -21,7 +21,7 @@ const Product = (props) => {
       {product ? <div className="product-main flex-row">
       <ImageCarousel carouselData={images} />
       <ProductDetails product={product} />
-      </div>: <div className="product-main flex-row">Ooops , Broken page</div>}
+      </div>: <div className="product-main flex-row">Ooops , Product not available</div>}
     </div>
   );
 };

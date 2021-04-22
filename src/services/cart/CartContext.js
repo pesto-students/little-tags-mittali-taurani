@@ -7,6 +7,7 @@ import { cartReducer, sumItems, addItemsToOrderHistory } from "./CartReducer";
 import {
   ADD_PRODUCT,
   REMOVE_PRODUCT,
+  UPDATE_PRODUCT,
   INCREASE_PRODUCT_QUANTITY,
   DECREASE_PRODUCT_QUANTITY,
   CHECKOUT,
@@ -37,6 +38,10 @@ const CartContextProvider = ({ children }) => {
     dispatch({ type: REMOVE_PRODUCT, payload });
   };
 
+  const updateProduct = (payload) => {
+    dispatch({ type: UPDATE_PRODUCT, payload });
+  };
+
   const increaseProductQuantity = (payload) => {
     dispatch({ type: INCREASE_PRODUCT_QUANTITY, payload });
   };
@@ -56,6 +61,7 @@ const CartContextProvider = ({ children }) => {
   const contextValues = {
     addProduct,
     removeProduct,
+    updateProduct,
     increaseProductQuantity,
     decreaseProductQuantity,
     handleCheckout,

@@ -11,13 +11,7 @@ import { CartContext } from "../../../services/cart/CartContext";
 import { formatNumberInCurrency, getSubString } from "../../../helper/util";
 
 const ProductDetails = ({ product }) => {
-  const {
-    cartItems,
-    addProduct,
-    removeProduct,
-    increaseProductQuantity,
-    decreaseProductQuantity,
-  } = useContext(CartContext);
+  const { cartItems, addProduct, updateProduct } = useContext(CartContext);
 
   const isProductInCart = (product) => {
     return cartItems.find((item) => item.id === product.id);
@@ -27,18 +21,32 @@ const ProductDetails = ({ product }) => {
 
   const [hasError, setHasError] = useState(false);
 
-  const handleAddToCart = () => {
+  const [quantity, setQuantity] = useState(
+    !!isProductInCart(product) ? isProductInCart(product).quantity : 1
+  );
+
+  const handleIncreaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecreaseQuantity = () => {
+    setQuantity(quantity - 1);
+  };
+
+  const handleAddOrUpdateCart = (event) => {
+    const isActionAdd = event.currentTarget.textContent.includes("Add");
+    product.quantity = quantity;
     if (sizeRef.current) {
       if (sizeRef.current.value !== "") {
         sizeRef.current.parentElement.classList.remove("margin-bottom");
         setHasError(false);
         product.selectedSize = sizeRef.current.value;
-        addProduct(product);
+        isActionAdd ? addProduct(product) : updateProduct(product);
       } else {
         sizeRef.current.parentElement.classList.add("margin-bottom");
         setHasError(true);
       }
-    } else addProduct(product);
+    } else isActionAdd ? addProduct(product) : updateProduct(product);
   };
 
   const createArray = (inputString) => {
@@ -109,33 +117,23 @@ const ProductDetails = ({ product }) => {
         }
       />
       {hasError && <div className="error_div">Please select a size</div>}
-      {!!isProductInCart(product) && isProductInCart(product).quantity > 0 ? (
-        <div className="product-details-quantity">
-          <div className="product-details-heading">Qty in Bag:</div>
-          <Quantity
-            counter={
-              isProductInCart(product).quantity
-                ? isProductInCart(product).quantity
-                : 1
-            }
-            handleIncremant={() => increaseProductQuantity(product)}
-            handleDecrement={() =>
-              isProductInCart(product).quantity > 1
-                ? decreaseProductQuantity(product)
-                : removeProduct(product)
-            }
-          />
-        </div>
-      ) : (
-        <button
-          type="button"
-          className="addCartBtn flex-row blackBg-whiteFg-btn"
-          onClick={() => handleAddToCart()}
-        >
-          <HiOutlineShoppingBag />
-          <h4>Add</h4>
-        </button>
-      )}
+      <div className="product-details-quantity">
+        <div className="product-details-heading">Quantity</div>
+        <Quantity
+          counter={quantity}
+          handleIncrement={() => handleIncreaseQuantity()}
+          handleDecrement={() => handleDecreaseQuantity()}
+          disableBtn={quantity > 1 ? false : true}
+        />
+      </div>
+      <button
+        type="button"
+        className="addCartBtn flex-row blackBg-whiteFg-btn"
+        onClick={(event) => handleAddOrUpdateCart(event)}
+      >
+        <HiOutlineShoppingBag />
+        <h4>{!!isProductInCart(product) ? "Update" : "Add"}</h4>
+      </button>
     </div>
   );
 };

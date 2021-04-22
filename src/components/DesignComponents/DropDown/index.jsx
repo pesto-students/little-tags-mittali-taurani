@@ -33,7 +33,7 @@ const DropDown = ({ options, reference, selectedValue }) => {
 };
 
 DropDown.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
   reference: PropTypes.object,
   selectedValue: PropTypes.string,
 };

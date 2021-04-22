@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const Counter = ({ counter, handleIncremant, handleDecrement, disableBtn }) => {
+const Counter = ({ counter, handleIncrement, handleDecrement, disableBtn }) => {
   return (
     <div className="counter-main flex-row">
       <button
@@ -21,7 +21,7 @@ const Counter = ({ counter, handleIncremant, handleDecrement, disableBtn }) => {
         className="counter_button blackBg-whiteFg-btn"
         type="button"
         onClick={() => {
-          handleIncremant();
+          handleIncrement();
         }}
       >
         +
@@ -32,13 +32,13 @@ const Counter = ({ counter, handleIncremant, handleDecrement, disableBtn }) => {
 
 Counter.propTypes = {
   counter: PropTypes.number.isRequired,
-  handleIncremant: PropTypes.func.isRequired,
+  handleIncrement: PropTypes.func.isRequired,
   handleDecrement: PropTypes.func.isRequired,
 };
 
 Counter.defaultProps = {
   counter: 1,
-  handleIncremant: () => {},
+  handleIncrement: () => {},
   handleDecrement: () => {},
 };
 
