@@ -10,11 +10,13 @@ import Footer from "./components/ContainerComponents/Footer";
 import Product from "./components/ContainerComponents/Product";
 import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
-import Address from "./components/ContainerComponents/Address";
+import Checkout from "./components/ContainerComponents/Checkout";
 import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
 import FirebaseContext from "./services/firebase/context";
 import Firebase from "./services/firebase/firebase";
+import AddressContextProvider from "./services/address/AddressContext";
+import FinalPage from "./components/DesignComponents/FinalPage";
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
             <BrowserRouter>
               <Header />
               <Switch>
+                <Route path={ROUTE.ORDER_PLACED}>
+                  <FinalPage />
+                </Route>
                 <Route exact path={ROUTE.HOME}>
                   <HomePage />
                 </Route>
@@ -33,7 +38,9 @@ function App() {
                 <Route path={ROUTE.CART}>
                   <Cart />
                 </Route>
-                <Route path={ROUTE.CHECKOUT} component={Address} />
+                <AddressContextProvider>
+                  <Route path={ROUTE.CHECKOUT} component={Checkout} />
+                </AddressContextProvider>
               </Switch>
               <Footer />
             </BrowserRouter>

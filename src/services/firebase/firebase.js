@@ -1,21 +1,35 @@
-import app from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
+// import * as firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+import 'firebase/firestore'
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
 };
 
 class Firebase {
   constructor() {
-    app.initializeApp(config);
-    this.db = app.database();
-    this.auth = app.auth();
+    // app.initializeApp(config);
 
-    this.googleAuthProvider = new app.auth.GoogleAuthProvider();
+        if (!firebase.apps.length) {
+          firebase.initializeApp(config);
+  }
+  // else{
+  //   app.app();
+  // }
+
+
+
+    // !app.apps.length ? app.initializeApp(config) : app.app();
+    this.db = firebase.firestore();
+    this.auth = firebase.auth();
+
+    this.googleAuthProvider = new firebase.auth.GoogleAuthProvider();
   }
 
   doGoogleSignIn = () => this.auth.signInWithPopup(this.googleAuthProvider);
@@ -28,7 +42,7 @@ class Firebase {
     return this.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         this.user(authUser.uid)
-          .once('value')
+          .once("value")
           .then((snapshot) => {
             const dbUser = snapshot.val();
             const user = {
