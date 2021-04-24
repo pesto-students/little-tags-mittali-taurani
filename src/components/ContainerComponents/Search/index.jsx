@@ -107,7 +107,11 @@ export class Search extends Component {
         );
       }
     }
-    const searchTerm = this.props.history.location.search.split("=") && this.props.history.location.search.split("=")[1];
+    let searchTerm = this.props.history.location.search.split("=") && this.props.history.location.search.split("=")[1];
+    console.log("decodeURI(searchTerm)",typeof(searchTerm));
+    if(searchTerm === undefined){
+      searchTerm= "";
+    }
     return (
       <React.Fragment>
         <div className="search">
@@ -118,7 +122,7 @@ export class Search extends Component {
             // className="search-box"
             onChange={onChange}
             onKeyDown={onKeyDown}
-            placeholder={decodeURI(searchTerm) || ""}
+            placeholder={decodeURI(searchTerm)}
             value={userInput}
           />
           {/* <input type="submit" value={} className="search-btn" /> */}

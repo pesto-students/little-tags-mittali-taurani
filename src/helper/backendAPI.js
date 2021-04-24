@@ -1,4 +1,3 @@
-import axios from 'axios';
 import allProducts from '../data/products.json';
 import mensProducts from '../data/mens.json';
 import womensProducts from '../data/womens.json';
