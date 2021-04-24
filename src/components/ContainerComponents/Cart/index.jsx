@@ -56,15 +56,15 @@ const Cart = () => {
                 </h2>
               </div>
               <hr className="full-width margin-bottom" />
-              {/* <Link to={ROUTE.CHECKOUT}> */}
-              <button
-                type="button"
-                className="blackBg-whiteFg-btn"
-                onClick={handleCheckout}
-              >
-                CHECKOUT
-              </button>
-              {/* </Link> */}
+              <Link to={ROUTE.CHECKOUT}>
+                <button
+                  type="button"
+                  className="blackBg-whiteFg-btn"
+                  onClick={handleCheckout}
+                >
+                  CHECKOUT
+                </button>
+              </Link>
               <button
                 type="button"
                 className="cart-sidebar__clrBtn"
@@ -81,10 +81,7 @@ const Cart = () => {
         <div className="flex-column">
           <img src={EmptyCart} alt="Cart empty" />
           <Link to={ROUTE.HOME} className="cart-empty_shopNowBtn">
-            <button
-              type="button"
-              className="blackBg-whiteFg-btn"
-            >
+            <button type="button" className="blackBg-whiteFg-btn">
               SHOP NOW
             </button>
           </Link>
