@@ -13,8 +13,8 @@ const LoginForm = ({ handleCloseModal }) => {
       <div className="login-form-header">Log In / Sign Up</div>
       <div className="modal-content flex-column">
       <div className="login-form-sub-heading">Log in / Sign up using your</div>
-        <GoogleLoginButton />
-        <FacebookLoginButton />
+        <GoogleLoginButton handleCloseModal={handleCloseModal} />
+        <FacebookLoginButton handleCloseModal={handleCloseModal} />
       </div>
     </div>
   );

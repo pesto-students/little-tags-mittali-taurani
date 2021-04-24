@@ -13,8 +13,8 @@ import Cart from "./components/ContainerComponents/Cart";
 import Checkout from "./components/ContainerComponents/Checkout";
 import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
-import FirebaseContext from "./services/firebase/context";
-import Firebase from "./services/firebase/firebase";
+import FirebaseContext from "./services/firebase/FirebaseContext";
+import Firebase from "./services/firebase/Firebase";
 import AddressContextProvider from "./services/address/AddressContext";
 import FinalPage from "./components/DesignComponents/FinalPage";
 

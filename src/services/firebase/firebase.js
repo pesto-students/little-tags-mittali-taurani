@@ -1,8 +1,6 @@
-// import * as firebase from "firebase";
-import firebase from "firebase/app";
+import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
-import 'firebase/firestore'
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -14,22 +12,13 @@ const config = {
 
 class Firebase {
   constructor() {
-    // app.initializeApp(config);
+    if (!app.apps.length) {
+      app.initializeApp(config);
+    }
+    this.db = app.database();
+    this.auth = app.auth();
 
-        if (!firebase.apps.length) {
-          firebase.initializeApp(config);
-  }
-  // else{
-  //   app.app();
-  // }
-
-
-
-    // !app.apps.length ? app.initializeApp(config) : app.app();
-    this.db = firebase.firestore();
-    this.auth = firebase.auth();
-
-    this.googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    this.googleAuthProvider = new app.auth.GoogleAuthProvider();
   }
 
   doGoogleSignIn = () => this.auth.signInWithPopup(this.googleAuthProvider);
