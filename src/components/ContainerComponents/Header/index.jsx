@@ -9,17 +9,19 @@ import { ROUTE } from "../../../helper/constants";
 import myntra from "../../../static/myntra.png";
 import { CartContext } from "../../../services/cart/CartContext";
 import { getAllProducts } from "../../../helper/backendAPI";
+// import FirebaseContext from "../../../services/firebase/FirebaseContext";
 
 function Header() {
+  // const firebase = useContext(FirebaseContext);
   const { itemCount } = useContext(CartContext);
   const [products, setProducts] = useState([]);
+  const [showLogin, setShowLogin] = useState(false);
+
   useEffect(() => {
     getAllProducts().then((res) => {
       setProducts(res.data);
     });
   }, []);
-
-  const [showLogin, setShowLogin] = useState(false);
 
   const handleLoginClick = () => {
     setShowLogin(!showLogin);
@@ -37,8 +39,10 @@ function Header() {
           onClickHandler={handleLoginClick}
         />
         <Button type={"favourite"} buttonText={"Favourites"} />
-        <Link to={ROUTE.CART} className={"remove-underline"}> <Button type={"bag"} buttonText={`Cart (${itemCount})`} /></Link>
-       
+        <Link to={ROUTE.CART} className={"remove-underline"}>
+          {" "}
+          <Button type={"bag"} buttonText={`Cart (${itemCount})`} />
+        </Link>
       </div>
 
       {showLogin && (
@@ -49,10 +53,18 @@ function Header() {
 
       <div className={"navContainer"}>
         <div className={"navBar"}>
-        <Link  className="link" to={ROUTE.WOMENS}>{"Women"}</Link>
-        <Link className="link" to={ROUTE.MENS}>{"Men"}</Link>
-        <Link className="link" to={ROUTE.KIDS}>{"Kids"}</Link>
-        <Link className="link" to={ROUTE.SALE}>{"Sale"}</Link>
+          <Link className="link" to={ROUTE.WOMENS}>
+            {"Women"}
+          </Link>
+          <Link className="link" to={ROUTE.MENS}>
+            {"Men"}
+          </Link>
+          <Link className="link" to={ROUTE.KIDS}>
+            {"Kids"}
+          </Link>
+          <Link className="link" to={ROUTE.SALE}>
+            {"Sale"}
+          </Link>
         </div>
       </div>
     </div>

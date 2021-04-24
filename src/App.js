@@ -15,36 +15,40 @@ import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
 import AddressContextProvider from "./services/address/AddressContext";
 import FinalPage from "./components/DesignComponents/FinalPage";
+import FirebaseContext from "./services/firebase/FirebaseContext";
+import Firebase from "./services/firebase/Firebase";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <CartContextProvider>
         <WishlistContextProvider>
-          <BrowserRouter>
-            <Header />
-            <Switch>
-              <Route path={ROUTE.ORDER_PLACED}>
-                <FinalPage />
-              </Route>
-              <Route exact path={ROUTE.HOME}>
-                <HomePage />
-              </Route>
-              <Route path={ROUTE.CATEGORY} component={SearchPage} />
-              <Route path={ROUTE.ITEM_PAGE} component={Product} />
-              <Route path={ROUTE.CART}>
-                <Cart />
-              </Route>
-              <AddressContextProvider>
-                <Route path={ROUTE.CHECKOUT} component={Checkout} />
-              </AddressContextProvider>
-            </Switch>
-            <Footer />
-          </BrowserRouter>
+          <FirebaseContext.Provider value={new Firebase()}>
+            <BrowserRouter>
+              <Header />
+              <Switch>
+                <Route path={ROUTE.ORDER_PLACED}>
+                  <FinalPage />
+                </Route>
+                <Route exact path={ROUTE.HOME}>
+                  <HomePage />
+                </Route>
+                <Route path={ROUTE.CATEGORY} component={SearchPage} />
+                <Route path={ROUTE.ITEM_PAGE} component={Product} />
+                <Route path={ROUTE.CART}>
+                  <Cart />
+                </Route>
+                <AddressContextProvider>
+                  <Route path={ROUTE.CHECKOUT} component={Checkout} />
+                </AddressContextProvider>
+              </Switch>
+              <Footer />
+            </BrowserRouter>
+          </FirebaseContext.Provider>
         </WishlistContextProvider>
       </CartContextProvider>
     </div>
   );
-}
+};
 
 export default App;
