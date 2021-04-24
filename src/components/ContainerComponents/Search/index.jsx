@@ -17,8 +17,6 @@ export class Search extends Component {
     userInput: ''
   };
 
-  
-
   onChange = (e) => {
     console.log('onChanges');
 
@@ -55,13 +53,11 @@ export class Search extends Component {
     const { activeOption, filteredOptions } = this.state;
 
     if (e.keyCode === 13) {
-      this.setState({
-        activeOption: 0,
-        showOptions: false,
-        userInput: filteredOptions[activeOption].brand
-      },()=>{
-    this.props.history.push(`/product/${filteredOptions[activeOption].id}`);
-    });
+      this.props.history.push({
+        pathname: '/products/sale',
+        search: `?q=${encodeURIComponent(this.state.userInput)}`
+      })
+    console.log("ssss",this.props);
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
         return;
@@ -111,6 +107,11 @@ export class Search extends Component {
         );
       }
     }
+    let searchTerm = this.props.history.location.search.split("=") && this.props.history.location.search.split("=")[1];
+    console.log("decodeURI(searchTerm)",typeof(searchTerm));
+    if(searchTerm === undefined){
+      searchTerm= "";
+    }
     return (
       <React.Fragment>
         <div className="search">
@@ -121,9 +122,10 @@ export class Search extends Component {
             // className="search-box"
             onChange={onChange}
             onKeyDown={onKeyDown}
+            placeholder={decodeURI(searchTerm)}
             value={userInput}
           />
-          <input type="submit" value="" className="search-btn" />
+          {/* <input type="submit" value={} className="search-btn" /> */}
         </div>
         {optionList}
       </React.Fragment>

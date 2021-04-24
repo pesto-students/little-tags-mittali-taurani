@@ -1,5 +1,8 @@
-import axios from 'axios';
 import allProducts from '../data/products.json';
+import mensProducts from '../data/mens.json';
+import womensProducts from '../data/womens.json';
+import boysProducts from '../data/boys.json';
+import girlsProducts from '../data/girls.json';
 
 export function getAllProducts(filters){
   return new Promise((resolve, reject)=>{
@@ -8,22 +11,26 @@ export function getAllProducts(filters){
 };
 
 export function getMensProducts(searchTearm, filters){
-  return axios.get('https://myntrapo.herokuapp.com/products/mens');
+  return  new Promise((resolve, reject)=>{
+    resolve({data: mensProducts});
+  });
 };
 
 export function getWomensProducts(searchTearm, filters){
-  return axios.get('https://myntrapo.herokuapp.com/products/women');
+  return  new Promise((resolve, reject)=>{
+    resolve({data: womensProducts});
+  });
 };
 
 export function getBoysProducts(searchTearm, filters){
-  return axios.get('https://myntrapo.herokuapp.com/products/boys');
+  return  new Promise((resolve, reject)=>{
+    resolve({data: boysProducts});
+  });
 };
 
 
 export function getGirlsProducts(searchTearm, filters){
-  return axios.get('https://myntrapo.herokuapp.com/products/girls');
+  return  new Promise((resolve, reject)=>{
+    resolve({data: girlsProducts});
+  });
 };
-
-// export function getSaleProducts(searchTearm, filters){
-//   return axios.get('http://127.0.0.1:5000/products/sale');
-// };
