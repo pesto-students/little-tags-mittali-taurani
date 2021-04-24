@@ -16,10 +16,10 @@ const Product = (props) => {
     ? imagesInputString.split("|")
     : [imagesInputString]; // pass "images" string value
 
-  useEffect( () => {
-     getProductByID(props.match.params.id).then((pro) => setProduct(pro));
+  useEffect(() => {
+    getProductByID(props.match.params.id).then((pro) => setProduct(pro));
     if (product && product.brand_name) {
-       getAllProducts().then((res) => {
+      getAllProducts().then((res) => {
         // console.log(res.data);
         setSimilarProducts(getRelevantProducts(res.data, product.brand_name));
       });
@@ -29,13 +29,13 @@ const Product = (props) => {
   const similarProductsMap =
     similarProducts &&
     similarProducts.slice(1, 20).map((data) => {
-if(data.score > 0.1){
-  return <Card key={data.id} data={data} />;
-}
-      
+      console.log("data.score",data.score)
+      if (data.score > 0.1) {
+        return <Card key={data.id} data={data} />;
+      }
     });
 
-  console.log("similarProducts", similarProductsMap);
+  console.log("similarProductsMap", similarProductsMap);
   return (
     <div>
       {product ? (

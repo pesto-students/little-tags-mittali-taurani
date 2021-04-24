@@ -13,27 +13,31 @@ import Cart from "./components/ContainerComponents/Cart";
 import Address from "./components/ContainerComponents/Address";
 import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
+import FirebaseContext from "./services/firebase/context";
+import Firebase from "./services/firebase/firebase";
 
 function App() {
   return (
     <div className="App">
       <CartContextProvider>
         <WishlistContextProvider>
-          <BrowserRouter>
-            <Header />
-            <Switch>
-              <Route exact path={ROUTE.HOME}>
-                <HomePage />
-              </Route>
-              <Route path={ROUTE.CATEGORY} component={SearchPage} />
-              <Route path={ROUTE.ITEM_PAGE} component={Product} />
-              <Route path={ROUTE.CART}>
-                <Cart />
-              </Route>
-              <Route path={ROUTE.CHECKOUT} component={Address} />
-            </Switch>
-            <Footer />
-          </BrowserRouter>
+          <FirebaseContext.Provider value={new Firebase()}>
+            <BrowserRouter>
+              <Header />
+              <Switch>
+                <Route exact path={ROUTE.HOME}>
+                  <HomePage />
+                </Route>
+                <Route path={ROUTE.CATEGORY} component={SearchPage} />
+                <Route path={ROUTE.ITEM_PAGE} component={Product} />
+                <Route path={ROUTE.CART}>
+                  <Cart />
+                </Route>
+                <Route path={ROUTE.CHECKOUT} component={Address} />
+              </Switch>
+              <Footer />
+            </BrowserRouter>
+          </FirebaseContext.Provider>
         </WishlistContextProvider>
       </CartContextProvider>
     </div>
