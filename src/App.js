@@ -15,6 +15,7 @@ import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
 import AddressContextProvider from "./services/address/AddressContext";
 import FinalPage from "./components/DesignComponents/FinalPage";
+import PastOrders from "./components/ContainerComponents/PastOrders";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path={ROUTE.CART}>
                 <Cart />
               </Route>
+              <Route path={ROUTE.ORDER_HISTORY} component={PastOrders} />
               <AddressContextProvider>
                 <Route path={ROUTE.CHECKOUT} component={Checkout} />
               </AddressContextProvider>

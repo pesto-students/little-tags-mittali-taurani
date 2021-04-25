@@ -1,15 +1,16 @@
 export const ROUTE = {
-    HOME:"/",
-    CATEGORY:"/products/:id",
-    MENS:"/products/mens",
-    WOMENS:"/products/womens",
-    KIDS: "/products/kids",
-    SALE: "/products/sale",
-    ITEM_PAGE: "/product/:id",
-    CART: "/cart", 
-    CHECKOUT: "/checkout",
-    ORDER_PLACED: "/checkout/order_placed"
-}
+  HOME: "/",
+  CATEGORY: "/products/:id",
+  MENS: "/products/mens",
+  WOMENS: "/products/womens",
+  KIDS: "/products/kids",
+  SALE: "/products/sale",
+  ITEM_PAGE: "/product/:id",
+  CART: "/cart",
+  CHECKOUT: "/checkout",
+  ORDER_PLACED: "/checkout/order_placed",
+  ORDER_HISTORY: "/past_orders",
+};
 
 export const USER_CART_STORAGE_KEY = "userCart";
 export const USER_ORDERS_STORAGE_KEY = "userPastOrder";
