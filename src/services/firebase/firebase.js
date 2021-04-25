@@ -40,12 +40,12 @@ class Firebase {
               emailVerified: authUser.emailVerified,
               ...dbUser,
             };
-            // console.log(`authUser:: listener:: ${user}`);
+            console.log(`authUser:: listener:: ${user}`);
             next(user);
           });
       } else {
-        // console.log(`Now user is not available`);
-        fallback();
+        console.log(`Now user is not available`);
+        // fallback();
       }
     });
   };
