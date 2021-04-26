@@ -25,17 +25,23 @@ const Product = (props) => {
       });
     }
   }, [props.match.params.id, product]);
-  console.log("similarProducts", similarProducts);
+  // console.log("similarProducts", similarProducts);
   const similarProductsMap =
     similarProducts &&
-    similarProducts.slice(1, 20).map((data) => {
-      console.log("data.score",data.score)
+    similarProducts.slice(0, 20).filter((data)=>{
+      if(data.id === product.id){
+        return false;
+      }else{
+        return true;
+      }
+    }).map((data) => {
       if (data.score > 0.1) {
         return <Card key={data.id} data={data} />;
       }
+      return undefined;
     });
 
-  console.log("similarProductsMap", similarProductsMap);
+  // console.log("similarProductsMap", similarProductsMap);
   return (
     <div>
       {product ? (

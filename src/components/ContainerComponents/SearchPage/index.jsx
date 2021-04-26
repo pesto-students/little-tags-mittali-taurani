@@ -23,7 +23,13 @@ function SearchPage(props) {
   // setData(getRelevantProducts(data, "Mustard yellow printed layered A-line kurta, has a round neck, long sleeves, straight hem, tie-up detail on the side"));
   
   const getDefaultData = () => {
-    const searchTerm = decodeURI(history.location.search.split("=") && history.location.search.split("=")[1]);
+    // const searchTerm = decodeURI(history.location.search.split("=") && history.location.search.split("=")[1]);
+    let searchTerm = history.location.search.split("=") && history.location.search.split("=")[1];
+    console.log("decodeURI(searchTerm)",typeof(searchTerm));
+    if(searchTerm === undefined){
+      searchTerm= "";
+    }
+    searchTerm = decodeURI(searchTerm);
     console.log("history.location.search",searchTerm);
     switch (props.match.params.id) {
       case "mens":
