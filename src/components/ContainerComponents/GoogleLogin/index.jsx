@@ -2,19 +2,18 @@ import React, { useContext } from "react";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import FirebaseContext from "../../../services/firebase/FirebaseContext";
 
-const GoogleLoginButton = ({ handleCloseModal,setErrorMessage }) => {
+const GoogleLoginButton = ({ handleCloseModal, setErrorMessage }) => {
   const firebase = useContext(FirebaseContext);
 
   const handleGoogleSignInClick = () => {
     firebase
       .doGoogleSignIn()
       .then((authUser) => {
-        console.log(authUser);
         firebase.user(authUser.user.uid).set({
           email: authUser.user.email,
           userName: authUser.user.displayName,
           roles: {},
-        })
+        });
         handleCloseModal();
       })
       .catch((error) => {
