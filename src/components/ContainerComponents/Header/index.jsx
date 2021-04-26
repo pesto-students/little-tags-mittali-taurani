@@ -9,6 +9,8 @@ import { ROUTE } from "../../../helper/constants";
 import myntra from "../../../static/myntra.png";
 import { CartContext } from "../../../services/cart/CartContext";
 import { getAllProducts } from "../../../helper/backendAPI";
+import FirebaseContext from "../../../services/firebase/FirebaseContext";
+import { SessionContext } from "../../../services/session/SessionContext";
 
 function Header() {
   const { itemCount } = useContext(CartContext);
@@ -19,10 +21,19 @@ function Header() {
     });
   }, []);
 
+  const firebase = useContext(FirebaseContext);
+
+  const { authUser } = useContext(SessionContext);
+
   const [showLogin, setShowLogin] = useState(false);
 
   const handleLoginClick = () => {
     setShowLogin(!showLogin);
+  };
+
+  const handleLogOutClick = () => {
+    alert("you are logged out");
+    firebase.doSignOut();
   };
 
   return (
@@ -31,14 +42,28 @@ function Header() {
         <img style={{ width: "200px" }} alt={"logo"} src={myntra} />
         <div style={{ flexGrow: 2 }} />
         <Search options={products} />
-        <Button
-          type={"user"}
-          buttonText={"Login/Sign in"}
-          onClickHandler={handleLoginClick}
-        />
+
+        {authUser && authUser.isLoggedIn ? (
+          <div className="flex-column">
+          <h4>Hi, {authUser.userName}</h4>
+            <Button
+              type={"user"}
+              buttonText={"Log Out"}
+              onClickHandler={handleLogOutClick}
+            />
+          </div>
+        ) : (
+          <Button
+            type={"user"}
+            buttonText={"Login/Sign in"}
+            onClickHandler={handleLoginClick}
+          />
+        )}
+
         <Button type={"favourite"} buttonText={"Favourites"} />
-        <Link to={ROUTE.CART} className={"remove-underline"}> <Button type={"bag"} buttonText={`Cart (${itemCount})`} /></Link>
-       
+        <Link to={ROUTE.CART} className={"remove-underline"}>
+          <Button type={"bag"} buttonText={`Cart (${itemCount})`} />
+        </Link>
       </div>
 
       {showLogin && (
@@ -49,10 +74,18 @@ function Header() {
 
       <div className={"navContainer"}>
         <div className={"navBar"}>
-        <Link  className="link" to={ROUTE.WOMENS}>{"Women"}</Link>
-        <Link className="link" to={ROUTE.MENS}>{"Men"}</Link>
-        <Link className="link" to={ROUTE.KIDS}>{"Kids"}</Link>
-        <Link className="link" to={ROUTE.SALE}>{"Sale"}</Link>
+          <Link className="link" to={ROUTE.WOMENS}>
+            {"Women"}
+          </Link>
+          <Link className="link" to={ROUTE.MENS}>
+            {"Men"}
+          </Link>
+          <Link className="link" to={ROUTE.KIDS}>
+            {"Kids"}
+          </Link>
+          <Link className="link" to={ROUTE.SALE}>
+            {"Sale"}
+          </Link>
         </div>
       </div>
     </div>

@@ -19,11 +19,16 @@ const withAuthentication = (Component) => {
       setAuthUser(authUser);
     };
 
+    const fallback = () => {
+      localStorage.removeItem(AUTH_USER);
+      setAuthUser(null);
+    };
+
     useEffect(() => {
       const loggedUser = JSON.parse(localStorage.getItem(AUTH_USER));
       console.log(`loggedUser ======> ${loggedUser}`);
       setAuthUser(loggedUser);
-      firebase.onAuthChangeListener(next);
+      firebase.onAuthChangeListener(next, fallback);
     }, []);
 
     return <Component {...props} />;
