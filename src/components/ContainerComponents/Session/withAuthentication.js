@@ -26,9 +26,9 @@ const withAuthentication = (Component) => {
 
     useEffect(() => {
       const loggedUser = JSON.parse(localStorage.getItem(AUTH_USER));
-      console.log(`loggedUser ======> ${loggedUser}`);
       setAuthUser(loggedUser);
       firebase.onAuthChangeListener(next, fallback);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <Component {...props} />;

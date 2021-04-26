@@ -13,7 +13,7 @@ const withAuthorization = (Component) => {
 
     useEffect(() => {
       firebase.onAuthChangeListener(next);
-    }, []);
+    });
 
     return authUser && authUser.isLoggedIn ? (
       <Component {...props} />
@@ -24,8 +24,5 @@ const withAuthorization = (Component) => {
 
   return NewComponent;
 };
-// const mapStateToProps = (state) => ({
-//   authUser: state.sessionState.authUser,
-// });
 
 export default withAuthorization;
