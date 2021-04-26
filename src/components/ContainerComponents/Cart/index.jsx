@@ -6,6 +6,7 @@ import { CartContext } from "../../../services/cart/CartContext";
 import { formatNumberInCurrency } from "../../../helper/util";
 import CartItem from "../CartItem";
 import EmptyCart from "../../../assets/images/cart_empty_2.png";
+import withAuthorization from "../Session/withAuthorization";
 
 const Cart = () => {
   const {
@@ -91,4 +92,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default withAuthorization(Cart);

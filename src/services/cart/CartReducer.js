@@ -119,7 +119,7 @@ export const cartReducer = (state, action) => {
     case CHECKOUT:
       const currentOrder = {
         orderDate: new Date().toISOString(),  //.toDateString(),
-        orderOtem: [...state.cartItems],
+        orderItems: [...state.cartItems],
       };
       const updatedOrderHistory = state.pastOrders.map((item) => {
         return { ...item };
