@@ -30,6 +30,10 @@ class Firebase {
 
   doSignOut = () => this.auth.signOut();
 
+  saveDataToFirebase = (uid, key, value) => {
+    this.user(uid).update({ [key]: value });
+  };
+
   onAuthChangeListener = (next, fallback = () => {}) => {
     return this.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
