@@ -9,9 +9,20 @@ import Quantity from "../../DesignComponents/Counter";
 import ColorOptions from "../../DesignComponents/ColorOptions";
 import { CartContext } from "../../../services/cart/CartContext";
 import { formatNumberInCurrency, getSubString } from "../../../helper/util";
+import { SessionContext } from "../../../services/session/SessionContext";
+import LoginForm from "../../ContainerComponents/Login";
+import Modal from "../../DesignComponents/Modal";
 
 const ProductDetails = ({ product }) => {
   const { cartItems, addProduct, updateProduct } = useContext(CartContext);
+
+  const { authUser } = useContext(SessionContext);
+
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLogin(!showLogin);
+  };
 
   const isProductInCart = (product) => {
     return cartItems.find((item) => item.id === product.id);
@@ -130,10 +141,32 @@ const ProductDetails = ({ product }) => {
         type="button"
         className="addCartBtn flex-row blackBg-whiteFg-btn"
         onClick={(event) => handleAddOrUpdateCart(event)}
+        disabled={authUser && authUser.isLoggedIn ? false : true}
       >
         <HiOutlineShoppingBag />
         <h4>{!!isProductInCart(product) ? "Update" : "Add"}</h4>
       </button>
+      {authUser && authUser.isLoggedIn ? (
+        ""
+      ) : (
+        <div className="login-alert__div flex-row">
+          <div className="addToCart-login-msg">
+            Please log in / sign up to add /update items in the cart
+          </div>
+          <button
+            type="button"
+            className="login-btn blackBg-whiteFg-btn margin-bottom"
+            onClick={handleLoginClick}
+          >
+            Log in/ Sign up
+          </button>
+          {showLogin && (
+            <Modal>
+              <LoginForm handleCloseModal={handleLoginClick} />
+            </Modal>
+          )}
+        </div>
+      )}
     </div>
   );
 };
