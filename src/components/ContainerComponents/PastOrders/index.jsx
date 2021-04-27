@@ -11,7 +11,8 @@ const PastOrders = () => {
       {pastOrders.length > 0 &&
         (pastOrders.map((item) => {
           if (item.orderItems.length > 0) {
-            item.orderItems.map((product) => {
+            return item.orderItems.map((product) => {
+              console.log("product", product);
               return <p>{product.brand}</p>;
             });
           }
