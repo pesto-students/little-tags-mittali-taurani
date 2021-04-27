@@ -1,23 +1,24 @@
-.searchInput{
+.searchInput {
   border: none;
   border-bottom: 2px solid #000000;
   width: 600px;
-  padding: 25px ;
+  // padding: 25px ;
+  font-size: 20px;
+  &:focus {
+    outline: none;
+  }
 }
 
-
-.searchInput:focus {
-  border: none;
-  border-bottom: 2px solid #000000;
-  width: 600px;
-  padding: 25px ;
+.search-results {
+  z-index: 9;
+  // position: relative;
+  overflow: scroll;
+  max-height: 300px;
 }
 
 .search {
-  width: 30rem;
-  // margin: 10rem auto 2rem auto;
   text-align: right;
-  // position: relative;
+  padding-top: 30px;
 }
 
 .search-box {

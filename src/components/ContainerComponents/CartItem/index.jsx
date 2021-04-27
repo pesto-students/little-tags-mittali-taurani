@@ -5,13 +5,15 @@ import { IoBagRemoveSharp } from "react-icons/io5";
 import { formatNumberInCurrency, getSubString } from "../../../helper/util";
 import Quantity from "../../DesignComponents/Counter";
 import { CartContext } from "../../../services/cart/CartContext";
+import { WishlistContext } from "../../../services/wishList/Context";
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
   const {
     increaseProductQuantity,
     decreaseProductQuantity,
     removeProduct,
   } = useContext(CartContext);
+
 
   const imagesInputString = product.images;
 
@@ -35,15 +37,19 @@ const CartItem = ({ product }) => {
           <p>Price: </p>
           <h4>{formatNumberInCurrency(product["Unnamed: 17"])}</h4>
         </div>
-        <p className="cart-item__detail">Quantity</p>
-        <div className="cart-item__quantity">
-          <Quantity
-            counter={product.quantity ? product.quantity : 1}
-            handleIncrement={() => increaseProductQuantity(product)}
-            handleDecrement={() => decreaseProductQuantity(product)}
-            disableBtn={product.quantity > 1 ? false : true}
-          />
-        </div>
+        {wishlist ? null: (
+          <div>
+            <p className="cart-item__detail">Quantity</p>
+            <div className="cart-item__quantity">
+              <Quantity
+                counter={product.quantity ? product.quantity : 1}
+                handleIncrement={() => increaseProductQuantity(product)}
+                handleDecrement={() => decreaseProductQuantity(product)}
+                disableBtn={product.quantity > 1 ? false : true}
+              />
+            </div>
+          </div>
+        )}
       </div>
       <div className="cart-item__sidebar flex-column">
         <div className="cart-item__total">
@@ -56,7 +62,12 @@ const CartItem = ({ product }) => {
           type="button"
           className="cart-item__removeBtn"
           onClick={() => {
-            removeProduct(product);
+            if(wishlist){
+              removeProductFromWishlist(product);
+            }else{
+              removeProduct(product);
+            }
+            
           }}
         >
           <IoBagRemoveSharp />

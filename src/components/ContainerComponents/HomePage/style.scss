@@ -1,4 +1,41 @@
-.card-image-landing-page{
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+.card-image-landing-page {
   width: 600px;
   height: 750px;
+}
+
+.banner-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 10%;
+  padding-left: 10%;
+  cursor: pointer;
+}
+
+.mens-top-page-image{
+  width: 450px;
+  height: 700px;
+}
+
+.trendsetter-text {
+  font-family: "Dancing Script", cursive;
+  font-size: 100px;
+  color: rgb(0, 0, 0);
+}
+.trendsetter-text-first {
+  // font-family: 'Dancing Script', cursive;
+  font-size: 30px;
+  color: rgb(31, 31, 31);
+}
+
+.full-width-img {
+  width: 100%;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.trendsetter-text-mens-shop{
+  font-size: 20px;
+  padding : 30px;
+  border: rgba(212, 212, 212, 0.932);
 }

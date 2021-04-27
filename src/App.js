@@ -15,6 +15,7 @@ import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
 import AddressContextProvider from "./services/address/AddressContext";
 import FinalPage from "./components/DesignComponents/FinalPage";
+import Wishlist from "./components/ContainerComponents/Wishlist";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               </Route>
               <Route path={ROUTE.CATEGORY} component={SearchPage} />
               <Route path={ROUTE.ITEM_PAGE} component={Product} />
+              <Route path={ROUTE.WISHLIST} component={Wishlist} />
               <Route path={ROUTE.CART}>
                 <Cart />
               </Route>

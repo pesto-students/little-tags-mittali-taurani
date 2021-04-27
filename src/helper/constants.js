@@ -8,7 +8,8 @@ export const ROUTE = {
     ITEM_PAGE: "/product/:id",
     CART: "/cart", 
     CHECKOUT: "/checkout",
-    ORDER_PLACED: "/checkout/order_placed"
+    ORDER_PLACED: "/checkout/order_placed",
+    WISHLIST: "/wishlist",
 }
 
 export const USER_CART_STORAGE_KEY = "userCart";
