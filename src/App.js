@@ -17,6 +17,7 @@ import WishlistContextProvider from "./services/wishList/Context";
 // import Firebase from "./services/firebase/Firebase";
 import AddressContextProvider from "./services/address/AddressContext";
 import FinalPage from "./components/DesignComponents/FinalPage";
+import Wishlist from "./components/ContainerComponents/Wishlist";
 // import SessionContextProvider from "./services/session/SessionContext";
 import withAuthentication from "./components/ContainerComponents/Session/withAuthentication";
 
@@ -38,6 +39,7 @@ function App() {
                   </Route>
                   <Route path={ROUTE.CATEGORY} component={SearchPage} />
                   <Route path={ROUTE.ITEM_PAGE} component={Product} />
+                  <Route path={ROUTE.WISHLIST} component={Wishlist} />
                   <Route path={ROUTE.CART}>
                     <Cart />
                   </Route>

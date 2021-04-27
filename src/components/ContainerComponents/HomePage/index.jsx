@@ -1,39 +1,81 @@
-import React from "react";
-import './style.scss';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import mensimg from "../../../assets/images/mensHader.png";
+import { getRelevantProducts } from "../../../helper/relevancy";
+// import womensHeaderImg from "../../../assets/images/womensHeaderImg.png";
+import { getAllProducts } from "../../../helper/backendAPI";
+import { ROUTE } from "../../../helper/constants";
+import "./style.scss";
+import Card from "../../DesignComponents/Card";
 
 function HomePage() {
+  const [mensShirt, setMensShirt] = useState([]);
+  const [womenProduct, setwomenProduct] = useState([]);
+  const [kids, setkids] = useState([]);
+
+  useEffect(() => {
+    getAllProducts().then((res) => {
+      // console.log(res.data);
+      setMensShirt(getRelevantProducts(res.data, "British "));
+      setwomenProduct(getRelevantProducts(res.data, "bollywood vogue "));
+      setkids(getRelevantProducts(res.data, "aj dezines"));
+    });
+  }, []);
+
+  const history = useHistory();
+
+  const goTo = (path) => () => {
+    console.log("path", path);
+    history.push(path);
+  };
+
+  const mensProductsMap = mensShirt
+    .slice(0, 4)
+    .map((data) => <Card key={data.id} data={data} />);
+    
+  const womenProductsMap = womenProduct
+    .slice(0, 4)
+    .map((data) => <Card key={data.id} data={data} />);
+
+  const kidsMap = kids.slice(0, 4)
+    .map((data) => <Card key={data.id} data={data} />);
+
   return (
     <div>
-
-      <div>Get ready for the festive season</div>
-      <div style={{display: "flex", justifyContent:'center'}}>
-        <img className="card-image-landing-page"
-             src="http://assets.myntassets.com/v1/assets/images/7024471/2018/9/22/57673c9e-5888-4d9c-9fa5-8ba0b8d890401537617384510-Rohit-Bal-Limited-Men-Black-Solid-Kurta-with-Churidar-1221537617384402-1.jpg "
-             alt="product img"/>
-        <img className="card-image-landing-page"
-             src="http://assets.myntassets.com/v1/assets/images/productimage/2019/7/19/8cc6e36f-ee87-45ad-ae99-7fd5045b63fe1563537411193-1.jpg"
-             alt="product img"/>
+      <div onClick={goTo(ROUTE.MENS)} className="banner-container">
+        <img className="mens-top-page-image" src={mensimg} alt="banner" />
+        <div>
+          <div className={"trendsetter-text-first"}>
+            Be the trendsetter with
+          </div>
+          <div className={"trendsetter-text"}>Casual Comfortable Kurtas</div>
+          <div className="trendsetter-text-mens-shop">
+            Mens Collection Shop Now
+          </div>
+        </div>
       </div>
 
+      <div>Mens Shits</div>
 
-      <div style={{display: "flex", justifyContent:'center'}}>
-        <img className="card-image-landing-page"
-             src="http://assets.myntassets.com/v1/assets/images/2529852/2018/3/12/11520832694042-SKD-4691520832693916-1.jpg "
-             alt="product img"/>
-        <img className="card-image-landing-page"
-             src="http://assets.myntassets.com/v1/assets/images/7572945/2018/10/17/2c89d921-a63a-43a3-aed3-84bae7cacc0b1539775072128-Vishudh-Women-Kurta-Sets-411539775070230-1.jpg "
-             alt="product img"/>
-      </div>
+      <div className="result-list">{mensProductsMap}</div>
 
+      <img
+        onClick={goTo(ROUTE.WOMENS)}
+        src="https://shopforaurelia.com/blog/wp-content/uploads/2021/03/Aurelia-fresh-desktop-website-banner.jpg"
+        className="full-width-img"
+        alt="banner"
+      />
+      <div className="result-list">{womenProductsMap}</div>
 
-      <div style={{display: "flex", justifyContent:'center'}}>
-        <img className="card-image-landing-page"
-             src="http://assets.myntassets.com/v1/assets/images/productimage/2019/3/14/9e668546-91c1-4b77-9752-8ece4f9f8d4f1552583929386-1.jpg "
-             alt="product img"/>
-        <img className="card-image-landing-page"
-             src="http://assets.myntassets.com/v1/assets/images/2348505/2017/12/16/11513424716664-AJ-Dezines-Kids-Kurta-Pyjama-Waistcoat-Set-for-Baby-Boys-3611513424716465-1.jpg "
-             alt="product img"/>
-      </div>
+      <img
+        onClick={goTo(ROUTE.KIDS)}
+        className="full-width-img"
+        src={
+          "https://sojanya.com/pub/media//ibnab/owlsliders/images/w/e/websitebanner1.png"
+        }
+        alt="banner"
+      />
+      <div className="result-list">{kidsMap}</div>
     </div>
   );
 }

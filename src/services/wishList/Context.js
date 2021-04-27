@@ -7,11 +7,9 @@ import {
 } from "./ActionTypes";
 
 
-const getItemFromStorage = localStorage.getItem("wishlist")
+export const getItemFromStorage = localStorage.getItem("wishlist")
   ? JSON.parse(localStorage.getItem("wishlist"))
   : [];
-
-// console.log("getItemFromStorage",getItemFromStorage);
 
 setWishListItemInStorage(getItemFromStorage);
 
