@@ -15,7 +15,7 @@
   }
 
   .cart-item__main {
-    align-items: flex-start;
+    align-items: stretch;
     width: 60%;
     margin-right: 5rem;
     justify-content: space-between;
@@ -25,7 +25,7 @@
     }
 
     .cart-item__price {
-      align-items: flex-start;
+      justify-content: flex-start;
       margin: 0;
 
       p {
