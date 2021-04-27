@@ -10,10 +10,12 @@ import { ROUTE } from "../../../helper/constants";
 import { CartContext } from "../../../services/cart/CartContext";
 import { getAllProducts } from "../../../helper/backendAPI";
 import { WishlistContext } from "../../../services/wishList/Context";
+import FirebaseContext from "../../../services/firebase/FirebaseContext";
+import { SessionContext } from "../../../services/session/SessionContext";
 
 function Header() {
   const { itemCount } = useContext(CartContext);
-  const{wishListItems} = useContext(WishlistContext);
+  const { wishListItems } = useContext(WishlistContext);
   const [products, setProducts] = useState([]);
   const history = useHistory();
   useEffect(() => {
@@ -22,32 +24,63 @@ function Header() {
     });
   }, []);
 
+  const firebase = useContext(FirebaseContext);
+
+  const { authUser } = useContext(SessionContext);
+
   const [showLogin, setShowLogin] = useState(false);
 
   const handleLoginClick = () => {
     setShowLogin(!showLogin);
   };
 
-  const goTo=(path)=>()=>{
-    console.log("path",path);
+  const goTo = (path) => () => {
+    console.log("path", path);
     history.push(path);
+  };
+
+  const handleLogOutClick = () => {
+    alert("you are logged out");
+    firebase.doSignOut();
   };
 
   return (
     <div className="header">
       <div className="headerRightContent">
         {/* <img style={{ width: "200px" }} alt={"logo"} src={myntra} /> */}
-        <div onClick={goTo(ROUTE.HOME)} className="header-logo">[untitled]</div>
+        <div onClick={goTo(ROUTE.HOME)} className="header-logo">
+          [untitled]
+        </div>
         <div style={{ flexGrow: 2 }} />
         <Search options={products} />
+
+        {authUser && authUser.isLoggedIn ? (
+          <div className="flex-column">
+            <h4>Hi, {authUser.userName}</h4>
+            <Button
+              type={"user"}
+              buttonText={"Log Out"}
+              onClickHandler={handleLogOutClick}
+            />
+          </div>
+        ) : (
+          <Button
+            type={"user"}
+            buttonText={"Login/Sign in"}
+            onClickHandler={handleLoginClick}
+          />
+        )}
+
         <Button
-          type={"user"}
-          buttonText={"Login/Sign in"}
-          onClickHandler={handleLoginClick}
+          onClickHandler={goTo(ROUTE.WISHLIST)}
+          type={"favourite"}
+          buttonText={`Favourites (${wishListItems.length})`}
         />
-        <Button onClickHandler={goTo(ROUTE.WISHLIST)} type={"favourite"} buttonText={`Favourites (${wishListItems.length})`} />
-        <Button onClickHandler={goTo(ROUTE.CART)} type={"bag"} buttonText={`Cart (${itemCount})`} />
-        
+        <Button
+          onClickHandler={goTo(ROUTE.CART)}
+          type={"bag"}
+          buttonText={`Cart (${itemCount})`}
+        />
       </div>
 
       {showLogin && (
@@ -58,10 +91,18 @@ function Header() {
 
       <div className={"navContainer"}>
         <div className={"navBar"}>
-        <Link  className="link" to={ROUTE.WOMENS}>{"Women"}</Link>
-        <Link className="link" to={ROUTE.MENS}>{"Men"}</Link>
-        <Link className="link" to={ROUTE.KIDS}>{"Kids"}</Link>
-        <Link className="link" to={ROUTE.SALE}>{"Sale"}</Link>
+          <Link className="link" to={ROUTE.WOMENS}>
+            {"Women"}
+          </Link>
+          <Link className="link" to={ROUTE.MENS}>
+            {"Men"}
+          </Link>
+          <Link className="link" to={ROUTE.KIDS}>
+            {"Kids"}
+          </Link>
+          <Link className="link" to={ROUTE.SALE}>
+            {"Sale"}
+          </Link>
         </div>
       </div>
     </div>
