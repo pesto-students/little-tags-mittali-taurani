@@ -7,6 +7,14 @@ import { ROUTE } from "../../../helper/constants";
 import Modal from "../../DesignComponents/Modal";
 import Address from "../Address";
 import { AddressContext } from "../../../services/address/AddressContext";
+import { CartContext } from "../../../services/cart/CartContext";
+import FirebaseContext from "../../../services/firebase/FirebaseContext";
+import { SessionContext } from "../../../services/session/SessionContext";
+import {
+  USER_CART_STORAGE_KEY,
+  USER_ORDERS_STORAGE_KEY,
+  USER_ADDRESSES_STORAGE_KEY,
+} from "../../../helper/constants";
 
 const Checkout = () => {
   const {
@@ -18,12 +26,19 @@ const Checkout = () => {
     setCurrentAddress,
   } = useContext(AddressContext);
 
+  const { cartItems, pastOrders } = useContext(CartContext);
+
+  const { authUser } = useContext(SessionContext);
+
+  const firebase = useContext(FirebaseContext);
+
   const [showShippingForm, setShowShippingForm] = useState(false);
+
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
 
   const handleOptionChange = useCallback((id) => {
     setSelectedOptionIndex(id);
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (addresses.length > 0) {
@@ -33,7 +48,27 @@ const Checkout = () => {
         );
       } else handleOptionChange(addresses[0].id);
     }
-  }, [addresses, handleOptionChange]);
+    firebase.saveDataToFirebase(
+      authUser.uid,
+      USER_ADDRESSES_STORAGE_KEY,
+      addresses
+    );
+  }, [addresses, authUser, firebase, handleOptionChange]);
+
+  useEffect(() => {
+    if (authUser && authUser.isLoggedIn) {
+      firebase.saveDataToFirebase(
+        authUser.uid,
+        USER_CART_STORAGE_KEY,
+        cartItems
+      );
+      firebase.saveDataToFirebase(
+        authUser.uid,
+        USER_ORDERS_STORAGE_KEY,
+        pastOrders
+      );
+    }
+  }, [authUser, cartItems, firebase, pastOrders]);
 
   const handleAddAddress = () => {
     setShowShippingForm(!showShippingForm);

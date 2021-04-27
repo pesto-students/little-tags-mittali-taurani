@@ -35,6 +35,14 @@
   .addCartBtn {
     align-items: flex-end;
 
+    &:disabled {
+      background-color: var(--grey);
+      color: var(--black);
+      box-shadow: none;
+      border: 1px solid var(--black);
+      cursor: not-allowed;
+    }
+
     svg {
       width: 1.5em;
       height: 1.5em;
@@ -46,4 +54,23 @@
     }
 
   }
+
+  .login-alert__div{
+    align-items: stretch;
+
+    *{
+      margin-bottom: 0;
+    }
+
+    .addToCart-login-msg{
+      color: var(--light-red);
+      font-size: 1rem;
+    }  
+
+    .login-btn{
+      padding: 0;
+    }
+
+  }
+
 }

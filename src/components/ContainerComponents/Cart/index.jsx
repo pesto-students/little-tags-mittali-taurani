@@ -1,5 +1,5 @@
 import "./style.scss";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ROUTE } from "../../../helper/constants";
 import { CartContext } from "../../../services/cart/CartContext";
@@ -7,6 +7,11 @@ import { formatNumberInCurrency } from "../../../helper/util";
 import CartItem from "../CartItem";
 import EmptyCart from "../../../assets/images/cart_empty_2.png";
 import withAuthorization from "../Session/withAuthorization";
+import FirebaseContext from "../../../services/firebase/FirebaseContext";
+import { SessionContext } from "../../../services/session/SessionContext";
+import {
+  USER_CART_STORAGE_KEY,
+} from "../../../helper/constants";
 
 const Cart = () => {
   const {
@@ -17,6 +22,17 @@ const Cart = () => {
     itemCount,
     totalPrice,
   } = useContext(CartContext);
+
+  const { authUser } = useContext(SessionContext);
+
+  const firebase = useContext(FirebaseContext);
+
+  useEffect(() => {
+    if (authUser && authUser.isLoggedIn)
+    {
+      firebase.saveDataToFirebase(authUser.uid, USER_CART_STORAGE_KEY, cartItems);
+    }
+  }, [authUser, cartItems, firebase]);
 
   const calculateGST = (amount) => {
     return (parseFloat(amount) * parseFloat(5)) / 100;
