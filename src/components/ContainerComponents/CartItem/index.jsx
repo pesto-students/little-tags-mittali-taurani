@@ -5,7 +5,6 @@ import { IoBagRemoveSharp } from "react-icons/io5";
 import { formatNumberInCurrency, getSubString } from "../../../helper/util";
 import Quantity from "../../DesignComponents/Counter";
 import { CartContext } from "../../../services/cart/CartContext";
-import { WishlistContext } from "../../../services/wishList/Context";
 
 const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
   const {
