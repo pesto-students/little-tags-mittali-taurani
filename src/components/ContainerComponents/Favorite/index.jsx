@@ -20,7 +20,7 @@ const Favorite = ({ data }) => {
     if (toggleHeart) {
       removeFromWishlist(data);
     } else {
-      addToWishlist(data);
+      addToWishlist(data,authUser );
     }
     setToggleHeart(!toggleHeart);
   };

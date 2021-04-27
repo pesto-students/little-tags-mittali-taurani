@@ -24,8 +24,8 @@ export const WishlistContext = createContext(initialState);
 const WishlistContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(wishListReducer, initialState);
 
-  const addToWishlist = (payload) => {
-    dispatch({ type: ADD_TO_WISHLIST, payload });
+  const addToWishlist = (payload, authUser) => {
+    dispatch({ type: ADD_TO_WISHLIST, payload, authUser });
   };
 
   const removeFromWishlist = (payload) => {

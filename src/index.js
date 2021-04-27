@@ -4,13 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import FirebaseContext from "./services/firebase/FirebaseContext";
-import Firebase from "./services/firebase/Firebase";
+import {firebaseObj} from "./services/firebase/Firebase";
 import SessionContextProvider from "./services/session/SessionContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <SessionContextProvider>
-      <FirebaseContext.Provider value={new Firebase()}>
+      <FirebaseContext.Provider value={firebaseObj}>
         <App />
       </FirebaseContext.Provider>
     </SessionContextProvider>

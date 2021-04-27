@@ -30,8 +30,9 @@ class Firebase {
 
   doSignOut = () => this.auth.signOut();
 
-  saveDataToFirebase = (uid, key, value) => {
-    this.user(uid).update({ [key]: value });
+  async saveDataToFirebase (uid, key, value) {
+    console.log("saveDataToFirebase",key, value);
+    await this.user(uid).update({ [key]: value });
   };
 
   onAuthChangeListener = (next, fallback = () => {}) => {
@@ -56,5 +57,8 @@ class Firebase {
     });
   };
 }
+
+
+export const firebaseObj= new Firebase();
 
 export default Firebase;
