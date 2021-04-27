@@ -7,7 +7,7 @@ export const ROUTE = {
     SALE: "/products/sale",
     ITEM_PAGE: "/product/:id",
     CART: "/cart", 
-    CHECKOUT: "/checkout",
+    CHECKOUT: "/checkout/shipping_address",
     ORDER_PLACED: "/checkout/order_placed"
 }
 

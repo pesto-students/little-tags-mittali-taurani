@@ -1,5 +1,5 @@
 import "./style.scss";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import Favorite from "../Favorite";
@@ -9,9 +9,26 @@ import Quantity from "../../DesignComponents/Counter";
 import ColorOptions from "../../DesignComponents/ColorOptions";
 import { CartContext } from "../../../services/cart/CartContext";
 import { formatNumberInCurrency, getSubString } from "../../../helper/util";
+import { SessionContext } from "../../../services/session/SessionContext";
+import LoginForm from "../../ContainerComponents/Login";
+import Modal from "../../DesignComponents/Modal";
+import FirebaseContext from "../../../services/firebase/FirebaseContext";
+import {
+  USER_CART_STORAGE_KEY,
+} from "../../../helper/constants";
 
 const ProductDetails = ({ product }) => {
   const { cartItems, addProduct, updateProduct } = useContext(CartContext);
+
+  const { authUser } = useContext(SessionContext);
+
+  const firebase = useContext(FirebaseContext);
+
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLogin(!showLogin);
+  };
 
   const isProductInCart = (product) => {
     return cartItems.find((item) => item.id === product.id);
@@ -24,6 +41,11 @@ const ProductDetails = ({ product }) => {
   const [quantity, setQuantity] = useState(
     !!isProductInCart(product) ? isProductInCart(product).quantity : 1
   );
+
+  useEffect(() => {
+    if (authUser && authUser.isLoggedIn)
+      firebase.saveDataToFirebase(authUser.uid, USER_CART_STORAGE_KEY, cartItems);
+  }, [authUser, cartItems, firebase]);
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -130,10 +152,32 @@ const ProductDetails = ({ product }) => {
         type="button"
         className="addCartBtn flex-row blackBg-whiteFg-btn"
         onClick={(event) => handleAddOrUpdateCart(event)}
+        disabled={authUser && authUser.isLoggedIn ? false : true}
       >
         <HiOutlineShoppingBag />
         <h4>{!!isProductInCart(product) ? "Update" : "Add"}</h4>
       </button>
+      {authUser && authUser.isLoggedIn ? (
+        ""
+      ) : (
+        <div className="login-alert__div flex-row">
+          <div className="addToCart-login-msg">
+            Please log in / sign up to add /update items in the cart
+          </div>
+          <button
+            type="button"
+            className="login-btn blackBg-whiteFg-btn margin-bottom"
+            onClick={handleLoginClick}
+          >
+            Log in/ Sign up
+          </button>
+          {showLogin && (
+            <Modal>
+              <LoginForm handleCloseModal={handleLoginClick} />
+            </Modal>
+          )}
+        </div>
+      )}
     </div>
   );
 };

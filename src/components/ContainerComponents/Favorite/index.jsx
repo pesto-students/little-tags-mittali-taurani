@@ -1,16 +1,20 @@
 import "./style.scss";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
-import { checkInWishList } from '../../../helper/util';
-import { WishlistContext } from '../../../services/wishList/Context';
+import { checkInWishList } from "../../../helper/util";
+import { WishlistContext } from "../../../services/wishList/Context";
+import FirebaseContext from "../../../services/firebase/FirebaseContext";
+import { SessionContext } from "../../../services/session/SessionContext";
+import { USER_WISH_LIST_STORAGE_KEY } from "../../../helper/constants";
 
 const Favorite = ({ data }) => {
+  const { authUser } = useContext(SessionContext);
+
+  const firebase = useContext(FirebaseContext);
+
   const [toggleHeart, setToggleHeart] = useState(checkInWishList(data.id));
 
-  const {
-    addToWishlist,
-    removeFromWishlist,
-  } = useContext(WishlistContext);
+  const { wishListItems, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
 
   const handleHeartClick = () => {
     if (toggleHeart) {
@@ -20,6 +24,15 @@ const Favorite = ({ data }) => {
     }
     setToggleHeart(!toggleHeart);
   };
+
+  useEffect(() => {
+    if (authUser && authUser.isLoggedIn)
+      firebase.saveDataToFirebase(
+        authUser.uid,
+        USER_WISH_LIST_STORAGE_KEY,
+        wishListItems
+      );
+  }, [authUser, wishListItems, firebase]);
 
   return (
     <div
