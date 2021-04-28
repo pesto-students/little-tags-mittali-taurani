@@ -5,8 +5,9 @@ import { IoBagRemoveSharp } from "react-icons/io5";
 import { formatNumberInCurrency, getSubString } from "../../../helper/util";
 import Quantity from "../../DesignComponents/Counter";
 import { CartContext } from "../../../services/cart/CartContext";
+import { Link } from "react-router-dom";
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, disableDelete }) => {
   const {
     increaseProductQuantity,
     decreaseProductQuantity,
@@ -37,12 +38,16 @@ const CartItem = ({ product }) => {
         </div>
         <p className="cart-item__detail">Quantity</p>
         <div className="cart-item__quantity">
-          <Quantity
-            counter={product.quantity ? product.quantity : 1}
-            handleIncrement={() => increaseProductQuantity(product)}
-            handleDecrement={() => decreaseProductQuantity(product)}
-            disableBtn={product.quantity > 1 ? false : true}
-          />
+          {disableDelete ? (
+            product.quantity
+          ) : (
+            <Quantity
+              counter={product.quantity ? product.quantity : 1}
+              handleIncrement={() => increaseProductQuantity(product)}
+              handleDecrement={() => decreaseProductQuantity(product)}
+              disableBtn={product.quantity > 1 ? false : true}
+            />
+          )}
         </div>
       </div>
       <div className="cart-item__sidebar flex-column">
@@ -52,15 +57,17 @@ const CartItem = ({ product }) => {
             product.quantity
           }`}</h4>
         </div>
-        <button
-          type="button"
-          className="cart-item__removeBtn"
-          onClick={() => {
-            removeProduct(product);
-          }}
-        >
-          <IoBagRemoveSharp />
-        </button>
+        {disableDelete ? <Link to={`/product/${product.id}`}>order again</Link> :(
+          <button
+            type="button"
+            className="cart-item__removeBtn"
+            onClick={() => {
+              removeProduct(product);
+            }}
+          >
+            <IoBagRemoveSharp />
+          </button>
+        )}
       </div>
     </div>
   );
