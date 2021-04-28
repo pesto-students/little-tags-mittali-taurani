@@ -10,8 +10,8 @@ import { ROUTE } from "../../../helper/constants";
 import { CartContext } from "../../../services/cart/CartContext";
 import { getAllProducts } from "../../../helper/backendAPI";
 import { WishlistContext } from "../../../services/wishList/Context";
-import FirebaseContext from "../../../services/firebase/FirebaseContext";
 import { SessionContext } from "../../../services/session/SessionContext";
+import ProfileDropdown from "../../DesignComponents/ProfileDropdown";
 
 function Header() {
   const { itemCount } = useContext(CartContext);
@@ -23,8 +23,6 @@ function Header() {
       setProducts(res.data);
     });
   }, []);
-
-  const firebase = useContext(FirebaseContext);
 
   const { authUser } = useContext(SessionContext);
 
@@ -39,11 +37,6 @@ function Header() {
     history.push(path);
   };
 
-  const handleLogOutClick = () => {
-    alert("you are logged out");
-    firebase.doSignOut();
-  };
-
   return (
     <div className="header">
       <div className="headerRightContent">
@@ -55,14 +48,7 @@ function Header() {
         <Search options={products} />
 
         {authUser && authUser.isLoggedIn ? (
-          <div className="flex-column">
-            <h4>Hi, {authUser.userName}</h4>
-            <Button
-              type={"user"}
-              buttonText={"Log Out"}
-              onClickHandler={handleLogOutClick}
-            />
-          </div>
+          <ProfileDropdown />
         ) : (
           <Button
             type={"user"}
