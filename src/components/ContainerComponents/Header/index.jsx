@@ -12,6 +12,7 @@ import { getAllProducts } from "../../../helper/backendAPI";
 import { WishlistContext } from "../../../services/wishList/Context";
 import { SessionContext } from "../../../services/session/SessionContext";
 import ProfileDropdown from "../../DesignComponents/ProfileDropdown";
+import Hamburger from "../../DesignComponents/Hamburger";
 
 function Header() {
   const { itemCount } = useContext(CartContext);
@@ -67,6 +68,9 @@ function Header() {
           type={"bag"}
           buttonText={`Cart (${itemCount})`}
         />
+
+        <Hamburger />
+
       </div>
 
       {showLogin && (
