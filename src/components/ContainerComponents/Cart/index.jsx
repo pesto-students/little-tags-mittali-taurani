@@ -73,7 +73,7 @@ const Cart = () => {
                 </h2>
               </div>
               <hr className="full-width margin-bottom" />
-              <Link to={ROUTE.CHECKOUT}>
+              <Link to={ROUTE.SHIPPING_ADDRESS}>
                 <button
                   type="button"
                   className="blackBg-whiteFg-btn"
