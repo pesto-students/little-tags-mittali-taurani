@@ -121,14 +121,18 @@ const Checkout = () => {
                         <h4>
                           {firstName} {lastName}
                         </h4>
-                        <span>
-                          {address}, {city}
-                        </span>
-                        <span>
-                          {state} - {pincode}
-                        </span>
-                        <span>{email}</span>
-                        <span>{phoneNo}</span>
+                        <div className="address-details__subdiv flex-column">
+                          <span>
+                            {address}, {city},
+                          </span>
+                          <span>
+                            {state} - {pincode}
+                          </span>
+                        </div>
+                        <div className="address-details__subdiv flex-column">
+                          <span>{email}</span>
+                          <span>{phoneNo}</span>
+                        </div>
                         <MdDelete
                           className="address-item__remove"
                           onClick={() => {
@@ -157,7 +161,7 @@ const Checkout = () => {
         </button>
       </div>
       <hr className="full-width" />
-      <Link to={ROUTE.ORDER_PLACED} className="proceed-btn">
+      <Link to={ROUTE.PAYMENT} className="proceed-btn">
         <button
           type="button"
           className="blackBg-whiteFg-btn"

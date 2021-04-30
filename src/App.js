@@ -11,6 +11,7 @@ import Product from "./components/ContainerComponents/Product";
 import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
 import Checkout from "./components/ContainerComponents/Checkout";
+import Payment from "./components/ContainerComponents/Payment";
 import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
 // import FirebaseContext from "./services/firebase/FirebaseContext";
@@ -28,28 +29,29 @@ function App() {
         <WishlistContextProvider>
           {/*<SessionContextProvider>
           <FirebaseContext.Provider value={new Firebase()}>*/}
-              <BrowserRouter>
-                <Header />
-                <Switch>
-                  <Route path={ROUTE.ORDER_PLACED}>
-                    <FinalPage />
-                  </Route>
-                  <Route exact path={ROUTE.HOME}>
-                    <HomePage />
-                  </Route>
-                  <Route path={ROUTE.CATEGORY} component={SearchPage} />
-                  <Route path={ROUTE.ITEM_PAGE} component={Product} />
-                  <Route path={ROUTE.WISHLIST} component={Wishlist} />
-                  <Route path={ROUTE.CART}>
-                    <Cart />
-                  </Route>
-                  <AddressContextProvider>
-                    <Route path={ROUTE.CHECKOUT} component={Checkout} />
-                  </AddressContextProvider>
-                </Switch>
-                <Footer />
-              </BrowserRouter>
-            {/*</FirebaseContext.Provider>
+          <BrowserRouter>
+            <Header />
+            <Switch>
+              <Route path={ROUTE.ORDER_PLACED}>
+                <FinalPage />
+              </Route>
+              <Route exact path={ROUTE.HOME}>
+                <HomePage />
+              </Route>
+              <Route path={ROUTE.CATEGORY} component={SearchPage} />
+              <Route path={ROUTE.ITEM_PAGE} component={Product} />
+              <Route path={ROUTE.WISHLIST} component={Wishlist} />
+              <Route path={ROUTE.CART}>
+                <Cart />
+              </Route>
+              <AddressContextProvider>
+                <Route path={ROUTE.SHIPPING_ADDRESS} component={Checkout} />
+                <Route path={ROUTE.PAYMENT} component={Payment} />
+              </AddressContextProvider>
+            </Switch>
+            <Footer />
+          </BrowserRouter>
+          {/*</FirebaseContext.Provider>
             </SessionContextProvider>*/}
         </WishlistContextProvider>
       </CartContextProvider>
