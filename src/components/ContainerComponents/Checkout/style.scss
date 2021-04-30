@@ -14,26 +14,39 @@
       margin-left: 1em;
 
       .checkout-shipping__form {
-        align-items: flex-start;
-        width: 30%;
+        align-items: stretch;
+        width: 40%;
 
         .address-list__item {
-          * {
-            margin: 0;
-          }
+          justify-content: stretch;
 
           .address-details {
             margin-left: 0.5em;
             border: 1px solid var(--grey);
             padding: 0.5em;
             align-items: flex-start;
+            width: 80%;
+            max-width: 80%;
+            overflow: auto;
 
-            .address-item__remove{
-                color: var(--light-red);
-                align-self: flex-end;
-                width: 1.5em;
-                height: 1.5em;
-                cursor: pointer;
+            .address-details__subdiv {
+              align-items: flex-start;
+              * {
+                margin-bottom: 0;
+              }
+
+              &:last-of-type{
+                margin-bottom: 0;
+              }
+            }
+
+            .address-item__remove {
+              color: var(--light-red);
+              align-self: flex-end;
+              width: 1.5em;
+              height: 1.5em;
+              cursor: pointer;
+              margin-bottom: 0;
             }
           }
         }
