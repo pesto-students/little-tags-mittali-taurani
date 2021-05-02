@@ -1,0 +1,38 @@
+.similar-products__container {
+    margin-top: 2em;
+  .carousel {
+    position: relative;
+
+    button {
+        background: transparent;
+        font-size: 2rem;
+        border: none;
+    }
+
+    .carousel__arrow {
+      position: absolute;
+      top: 50%;
+      color: var(--black);
+      cursor: pointer;
+      opacity: 0.5;
+      transform: translateY(-50%);
+      transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1);
+
+      &:focus {
+        outline: 0;
+      }
+
+      &:hover {
+        opacity: 0.75;
+      }
+
+      &--left {
+        left: 1em;
+      }
+
+      &--right {
+        right: 1em;
+      }
+    }
+  }
+}
