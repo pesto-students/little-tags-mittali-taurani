@@ -8,6 +8,14 @@ export const formatNumberInCurrency = (number) => {
   }).format(number);
 };
 
+export const formatNumberInUSDCurrency = (number) => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  }).format(number);
+};
+
 export const getSubString = (inputString, pattern) => {
   return inputString.replace(pattern, "").trim();
 }
