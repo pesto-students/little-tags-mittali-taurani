@@ -5,7 +5,7 @@ import ProductDetails from "../ProductDetails";
 import { getProductByID } from "../../../helper/util";
 import { getRelevantProducts } from "../../../helper/relevancy";
 import { getAllProducts } from "../../../helper/backendAPI";
-import Card from "../../DesignComponents/Card";
+import SimilarProducts from "../../DesignComponents/SimilarProducts";
 
 const Product = (props) => {
   const [product, setProduct] = useState(undefined);
@@ -20,28 +20,11 @@ const Product = (props) => {
     getProductByID(props.match.params.id).then((pro) => setProduct(pro));
     if (product && product.brand_name) {
       getAllProducts().then((res) => {
-        // console.log(res.data);
         setSimilarProducts(getRelevantProducts(res.data, product.brand_name));
       });
     }
   }, [props.match.params.id, product]);
-  // console.log("similarProducts", similarProducts);
-  const similarProductsMap =
-    similarProducts &&
-    similarProducts.slice(0, 20).filter((data)=>{
-      if(data.id === product.id){
-        return false;
-      }else{
-        return true;
-      }
-    }).map((data) => {
-      if (data.score > 0.1) {
-        return <Card key={data.id} data={data} />;
-      }
-      return undefined;
-    });
 
-  // console.log("similarProductsMap", similarProductsMap);
   return (
     <div>
       {product ? (
@@ -50,8 +33,12 @@ const Product = (props) => {
             <ImageCarousel carouselData={images} />
             <ProductDetails product={product} />
           </div>
-          <div>similar products</div>
-          <div className="result-list">{similarProductsMap}</div>
+          <h1>Similar Products</h1>
+          {/*<div className="result-list">{similarProductsMap}</div>*/}
+          <SimilarProducts
+            similarProducts={similarProducts}
+            product={product}
+          />
         </div>
       ) : (
         <div className="product-main flex-row">

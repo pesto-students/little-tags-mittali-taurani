@@ -4,6 +4,10 @@
     background-color: var(--whisper);
     padding: 2em 3em;
 
+    @media (max-width: 768px) {
+        padding: 1em 1em;
+      }
+
     .footer-site-content {
         justify-content: space-between;
         align-items: flex-start;
@@ -14,6 +18,11 @@
             flex: 1 100%;
             align-items: flex-start;
         }
+
+        @media (max-width: 768px) {
+            flex-flow: column nowrap;
+            margin-bottom: 0;
+          }
     }
 
     hr {
@@ -24,6 +33,10 @@
     .footer-copyright{
         width: 100%;
         justify-content: space-between;
+
+        @media (max-width: 768px) {
+            flex-flow: column nowrap;
+          }
     }
 
     // @mixin define-emoji($name) {

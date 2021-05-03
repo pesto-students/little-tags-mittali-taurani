@@ -13,11 +13,13 @@ import { WishlistContext } from "../../../services/wishList/Context";
 import { SessionContext } from "../../../services/session/SessionContext";
 import ProfileDropdown from "../../DesignComponents/ProfileDropdown";
 import Hamburger from "../../DesignComponents/Hamburger";
+import { ToggleButton } from "../../DesignComponents/ToggleButton";
 
 function Header() {
   const { itemCount } = useContext(CartContext);
   const { wishListItems } = useContext(WishlistContext);
   const [products, setProducts] = useState([]);
+  const [selected, setSelected] = useState(false);
   const history = useHistory();
   useEffect(() => {
     getAllProducts().then((res) => {
@@ -58,6 +60,13 @@ function Header() {
           />
         )}
 
+        <ToggleButton
+          selected={selected}
+          toggleSelected={() => {
+            setSelected(!selected);
+          }}
+        />
+
         <Button
           onClickHandler={goTo(ROUTE.WISHLIST)}
           type={"favourite"}
@@ -70,7 +79,6 @@ function Header() {
         />
 
         <Hamburger />
-
       </div>
 
       {showLogin && (

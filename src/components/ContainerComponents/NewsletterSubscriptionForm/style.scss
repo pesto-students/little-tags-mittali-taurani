@@ -1,6 +1,10 @@
 .subscription-form-main {
   input {
     padding: 0.7em;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   ::placeholder {
