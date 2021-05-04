@@ -1,6 +1,5 @@
 import "./style.scss";
 import React, { useState, useContext, useEffect } from "react";
-import { BiRupee } from "react-icons/bi";
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { WishlistContext } from "../../../services/wishList/Context";
@@ -8,11 +7,17 @@ import { checkInWishList } from "../../../helper/util";
 import FirebaseContext from "../../../services/firebase/FirebaseContext";
 import { SessionContext } from "../../../services/session/SessionContext";
 import { USER_WISH_LIST_STORAGE_KEY } from "../../../helper/constants";
+import {
+  formatNumberInCurrency,
+  formatNumberInUSDCurrency,
+} from "../../../helper/util";
+import { CurrencyContext } from "../../../services/currency/CurrencyContext";
 
 function Card({ data }) {
   const { wishListItems, addToWishlist, removeFromWishlist } = useContext(
     WishlistContext
   );
+  const { INR } = useContext(CurrencyContext);
 
   const { authUser } = useContext(SessionContext);
 
@@ -71,9 +76,11 @@ function Card({ data }) {
           )}
         </div>
       </div>
+
       <div className={"product-price"}>
-        <BiRupee />
-        <div>{data["Unnamed: 17"]}</div>
+        {INR
+          ? formatNumberInCurrency(data["Unnamed: 17"])
+          : formatNumberInUSDCurrency(data["Unnamed: 17"])}
       </div>
     </div>
   );

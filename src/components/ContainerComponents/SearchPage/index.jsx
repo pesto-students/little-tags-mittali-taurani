@@ -51,9 +51,11 @@ function SearchPage(props) {
         break;
 
       case "kids":
-        getBoysProducts();
         getGirlsProducts().then((res) => {
-          setData(getRelevantProducts(res.data, searchTerm));
+          getBoysProducts().then(boys=>{
+            setData(getRelevantProducts(res.data.concat(boys.data), searchTerm));
+          })
+          
         });
         // setData(getRelevantProducts(data, "Mustard yellow printed layered men kurta"));
         break;

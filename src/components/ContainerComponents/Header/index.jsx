@@ -11,15 +11,17 @@ import { CartContext } from "../../../services/cart/CartContext";
 import { getAllProducts } from "../../../helper/backendAPI";
 import { WishlistContext } from "../../../services/wishList/Context";
 import { SessionContext } from "../../../services/session/SessionContext";
+import { CurrencyContext } from "../../../services/currency/CurrencyContext";
 import ProfileDropdown from "../../DesignComponents/ProfileDropdown";
 import Hamburger from "../../DesignComponents/Hamburger";
 import { ToggleButton } from "../../DesignComponents/ToggleButton";
 
 function Header() {
+  const { setInr, setUsd, USD } = useContext(CurrencyContext);
+  // console.log("useContext(CurrencyContext)",useContext(CurrencyContext));
   const { itemCount } = useContext(CartContext);
   const { wishListItems } = useContext(WishlistContext);
   const [products, setProducts] = useState([]);
-  const [selected, setSelected] = useState(false);
   const history = useHistory();
   useEffect(() => {
     getAllProducts().then((res) => {
@@ -54,9 +56,13 @@ function Header() {
         <div className="header-middle__main flex-row">
         <Search options={products} />
         <ToggleButton
-          selected={selected}
+          selected={USD}
           toggleSelected={() => {
-            setSelected(!selected);
+            if(USD){
+              setInr();
+            }else{
+              setUsd();
+            }
           }}
         /></div>
 
