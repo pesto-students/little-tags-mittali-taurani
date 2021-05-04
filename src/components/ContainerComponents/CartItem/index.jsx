@@ -37,7 +37,7 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
           <h4>{formatNumberInCurrency(product["Unnamed: 17"])}</h4>
         </div>
         {wishlist ? null: (
-          <div>
+          <div className="cart-item-quantity__div">
             <p className="cart-item__detail">Quantity</p>
             <div className="cart-item__quantity">
               <Quantity

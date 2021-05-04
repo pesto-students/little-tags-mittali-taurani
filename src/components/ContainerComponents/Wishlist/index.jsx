@@ -12,7 +12,7 @@ const Wishlist = () => {
   
 
   return (
-    <div className="cart-main">
+    <div className="wishList-main">
       {wishListItems.length > 0 ? (
         <div className="cart-main__content flex-row full-width">
           <div className="cart-main__items">
