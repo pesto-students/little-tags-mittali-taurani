@@ -5,6 +5,10 @@
   max-width: 30%;
   min-width: 30%;
 
+  @media (max-width: 768px) {
+    max-width: unset;
+  }
+
   .close-icon-div {
     text-align: right;
 

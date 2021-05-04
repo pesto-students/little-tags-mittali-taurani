@@ -36,7 +36,6 @@ function Header() {
   };
 
   const goTo = (path) => () => {
-    console.log("path", path);
     history.push(path);
   };
 
@@ -66,7 +65,7 @@ function Header() {
           ) : (
             <Button
               type={"user"}
-              buttonText={"Login/Sign in"}
+              buttonText={"Log in / Sign up"}
               onClickHandler={handleLoginClick}
             />
           )}
@@ -82,7 +81,7 @@ function Header() {
             buttonText={`Cart (${itemCount})`}
           />
         </div>
-        <Hamburger />
+        <Hamburger handleLoginClick={handleLoginClick} />
 
         {showLogin && (
           <Modal>

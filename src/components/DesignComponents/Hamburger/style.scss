@@ -1,7 +1,7 @@
 .burger__main {
   width: 2rem;
   height: 2rem;
-  position: fixed;
+  position: absolute;
   top: 0.2em;
   right: 0.5em;
   z-index: 15;
@@ -15,10 +15,11 @@
 }
 
 .open {
+  position: fixed;
   div {
     width: 2rem;
     height: 0.25rem;
-    background-color: var(--black);
+    background-color: var(--white);
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;
@@ -45,6 +46,7 @@
 }
 
 .close {
+  position: absolute;
   div {
     width: 2rem;
     height: 0.25rem;
@@ -74,15 +76,46 @@
   }
 }
 
-.rightnav__ul {
-  list-style: none;
+.rightnav__div {
   display: none;
 
-  li {
-    padding: 18px 10px;
-
+  .rightnav__item {
+    border-bottom: 1px solid;
+    padding: 0.5em;
     a {
       color: var(--black);
+    }
+
+    &:nth-child(1) {
+      background-color: var(--black);
+      color: var(--white);
+      min-height: 2em;
+
+      h4 {
+        @media screen and (max-width: 560px) {
+          max-width: 3.5em;
+        }
+      }
+    }
+
+    &:nth-last-child(1) {
+      margin-top: auto;
+      border: none;
+
+      .login__btn {
+        @media screen and (max-width: 560px) {
+          font-size: 1.2rem;
+        }
+
+        svg {
+          margin-right: 0.5em;
+
+          @media screen and (max-width: 560px) {
+            width: 1.5em;
+            height: 1.5em;
+          }
+        }
+      }
     }
   }
 
@@ -95,7 +128,6 @@
     right: 0;
     height: 100%;
     width: 50%;
-    padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
   }
 }
