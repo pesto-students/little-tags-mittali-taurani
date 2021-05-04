@@ -4,7 +4,7 @@
     cursor: pointer;
     user-select: none;
     border-radius: 3px;
-    padding: 2px;
+    /* padding: 2px; */
     height: 32px;
     position: relative;
   }

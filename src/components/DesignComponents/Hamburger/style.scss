@@ -2,8 +2,8 @@
   width: 2rem;
   height: 2rem;
   position: fixed;
-  top: 15px;
-  right: 20px;
+  top: 0.2em;
+  right: 0.5em;
   z-index: 15;
   display: none;
 
@@ -77,8 +77,6 @@
 .rightnav__ul {
   list-style: none;
   display: none;
-  //   display: flex;
-  //   flex-flow: row nowrap;
 
   li {
     padding: 18px 10px;
@@ -96,7 +94,7 @@
     top: 0;
     right: 0;
     height: 100%;
-    width: 30%;
+    width: 50%;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
   }

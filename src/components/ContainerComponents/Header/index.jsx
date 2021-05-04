@@ -42,22 +42,23 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="headerRightContent">
+      <div className="header__main flex-row">
         {/* <img style={{ width: "200px" }} alt={"logo"} src={myntra} /> 
         <div onClick={goTo(ROUTE.HOME)} className="header-logo">
           [untitled]
         </div>*/}
-        <div className="header-logo" onClick={goTo(ROUTE.HOME)}>
+       {/* <div className="header-logo" onClick={goTo(ROUTE.HOME)}>
           <img className="header-logo__img" alt="Website logo" src={Myntra} />
-        </div>
-        <div style={{ flexGrow: 2 }} />
+        </div>*/}
+        <img className="header-logo__img" alt="Website logo" src={Myntra} onClick={goTo(ROUTE.HOME)}/>
+        <div className="header-middle__main flex-row">
         <Search options={products} />
         <ToggleButton
           selected={selected}
           toggleSelected={() => {
             setSelected(!selected);
           }}
-        />
+        /></div>
 
         <div className="header-user__actions flex-row">
           {authUser && authUser.isLoggedIn ? (
@@ -80,9 +81,8 @@ function Header() {
             type={"bag"}
             buttonText={`Cart (${itemCount})`}
           />
-
-          <Hamburger />
         </div>
+        <Hamburger />
 
         {showLogin && (
           <Modal>
@@ -91,7 +91,7 @@ function Header() {
         )}
       </div>
       <div className={"navContainer"}>
-        <div className={"navBar"}>
+        <div className="navBar full-width flex-row">
           <Link className="link" to={ROUTE.WOMENS}>
             {"Women"}
           </Link>
