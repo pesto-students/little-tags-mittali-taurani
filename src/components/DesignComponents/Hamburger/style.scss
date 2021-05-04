@@ -136,6 +136,7 @@
 .navOpen {
   @media (max-width: 768px) {
     transform: translateX(0);
+    z-index: 2;
   }
 }
 
