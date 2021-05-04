@@ -1,5 +1,4 @@
 import "./style.scss";
-
 import { FiSearch } from "react-icons/fi";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
@@ -52,17 +51,19 @@ export class Search extends Component {
     const { activeOption, filteredOptions } = this.state;
 
     if (e.keyCode === 13) {
-
-      this.setState({
-        activeOption: 0,
-        filteredOptions: [],
-        showOptions: false,
-      },()=>{
-        this.props.history.push({
-          pathname: "/products/sale",
-          search: `?q=${encodeURIComponent(this.state.userInput)}`,
-        });
-      });
+      this.setState(
+        {
+          activeOption: 0,
+          filteredOptions: [],
+          showOptions: false,
+        },
+        () => {
+          this.props.history.push({
+            pathname: "/products/sale",
+            search: `?q=${encodeURIComponent(this.state.userInput)}`,
+          });
+        }
+      );
       // console.log("ssss", this.props);
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
@@ -124,22 +125,19 @@ export class Search extends Component {
     }
     return (
       <React.Fragment>
-        <div className="flex-column">
+        <div className="search__main flex-row full-width">
+          <FiSearch className="search__logo"/>
           <div className="search">
-            <FiSearch />
             <input
               type="text"
-              className={"searchInput"}
+              className="searchInput full-width"
               onChange={onChange}
               onKeyDown={onKeyDown}
               placeholder={decodeURI(searchTerm)}
               value={userInput}
             />
+            <div className="search-results">{optionList}</div>
           </div>
-        <div className="search-results">
-        {optionList}
-        </div>
-          
         </div>
       </React.Fragment>
     );
