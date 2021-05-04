@@ -16,7 +16,7 @@ const AccessDenied = () => {
       <img src={AccessDeniedError} alt="Access Denied" className="margin-bottom" />
       <h1 className="login-message margin-bottom">Please log in / sign up to view current page</h1> 
       <button type="button" className="login-btn blackBg-whiteFg-btn margin-bottom" onClick={handleLoginClick}>
-        Log in/ Sign up
+        Log in / Sign up
       </button>
       {showLogin && (
         <Modal>
