@@ -70,7 +70,15 @@ const Nav = ({ open, handleLoginClick }) => {
       </div>
 
       <div className="rightnav__item">
-        {authUser && authUser.isLoggedIn ? (
+      <button
+            type="button"
+            className="login__btn flex-row blackBg-whiteFg-btn"
+            onClick={authUser && authUser.isLoggedIn ? handleLogOutClick : handleLoginClick}
+          >
+            <RiUser3Line />
+            <span>{authUser && authUser.isLoggedIn ? "Log Out" : "Log in / Sign up"}</span>
+          </button>
+        {/*{authUser && authUser.isLoggedIn ? (
           <button
             type="button"
             className="blackBg-whiteFg-btn"
@@ -87,7 +95,7 @@ const Nav = ({ open, handleLoginClick }) => {
             <RiUser3Line />
             <span>Log in / Sign up</span>
           </button>
-        )}
+        )}*/}
       </div>
     </div>
   );
