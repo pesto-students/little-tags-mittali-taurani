@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.scss";
 import RightNav from "./RightNav";
 
-const Hamburger = () => {
+const Hamburger = ({handleLoginClick}) => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const handleNavbarToggle = () => {
@@ -11,12 +11,15 @@ const Hamburger = () => {
 
   return (
     <div>
-      <div className={`burger__main ${(isNavbarOpen ? `open` : `close`)}` } onClick={handleNavbarToggle}>
+      <div
+        className={`burger__main ${isNavbarOpen ? `open` : `close`}`}
+        onClick={handleNavbarToggle}
+      >
         <div />
         <div />
         <div />
       </div>
-      <RightNav open={isNavbarOpen} />
+      <RightNav open={isNavbarOpen} handleLoginClick={handleLoginClick} />
     </div>
   );
 };

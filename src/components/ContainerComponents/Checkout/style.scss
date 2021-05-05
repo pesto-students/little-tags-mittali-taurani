@@ -3,6 +3,11 @@
   padding: 1em;
   align-items: flex-start;
 
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 0.5em 0 0 0.5em;
+  }
+
   * {
     margin-bottom: 1em;
   }
@@ -10,12 +15,22 @@
   .checkout-shipping__content {
     border-left: 2px solid var(--grey);
 
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
     .checkout-shipping__address-list {
       margin-left: 1em;
 
       .checkout-shipping__form {
         align-items: stretch;
-        width: 40%;
+        // width: 100%;
+        // min-width: 50%;
+        // max-width: 50%;
+
+        @media (max-width: 560px) {
+          width: 100%;
+        }
 
         .address-list__item {
           justify-content: stretch;
