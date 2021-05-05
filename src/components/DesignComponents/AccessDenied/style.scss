@@ -1,13 +1,30 @@
 .access-denied__main {
+  img {
+    @media (max-width: 768px) {
+      max-width: 100vw;
+    }
+  }
 
-.margin-bottom {
+  .margin-bottom {
     margin-bottom: 2em;
-}
+  }
   .login-message {
     color: var(--light-red);
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
   }
 
   .login-btn {
     max-width: 20%;
+
+    @media (max-width: 768px) {
+      max-width: 50%;
+    }
+
+    @media (max-width: 560px) {
+      max-width: 80%;
+    }
   }
 }

@@ -16,6 +16,11 @@
     width: 50%;
     justify-content: space-between;
 
+    @media (max-width: 768px) {
+      width: 100%;
+      padding: 0 0.5em;
+    }
+
     .personal-info,
     .address-info {
       padding: 0.5em;
@@ -47,6 +52,11 @@
     margin-bottom: 0;
     * {
       margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      padding: 0 0.5em;
     }
 
     .default-address_check {

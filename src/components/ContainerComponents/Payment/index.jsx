@@ -20,7 +20,7 @@ const Payment = () => {
     phoneNo,
   } = selectedAddress[0];
 
-  const paymentMethods = ["Razor Pay", "Visa /  Mastercard / UPI", "Pay Pal"];
+  const paymentMethods = ["Razor Pay", "Visa /  Mastercard / UPI", "Pay Pal", "Cash on Delivery"];
 
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
 

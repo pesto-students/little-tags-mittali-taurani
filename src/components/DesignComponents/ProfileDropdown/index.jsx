@@ -19,7 +19,7 @@ const ProfileDropdown = () => {
       <h4 className="welcome-msg">Hey, {authUser.userName}</h4>
       <ul className="nav__submenu full-width">
         <li className="nav__submenu-item ">
-          <Link className="link" to={ROUTE.ORDER_PLACED}>
+          <Link className="link" to={ROUTE.PAST_ORDERS}>
             <button type="button">
               Past Orders
             </button>

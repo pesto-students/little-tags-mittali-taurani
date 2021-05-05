@@ -45,8 +45,8 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
           <p>Price: </p>
           <h4>{price}</h4>
         </div>
-        {wishlist ? null : (
-          <div>
+        {wishlist ? null: (
+          <div className="cart-item-quantity__div">
             <p className="cart-item__detail">Quantity</p>
             <div className="cart-item__quantity">
               <Quantity

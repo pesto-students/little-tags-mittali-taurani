@@ -21,6 +21,10 @@
     &:hover{
       opacity: 1;
     }
+
+    @media (max-width: 560px) {
+      opacity: unset;
+    }
   }
 
   // .payment-methods-desc {

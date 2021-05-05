@@ -13,6 +13,7 @@ import CartContextProvider from "./services/cart/CartContext";
 import Cart from "./components/ContainerComponents/Cart";
 import Checkout from "./components/ContainerComponents/Checkout";
 import Payment from "./components/ContainerComponents/Payment";
+import FinalPage from "./components/DesignComponents/FinalPage";
 import { ROUTE } from "./helper/constants";
 import WishlistContextProvider from "./services/wishList/Context";
 import AddressContextProvider from "./services/address/AddressContext";
@@ -40,11 +41,15 @@ function App() {
                 <Route path={ROUTE.CART}>
                   <Cart />
                 </Route>
-                <Route path={ROUTE.ORDER_PLACED} component={PastOrders} />
+                <Route path={ROUTE.PAST_ORDERS} component={PastOrders} />
                 <AddressContextProvider>
                   <Route path={ROUTE.SHIPPING_ADDRESS} component={Checkout} />
                   <Route path={ROUTE.PAYMENT} component={Payment} />
                 </AddressContextProvider>
+                <Route path={ROUTE.ORDER_PLACED}>
+                  <FinalPage />
+                </Route>
+                {/*<Route path={ROUTE.ORDER_PLACED} component={FinalPage} />*/}
               </Switch>
               <Footer />
             </BrowserRouter>

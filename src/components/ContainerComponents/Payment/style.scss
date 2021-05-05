@@ -2,6 +2,10 @@
   font-size: 1.2rem;
   margin-top: 2em;
 
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
   * {
     margin-bottom: 1em;
   }
@@ -13,6 +17,16 @@
     max-width: 25%;
     overflow: auto;
     margin-bottom: 3em;
+
+    @media (max-width: 600px) {
+      max-width: 80%;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      max-width: 60%;
+      width: 100%;
+    }
 
     .address-details {
       align-items: flex-start;
