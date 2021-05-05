@@ -123,18 +123,19 @@ function SearchPage(props) {
   return (
     <div>
       <div>
-        <div>
-          <label htmlFor="sortBy">SORT BY:</label>
+        <div className={"flex-row sort-by-padding"}>
+          <label htmlFor="sortBy">SORT BY: </label>
           <select onChange={sortData} name="SORT BY" id="sortBy">
             <option value="recommended">Recommended</option>
             {/*<option value="newest">Newest</option>*/}
             <option value="lowestPrice">Lowest Price</option>
             <option value="highestPrice">Highest Price</option>
           </select>
+          <div style={{flex:"1"}}></div>
+          <div>{data.length} items</div>
         </div>
-
         <div/>
-        <div>{data.length} items</div>
+        
       </div>
       
         <div className="searchBody">

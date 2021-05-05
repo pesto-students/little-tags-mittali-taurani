@@ -2,8 +2,11 @@
   padding: 5px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   max-width: 350px;
   max-height: 550px;
+  height: 550px;
+  width: 350px;
 }
 
 .card-image {
@@ -13,10 +16,12 @@
 
 .product-name {
   font-size: 20px;
-  padding: 15px 0 15px 0;
-  width: 400px;
+  // padding: 15px 0 15px 0;
+  // width: 400px;
+  // height: 100px;
   cursor: pointer;
   white-space: nowrap;
+  // word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
 }

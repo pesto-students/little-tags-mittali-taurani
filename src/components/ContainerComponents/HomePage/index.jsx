@@ -57,7 +57,7 @@ function HomePage() {
         </div>
       </div>
 
-      <div>Mens Shits</div>
+      {/* <div>Mens Shits</div> */}
 
       <SimilarProducts similarProductsMap={mensProductsMap} />
       {/* <div className="result-list">{mensProductsMap}</div> */}
