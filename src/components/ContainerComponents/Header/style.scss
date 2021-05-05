@@ -21,13 +21,15 @@
   }
 
   .header-logo__img {
-    width: 20%;
+    width: 200px;
+    height: 90px;
     margin: 0 0.5em;
     cursor: pointer;
 
     @media (max-width: 768px) {
       align-self: center;
-      width: 50%;
+      width: 150px;
+    height: 70px;
       margin: 0;
     }
   }
