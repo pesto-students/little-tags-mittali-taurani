@@ -10,7 +10,7 @@ export const ROUTE = {
     WISHLIST: "/wishlist",
     SHIPPING_ADDRESS: "/checkout/shipping_address",
     PAYMENT: "/checkout/order_payment",
-    ORDER_PLACED: "/checkout/order_placed"
+    ORDER_PLACED: "/order_placed"
 }
 
 export const USER_CART_STORAGE_KEY = "userCart";

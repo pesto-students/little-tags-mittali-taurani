@@ -5,17 +5,18 @@ import { getRelevantProducts } from "../../../helper/relevancy";
 // import womensHeaderImg from "../../../assets/images/womensHeaderImg.png";
 import { getAllProducts } from "../../../helper/backendAPI";
 import { ROUTE } from "../../../helper/constants";
-import "./style.scss";
 import Card from "../../DesignComponents/Card";
+import SimilarProducts from "../../DesignComponents/SimilarProducts";
+import "./style.scss";
 
 function HomePage() {
+  
   const [mensShirt, setMensShirt] = useState([]);
   const [womenProduct, setwomenProduct] = useState([]);
   const [kids, setkids] = useState([]);
 
   useEffect(() => {
     getAllProducts().then((res) => {
-      // console.log(res.data);
       setMensShirt(getRelevantProducts(res.data, "British "));
       setwomenProduct(getRelevantProducts(res.data, "bollywood vogue "));
       setkids(getRelevantProducts(res.data, "aj dezines"));
@@ -25,19 +26,20 @@ function HomePage() {
   const history = useHistory();
 
   const goTo = (path) => () => {
-    console.log("path", path);
+    // console.log("path", path);
     history.push(path);
   };
 
   const mensProductsMap = mensShirt
     .slice(0, 4)
     .map((data) => <Card key={data.id} data={data} />);
-    
+
   const womenProductsMap = womenProduct
     .slice(0, 4)
     .map((data) => <Card key={data.id} data={data} />);
 
-  const kidsMap = kids.slice(0, 4)
+  const kidsMap = kids
+    .slice(0, 4)
     .map((data) => <Card key={data.id} data={data} />);
 
   return (
@@ -55,9 +57,10 @@ function HomePage() {
         </div>
       </div>
 
-      <div>Mens Shits</div>
+      {/* <div>Mens Shits</div> */}
 
-      <div className="result-list">{mensProductsMap}</div>
+      <SimilarProducts similarProductsMap={mensProductsMap} />
+      {/* <div className="result-list">{mensProductsMap}</div> */}
 
       <img
         onClick={goTo(ROUTE.WOMENS)}
@@ -65,7 +68,7 @@ function HomePage() {
         className="full-width-img"
         alt="banner"
       />
-      <div className="result-list">{womenProductsMap}</div>
+      <SimilarProducts similarProductsMap={womenProductsMap} />
 
       <img
         onClick={goTo(ROUTE.KIDS)}
@@ -75,7 +78,7 @@ function HomePage() {
         }
         alt="banner"
       />
-      <div className="result-list">{kidsMap}</div>
+      <SimilarProducts similarProductsMap={kidsMap} />
     </div>
   );
 }

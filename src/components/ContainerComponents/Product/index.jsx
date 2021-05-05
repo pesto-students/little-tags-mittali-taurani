@@ -6,10 +6,29 @@ import { getProductByID } from "../../../helper/util";
 import { getRelevantProducts } from "../../../helper/relevancy";
 import { getAllProducts } from "../../../helper/backendAPI";
 import SimilarProducts from "../../DesignComponents/SimilarProducts";
+import Card from "../../DesignComponents/Card";
 
 const Product = (props) => {
   const [product, setProduct] = useState(undefined);
   const [similarProducts, setSimilarProducts] = useState(undefined);
+
+  const similarProductsMap =
+    similarProducts &&
+    similarProducts
+      .slice(0, 20)
+      .filter((data) => {
+        if (data.id === product.id) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+      .map((data) => {
+        if (data.score > 0.1) {
+          return <Card key={data.id} data={data} />;
+        }
+        return undefined;
+      });
 
   const imagesInputString = (product && product.images) || "";
   const images = imagesInputString
@@ -36,8 +55,7 @@ const Product = (props) => {
           <h1>Similar Products</h1>
           {/*<div className="result-list">{similarProductsMap}</div>*/}
           <SimilarProducts
-            similarProducts={similarProducts}
-            product={product}
+            similarProductsMap={similarProductsMap}
           />
         </div>
       ) : (

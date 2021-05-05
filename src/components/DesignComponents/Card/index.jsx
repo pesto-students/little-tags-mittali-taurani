@@ -8,11 +8,17 @@ import { checkInWishList } from "../../../helper/util";
 import FirebaseContext from "../../../services/firebase/FirebaseContext";
 import { SessionContext } from "../../../services/session/SessionContext";
 import { USER_WISH_LIST_STORAGE_KEY } from "../../../helper/constants";
+import {
+  formatNumberInCurrency,
+  formatNumberInUSDCurrency,
+} from "../../../helper/util";
+import { CurrencyContext } from "../../../services/currency/CurrencyContext";
 
 function Card({ data }) {
   const { wishListItems, addToWishlist, removeFromWishlist } = useContext(
     WishlistContext
   );
+  const { INR } = useContext(CurrencyContext);
 
   const { authUser } = useContext(SessionContext);
 
@@ -62,7 +68,7 @@ function Card({ data }) {
         <Link className="product-name link" to={`/product/${data.id}`}>
           {data.brand || "No Brand name"}
         </Link>
-        <div></div>
+        {/* <div></div> */}
         <div onClick={toggleWishlist} className={"heart"}>
           {checkInWishList(data.id) ? (
             <BsFillHeartFill color={"red"} size={20} />
@@ -71,9 +77,11 @@ function Card({ data }) {
           )}
         </div>
       </div>
+
       <div className={"product-price"}>
-        <BiRupee />
-        <div>{data["Unnamed: 17"]}</div>
+        {INR
+          ? formatNumberInCurrency(data["Unnamed: 17"])
+          : formatNumberInUSDCurrency(data["Unnamed: 17"])}
       </div>
     </div>
   );

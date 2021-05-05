@@ -71,6 +71,7 @@
         }
       }
     }
+    
   }
 
   .cart-item__sidebar {
@@ -88,4 +89,8 @@
       line-height: 0;
     }
   }
+}
+
+.cart-item__total{
+  display: flex;
 }

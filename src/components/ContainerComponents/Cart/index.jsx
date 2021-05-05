@@ -3,12 +3,13 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ROUTE } from "../../../helper/constants";
 import { CartContext } from "../../../services/cart/CartContext";
-import { formatNumberInCurrency } from "../../../helper/util";
+import { formatNumberInCurrency, formatNumberInUSDCurrency } from "../../../helper/util";
 import CartItem from "../CartItem";
 import EmptyCart from "../../../assets/images/cart_empty_2.png";
 import withAuthorization from "../Session/withAuthorization";
 import FirebaseContext from "../../../services/firebase/FirebaseContext";
 import { SessionContext } from "../../../services/session/SessionContext";
+import { CurrencyContext } from "../../../services/currency/CurrencyContext";
 import {
   USER_CART_STORAGE_KEY,
 } from "../../../helper/constants";
@@ -22,6 +23,7 @@ const Cart = () => {
     itemCount,
     totalPrice,
   } = useContext(CartContext);
+  const { INR } = useContext(CurrencyContext);
 
   const { authUser } = useContext(SessionContext);
 
@@ -60,16 +62,16 @@ const Cart = () => {
               </div>
               <div className="margin-bottom">
                 <p>Order Value</p>
-                <h3>{formatNumberInCurrency(totalPrice)}</h3>
+                <h3>{INR ? formatNumberInCurrency(totalPrice): formatNumberInUSDCurrency(totalPrice)}</h3>
               </div>
               <div className="margin-bottom">
                 <p>GST (5%)</p>
-                <h3>{formatNumberInCurrency(calculateGST(totalPrice))}</h3>
+                <h3>{INR ? formatNumberInCurrency(calculateGST(totalPrice)): formatNumberInUSDCurrency(calculateGST(totalPrice))}</h3>
               </div>
               <div className="margin-bottom">
                 <p>Total Payable</p>
                 <h2>
-                  {formatNumberInCurrency(calulateTotalPayable(totalPrice))}
+                  {INR ? formatNumberInCurrency(calulateTotalPayable(totalPrice)): formatNumberInUSDCurrency(calulateTotalPayable(totalPrice))}
                 </h2>
               </div>
               <hr className="full-width margin-bottom" />

@@ -9,11 +9,11 @@ export const formatNumberInCurrency = (number) => {
 };
 
 export const formatNumberInUSDCurrency = (number) => {
-  return new Intl.NumberFormat("en-IN", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     minimumFractionDigits: 2,
-  }).format(number);
+  }).format(number * 0.014);
 };
 
 export const getSubString = (inputString, pattern) => {

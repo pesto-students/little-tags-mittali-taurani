@@ -2,9 +2,14 @@ import "./style.scss";
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { IoBagRemoveSharp } from "react-icons/io5";
-import { formatNumberInCurrency, getSubString } from "../../../helper/util";
+import {
+  formatNumberInCurrency,
+  getSubString,
+  formatNumberInUSDCurrency,
+} from "../../../helper/util";
 import Quantity from "../../DesignComponents/Counter";
 import { CartContext } from "../../../services/cart/CartContext";
+import { CurrencyContext } from "../../../services/currency/CurrencyContext";
 
 const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
   const {
@@ -12,13 +17,17 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
     decreaseProductQuantity,
     removeProduct,
   } = useContext(CartContext);
-
+  const { INR } = useContext(CurrencyContext);
 
   const imagesInputString = product.images;
 
   const images = imagesInputString
     ? imagesInputString.split("|")
     : [imagesInputString];
+
+  const price = INR
+    ? formatNumberInCurrency(product["Unnamed: 17"])
+    : formatNumberInUSDCurrency(product["Unnamed: 17"]);
 
   return (
     <div className="cart-item  flex-row">
@@ -34,7 +43,7 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
         </h4>
         <div className="cart-item__price flex-row">
           <p>Price: </p>
-          <h4>{formatNumberInCurrency(product["Unnamed: 17"])}</h4>
+          <h4>{price}</h4>
         </div>
         {wishlist ? null: (
           <div className="cart-item-quantity__div">
@@ -52,21 +61,18 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
       </div>
       <div className="cart-item__sidebar flex-column">
         <div className="cart-item__total">
-          Total Price:{" "}
-          <h4>{`${formatNumberInCurrency(product["Unnamed: 17"])} X ${
-            product.quantity
-          }`}</h4>
+          <div>Total Price:</div>
+          <h4>{` ${price} X ${product.quantity}`}</h4>
         </div>
         <button
           type="button"
           className="cart-item__removeBtn"
           onClick={() => {
-            if(wishlist){
+            if (wishlist) {
               removeProductFromWishlist(product);
-            }else{
+            } else {
               removeProduct(product);
             }
-            
           }}
         >
           <IoBagRemoveSharp />
