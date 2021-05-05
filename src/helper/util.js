@@ -13,7 +13,7 @@ export const formatNumberInUSDCurrency = (number) => {
     style: "currency",
     currency: "USD",
     minimumFractionDigits: 2,
-  }).format(number);
+  }).format(number * 0.014);
 };
 
 export const getSubString = (inputString, pattern) => {

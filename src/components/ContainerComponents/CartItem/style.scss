@@ -46,6 +46,7 @@
         margin: 0;
       }
     }
+    
   }
 
   .cart-item__sidebar {
@@ -58,4 +59,8 @@
         font-size: 1.5rem;
     }
   }
+}
+
+.cart-item__total{
+  display: flex;
 }
