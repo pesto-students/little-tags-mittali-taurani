@@ -10,6 +10,11 @@
   padding-top: 10%;
   padding-left: 10%;
   cursor: pointer;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    flex-direction: column-reverse;
+    margin-bottom: 0;
+  }
 }
 
 .mens-top-page-image{
@@ -32,6 +37,11 @@
   width: 100%;
   padding: 20px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    height: 300px;
+    width: 500px;
+    padding: 0px;
+  }
 }
 
 .trendsetter-text-mens-shop{
