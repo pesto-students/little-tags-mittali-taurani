@@ -32,6 +32,7 @@ function App() {
             <BrowserRouter>
               <Header />
               <Switch>
+                <Route path={ROUTE.ORDER_PLACED} component={FinalPage} />
                 <Route exact path={ROUTE.HOME}>
                   <HomePage />
                 </Route>
@@ -46,9 +47,6 @@ function App() {
                   <Route path={ROUTE.SHIPPING_ADDRESS} component={Checkout} />
                   <Route path={ROUTE.PAYMENT} component={Payment} />
                 </AddressContextProvider>
-                <Route path={ROUTE.ORDER_PLACED}>
-                  <FinalPage />
-                </Route>
                 {/*<Route path={ROUTE.ORDER_PLACED} component={FinalPage} />*/}
               </Switch>
               <Footer />
