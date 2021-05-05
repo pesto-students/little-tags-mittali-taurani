@@ -1,6 +1,5 @@
 import "./style.scss";
 import React, { useState, useContext, useEffect } from "react";
-import { BiRupee } from "react-icons/bi";
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { WishlistContext } from "../../../services/wishList/Context";

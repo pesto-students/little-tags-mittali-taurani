@@ -13,7 +13,6 @@ const PastOrders = () => {
         (pastOrders.map((item) => {
           if (item.orderItems.length > 0) {
             return item.orderItems.map((product,index) => {
-              console.log("product", product);
               return <PastOrderItem key={index} product={product}/>;
             });
           }

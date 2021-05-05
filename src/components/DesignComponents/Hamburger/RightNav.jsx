@@ -52,20 +52,20 @@ const Nav = ({ open, handleLoginClick }) => {
       </div>
 
       <div className="rightnav__item">
+        <Link to={ROUTE.WISHLIST} className="link">
+          Favourites
+        </Link>
+      </div>
+
+      <div className="rightnav__item">
         <Link to={ROUTE.CART} className="link">
           Cart
         </Link>
       </div>
 
       <div className="rightnav__item">
-        <Link to={ROUTE.ORDER_PLACED} className="link">
+        <Link to={ROUTE.PAST_ORDERS} className="link">
           Past Orders
-        </Link>
-      </div>
-
-      <div className="rightnav__item">
-        <Link to={ROUTE.WISHLIST} className="link">
-          Favourites
         </Link>
       </div>
 
