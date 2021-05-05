@@ -60,9 +60,9 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
         )}
       </div>
       <div className="cart-item__sidebar flex-column">
-        <div className="cart-item__total">
-          <div>Total Price:</div>
-          <h4>{` ${price} X ${product.quantity}`}</h4>
+        <div className="cart-item__total flex-row">
+          <div className="cart-item-total__div">Total Price:</div>
+          <h4 className="cart-item-total__h4">{` ${price} X ${product.quantity}`}</h4>
         </div>
         <button
           type="button"
