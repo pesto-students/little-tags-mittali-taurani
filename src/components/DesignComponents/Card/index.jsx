@@ -1,5 +1,6 @@
 import "./style.scss";
 import React, { useState, useContext, useEffect } from "react";
+import { BiRupee } from "react-icons/bi";
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { WishlistContext } from "../../../services/wishList/Context";
@@ -67,7 +68,7 @@ function Card({ data }) {
         <Link className="product-name link" to={`/product/${data.id}`}>
           {data.brand || "No Brand name"}
         </Link>
-        <div></div>
+        {/* <div></div> */}
         <div onClick={toggleWishlist} className={"heart"}>
           {checkInWishList(data.id) ? (
             <BsFillHeartFill color={"red"} size={20} />
