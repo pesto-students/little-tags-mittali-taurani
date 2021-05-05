@@ -17,6 +17,7 @@ import WishlistContextProvider from "./services/wishList/Context";
 // import FirebaseContext from "./services/firebase/FirebaseContext";
 // import Firebase from "./services/firebase/Firebase";
 import AddressContextProvider from "./services/address/AddressContext";
+import CurrencyContextProvider from "./services/currency/CurrencyContext";
 import FinalPage from "./components/DesignComponents/FinalPage";
 import Wishlist from "./components/ContainerComponents/Wishlist";
 // import SessionContextProvider from "./services/session/SessionContext";
@@ -27,6 +28,7 @@ function App() {
     <div className="App">
       <CartContextProvider>
         <WishlistContextProvider>
+          <CurrencyContextProvider>
           {/*<SessionContextProvider>
           <FirebaseContext.Provider value={new Firebase()}>*/}
           <BrowserRouter>
@@ -53,6 +55,7 @@ function App() {
           </BrowserRouter>
           {/*</FirebaseContext.Provider>
             </SessionContextProvider>*/}
+            </CurrencyContextProvider>
         </WishlistContextProvider>
       </CartContextProvider>
     </div>

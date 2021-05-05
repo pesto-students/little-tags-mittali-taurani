@@ -21,9 +21,6 @@ const CurrencyContextProvider = ({ children }) => {
     dispatch({ type: SET_USD });
   };
 
-  
-
-
   const contextValues = {
     setInr,
     setUsd,
@@ -37,4 +34,4 @@ const CurrencyContextProvider = ({ children }) => {
   );
 };
 
-export default CartContextProvider;
+export default CurrencyContextProvider;
