@@ -2,6 +2,7 @@ import "./style.scss";
 import React, { useContext } from "react";
 import { CartContext } from "../../../services/cart/CartContext";
 import PastOrderItem from "../PastOrderItems";
+import withAuthorization from "../Session/withAuthorization";
 
 const PastOrders = () => {
   const { pastOrders } = useContext(CartContext);
@@ -15,7 +16,7 @@ const PastOrders = () => {
           if (item.orderItems.length > 0) {
             return (
               <div className="past-orders__content" key={index}>
-              <h2 className="past-orders__date">Order Date: {new Date(item.orderDate).toDateString()}</h2>
+              <h3 className="past-orders__date">Order Date: {new Date(item.orderDate).toDateString()}</h3>
               {item.orderItems.map((product,index) => {
               return <PastOrderItem key={index} product={product}/>;
             })}
@@ -29,4 +30,4 @@ const PastOrders = () => {
   );
 };
 
-export default PastOrders;
+export default withAuthorization(PastOrders);

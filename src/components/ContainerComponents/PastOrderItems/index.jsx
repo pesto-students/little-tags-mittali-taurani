@@ -1,4 +1,5 @@
-import React, { useContext,useState } from "react";
+import "./style.scss";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import {
   formatNumberInCurrency,
@@ -6,8 +7,6 @@ import {
   formatNumberInUSDCurrency,
 } from "../../../helper/util";
 import { CurrencyContext } from "../../../services/currency/CurrencyContext";
-import Modal from "../../DesignComponents/Modal";
-import LoginForm from "../../ContainerComponents/Login";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { SessionContext } from "../../../services/session/SessionContext";
 import { CartContext } from "../../../services/cart/CartContext";
@@ -16,11 +15,6 @@ const PastOrderItem = ({ product }) => {
   const { cartItems, addProduct, updateProduct  } = useContext(CartContext);
   const { INR } = useContext(CurrencyContext);
   const { authUser } = useContext(SessionContext);
-  const [showLogin, setShowLogin] = useState(false);
-
-  const handleLoginClick = () => {
-    setShowLogin(!showLogin);
-  };
 
   const handleAddOrUpdateCart = (event) => {
     const isActionAdd = event.currentTarget.textContent.includes("Add");
@@ -57,14 +51,17 @@ const PastOrderItem = ({ product }) => {
           <p>Price: </p>
           <h4>{price}</h4>
         </div>
-        <p className="cart-item__detail">Quantity</p>
-        <div className="cart-item__quantity">{product.quantity}</div>
+        <div className="cart-item__price flex-row">
+        <p className="cart-item__detail">Quantity: </p>
+        <h4 className="cart-item__quantity">{product.quantity}</h4>
+        </div>
+        
       </div>
       <div className="cart-item__sidebar flex-column">
         <div className="cart-item__total">
           Total Price: <h4>{`${price} X ${product.quantity}`}</h4>
         </div>
-        {!!isProductInCart(product) ? "Product already in cart": <button
+        {/* {!!isProductInCart(product) ? "Product already in cart": <button
           type="button"
           className="addCartBtn flex-row blackBg-whiteFg-btn"
           onClick={(event) => handleAddOrUpdateCart(event)}
@@ -93,7 +90,16 @@ const PastOrderItem = ({ product }) => {
             </Modal>
           )}
         </div>
-      )}
+          )} */}
+          {!!isProductInCart(product) ? (<h4>Product already in cart</h4>): <button
+          type="button"
+          className="past-order__addCartBtn flex-row blackBg-whiteFg-btn"
+          onClick={(event) => handleAddOrUpdateCart(event)}
+          disabled={authUser && authUser.isLoggedIn ? false : true}
+        >
+          <HiOutlineShoppingBag />
+          <h4>{"Add"}</h4>
+        </button>}
       </div>
     </div>
   );
