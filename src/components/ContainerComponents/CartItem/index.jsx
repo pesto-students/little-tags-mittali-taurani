@@ -2,6 +2,7 @@ import "./style.scss";
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { IoBagRemoveSharp } from "react-icons/io5";
+import Favorite from "../Favorite";
 import {
   formatNumberInCurrency,
   getSubString,
@@ -45,7 +46,7 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
           <p>Price: </p>
           <h4>{price}</h4>
         </div>
-        {wishlist ? null: (
+        {wishlist ? null : (
           <div className="cart-item-quantity__div">
             <p className="cart-item__detail">Quantity</p>
             <div className="cart-item__quantity">
@@ -60,7 +61,7 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
         )}
       </div>
       <div className="cart-item__sidebar flex-column">
-        <div className="cart-item__total flex-row">
+        {/* <div className="cart-item__total flex-row">
           <div className="cart-item-total__div">Total Price:</div>
           <h4 className="cart-item-total__h4">{` ${price} X ${product.quantity}`}</h4>
         </div>
@@ -76,7 +77,32 @@ const CartItem = ({ product, wishlist, removeProductFromWishlist }) => {
           }}
         >
           <IoBagRemoveSharp />
-        </button>
+        </button> */}
+        {!wishlist ? (
+          <div className="cart-item__total flex-row">
+            <div className="cart-item-total__div">Total Price:</div>
+            <h4 className="cart-item-total__h4">{` ${price} X ${product.quantity}`}</h4>
+          </div>
+        ) : (
+          <div></div>
+        )}
+        {!wishlist ? (
+          <button
+            type="button"
+            className="cart-item__removeBtn"
+            onClick={() => {
+              if (wishlist) {
+                removeProductFromWishlist(product);
+              } else {
+                removeProduct(product);
+              }
+            }}
+          >
+            <IoBagRemoveSharp />
+          </button>
+        ) : (
+          <Favorite data={product} />
+        )}
       </div>
     </div>
   );

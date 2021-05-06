@@ -43,7 +43,11 @@
 
 .result-list {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .sort-by-padding{
@@ -61,6 +65,7 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 40px;
 }
 

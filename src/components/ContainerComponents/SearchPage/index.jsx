@@ -147,7 +147,7 @@ function SearchPage(props) {
               </button>
             )}
             <div className="pagination-text">
-            {pageNumber} of {totalPages}
+            {pageNumber}/{totalPages}
             </div>
             
             {pageNumber !== totalPages && (
