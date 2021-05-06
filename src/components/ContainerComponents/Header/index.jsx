@@ -48,34 +48,30 @@ function Header() {
         <div onClick={goTo(ROUTE.HOME)} className="header-logo">
           [untitled]
         </div>*/}
-       {/* <div className="header-logo" onClick={goTo(ROUTE.HOME)}>
+        {/* <div className="header-logo" onClick={goTo(ROUTE.HOME)}>
           <img className="header-logo__img" alt="Website logo" src={Myntra} />
         </div>*/}
-        <img className="header-logo__img" alt="Website logo" src={Myntra} onClick={goTo(ROUTE.HOME)}/>
+        <img
+          className="header-logo__img"
+          alt="Website logo"
+          src={Myntra}
+          onClick={goTo(ROUTE.HOME)}
+        />
         <div className="header-middle__main flex-row">
-        <Search options={products} />
-        <ToggleButton
-          selected={USD}
-          toggleSelected={() => {
-            if(USD){
-              setInr();
-            }else{
-              setUsd();
-            }
-          }}
-        /></div>
+          <Search options={products} />
+          <ToggleButton
+            selected={USD}
+            toggleSelected={() => {
+              if (USD) {
+                setInr();
+              } else {
+                setUsd();
+              }
+            }}
+          />
+        </div>
 
         <div className="header-user__actions flex-row">
-          {authUser && authUser.isLoggedIn ? (
-            <ProfileDropdown />
-          ) : (
-            <Button
-              type={"user"}
-              buttonText={"Log in / Sign up"}
-              onClickHandler={handleLoginClick}
-            />
-          )}
-
           <Button
             onClickHandler={goTo(ROUTE.WISHLIST)}
             type={"favourite"}
@@ -87,6 +83,15 @@ function Header() {
             buttonText={`Cart (${itemCount})`}
           />
         </div>
+        {authUser && authUser.isLoggedIn ? (
+          <ProfileDropdown />
+        ) : (
+          <Button
+            type={"user"}
+            buttonText={"Log in / Sign up"}
+            onClickHandler={handleLoginClick}
+          />
+        )}
         <Hamburger handleLoginClick={handleLoginClick} />
 
         {showLogin && (
