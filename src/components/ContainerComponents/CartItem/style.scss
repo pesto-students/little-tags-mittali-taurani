@@ -100,9 +100,21 @@
 }
 
 .cart-item__total{
-  display: flex;
+  width: 10em;
+  justify-content: space-between;
 
-  @media (max-width: 768px){
+  .cart-item-total__div{
+    align-self: baseline;
+    width: 40%;
+  }
+
+  .cart-item-total__h4{
+    width: auto;
+  }
+
+  @media (max-width: 560px){
     flex-direction: column;
+    align-items: flex-start;
+    width: 5em;
   }
 }
