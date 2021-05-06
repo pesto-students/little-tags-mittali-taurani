@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ROUTE } from "../../../helper/constants";
 import CartItem from "../CartItem";
+import Favorite from "../Favorite";
 import EmptyWishlist from "../../../assets/images/wishlist_empty.PNG";
 import { WishlistContext } from "../../../services/wishList/Context";
 
