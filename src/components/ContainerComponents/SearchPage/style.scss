@@ -43,7 +43,11 @@
 
 .result-list {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .sort-by-padding{
