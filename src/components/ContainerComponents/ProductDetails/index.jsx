@@ -8,15 +8,17 @@ import SizeDropDown from "../../DesignComponents/DropDown";
 import Quantity from "../../DesignComponents/Counter";
 import ColorOptions from "../../DesignComponents/ColorOptions";
 import { CartContext } from "../../../services/cart/CartContext";
-import { formatNumberInCurrency, getSubString, formatNumberInUSDCurrency } from "../../../helper/util";
+import {
+  formatNumberInCurrency,
+  getSubString,
+  formatNumberInUSDCurrency,
+} from "../../../helper/util";
 import { SessionContext } from "../../../services/session/SessionContext";
 import LoginForm from "../../ContainerComponents/Login";
 import Modal from "../../DesignComponents/Modal";
 import FirebaseContext from "../../../services/firebase/FirebaseContext";
 import { CurrencyContext } from "../../../services/currency/CurrencyContext";
-import {
-  USER_CART_STORAGE_KEY,
-} from "../../../helper/constants";
+import { USER_CART_STORAGE_KEY } from "../../../helper/constants";
 
 const ProductDetails = ({ product }) => {
   const { cartItems, addProduct, updateProduct } = useContext(CartContext);
@@ -47,7 +49,11 @@ const ProductDetails = ({ product }) => {
 
   useEffect(() => {
     if (authUser && authUser.isLoggedIn)
-      firebase.saveDataToFirebase(authUser.uid, USER_CART_STORAGE_KEY, cartItems);
+      firebase.saveDataToFirebase(
+        authUser.uid,
+        USER_CART_STORAGE_KEY,
+        cartItems
+      );
   }, [authUser, cartItems, firebase]);
 
   const handleIncreaseQuantity = () => {
@@ -127,7 +133,9 @@ const ProductDetails = ({ product }) => {
         <Favorite data={product} />
       </div>
       <h5 className="product-details-price">
-        {INR ? formatNumberInCurrency(product["Unnamed: 17"]) : formatNumberInUSDCurrency(product["Unnamed: 17"])}
+        {INR
+          ? formatNumberInCurrency(product["Unnamed: 17"])
+          : formatNumberInUSDCurrency(product["Unnamed: 17"])}
       </h5>
       <div className="product-details-heading">Color</div>
       <ColorOptions options={createArray(product.color1)} />
@@ -154,13 +162,17 @@ const ProductDetails = ({ product }) => {
       <button
         type="button"
         className="addCartBtn flex-row blackBg-whiteFg-btn"
-        onClick={(event) => handleAddOrUpdateCart(event)}
-        disabled={authUser && authUser.isLoggedIn ? false : true}
+        onClick={
+          authUser && authUser.isLoggedIn
+            ? (event) => handleAddOrUpdateCart(event)
+            : handleLoginClick
+        }
+        // disabled={authUser && authUser.isLoggedIn ? false : true}
       >
         <HiOutlineShoppingBag />
         <h4>{!!isProductInCart(product) ? "Update" : "Add"}</h4>
       </button>
-      {authUser && authUser.isLoggedIn ? (
+      {/* {authUser && authUser.isLoggedIn ? (
         ""
       ) : (
         <div className="login-alert__div flex-row">
@@ -180,6 +192,11 @@ const ProductDetails = ({ product }) => {
             </Modal>
           )}
         </div>
+          )} */}
+      {showLogin && (
+        <Modal>
+          <LoginForm handleCloseModal={handleLoginClick} />
+        </Modal>
       )}
     </div>
   );
